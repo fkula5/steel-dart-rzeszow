@@ -14,14 +14,14 @@ class Player extends Model
 
     protected $fillable = ['name', 'second_name', 'points', 'balance', 'legs_won', 'legs_lost', 'average_3_dart', 'max_amount', 'league_id'];
 
-    public function fast_outs(): HasManyThrough
+    public function fastOuts(): hasMany
     {
-        return $this->hasManyThrough(FastOutType::class, FastOut::class);
+        return $this->hasMany(FastOut::class);
     }
 
-    public function hight_outs(): HasManyThrough
+    public function hightOuts(): HasMany
     {
-        return $this->hasManyThrough(HighOutType::class, HighOut::class);
+        return $this->hasMany(HighOut::class);
     }
 
     public function league(): BelongsTo

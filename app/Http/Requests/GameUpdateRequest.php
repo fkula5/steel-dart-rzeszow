@@ -32,7 +32,9 @@ class GameUpdateRequest extends FormRequest
             'player_one_max_amount' => ['required', 'integer'],
             'player_two_max_amount' => ['required', 'integer'],
             'league_id' => ['required', 'integer', 'exists:leagues,id', 'between:1,3'],
-            'winner' => ['required', 'integer']
+            'winner' => ['required', 'integer'],
+            'highouts' => ['array'],
+            'fastouts' => ['array']
         ];
     }
 

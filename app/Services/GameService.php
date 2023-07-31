@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\FastOut;
 use App\Models\Game;
+use App\Models\HighOut;
 use App\Models\Player;
 
 class GameService
@@ -36,6 +38,28 @@ class GameService
         $playerTwo->save();
     }
 
+    private function createHighOuts(array $highOuts, Game $game): void
+    {
+        foreach ($highOuts as $highOut){
+            HighOut::create([
+                'player_id' => $highOut['player_id'],
+                'game_id' => $game->id,
+                'high_out_type_id' => $highOut['high_out_type']
+            ]);
+        }
+    }
+
+    private function createFastOuts(array $fastOuts, Game $game): void
+    {
+        foreach ($fastOuts as $fastOut){
+            FastOut::create([
+                'player_id' => $fastOut['player_id'],
+                'game_id' => $game->id,
+                'fast_out_type_id' => $fastOut['fast_out_type']
+            ]);
+        }
+    }
+
     public function store(array $gameData): Game
     {
         $game = Game::create([
@@ -50,6 +74,10 @@ class GameService
             'league_id' => $gameData['league_id'],
             'winner' => $gameData['winner']
         ]);
+
+        $this->createHighOuts($gameData['highouts'], $game);
+
+        $this->createFastOuts($gameData['fastouts'], $game);
 
         $this->updatePlayerStats($game);
 
@@ -70,6 +98,14 @@ class GameService
         $game->winner = $gameData['winner'];
 
         $this->updatePlayerStats($game);
+
+        $game->highOuts()->delete();
+
+        $game->fastOuts()->delete();
+
+        $this->createHighOuts($gameData['highouts'], $game);
+
+        $this->createFastOuts($gameData['fastouts'], $game);
 
         $game->save();
 
