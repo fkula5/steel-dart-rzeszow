@@ -8,18 +8,20 @@ use App\Http\Resources\PlayerCollection;
 use App\Http\Resources\PlayerResource;
 use App\Models\Player;
 use App\Services\PlayerService;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 
 class PlayerController extends BaseController
 {
-    public function __construct(private PlayerService $playerService){}
+    public function __construct(private PlayerService $playerService)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return $this->sendResponse(new PlayerCollection(Player::all()), "Players retrieved successfully");
+        return $this->sendResponse(new PlayerCollection(Player::with('league')->get()), "Players retrieved successfully");
     }
 
     /**
@@ -27,65 +29,38 @@ class PlayerController extends BaseController
      */
     public function store(PlayerStoreRequest $request)
     {
-        $validatedData = $request->validated();
+        $player = $this->playerService->create($request->validated());
 
-//        $isPlayerExist = Player::where('name', $validatedData['name'])->where('second_name', $validatedData['second_name'])->exists();
-//
-//        if($isPlayerExist){
-//            return $this->sendError($validatedData, "Player already exists");
-//        }
-
-        $player = $this->playerService->create($validatedData);
-
-        return $this->sendResponse(new PlayerResource($player), "Player successfully created", Response::HTTP_CREATED);
+        return $this->sendResponse(new PlayerResource($player->loadMissing(['league'])), "Player successfully created", Response::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Player $player)
     {
-        $player = Player::findOrFail($id);
-
-        if($player instanceof Player){
-            return $this->sendResponse(new PlayerResource($player), "Player retrieved successfully");
-        }else{
-            return $this->sendError($player, "Player does not exist", Response::HTTP_NOT_FOUND);
-        }
+        return $this->sendResponse(new PlayerResource($player->loadMissing(['league'])), "Player retrieved successfully");
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(PlayerUpdateRequest $request, string $id)
+    public function update(PlayerUpdateRequest $request, Player $player)
     {
-        $player = Player::findOrFail($id);
+        $game = $this->playerService->update($player, $request->validated());
 
-        $validatedData = $request->validated();
-
-//        $isPlayerExist = Player::where('name', $validatedData['name'])->where('second_name', $validatedData['second_name'])->exists();
-
-//        if($isPlayerExist){
-//            return $this->sendError("Player already exists");
-//        }
-
-        $player = $this->playerService->update($player, $validatedData);
-
-        return $this->sendResponse($player, "Player updated successfully");
+        return $this->sendResponse(new PlayerResource($game->loadMissing(['league'])), "Player updated successfully");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Player $player)
     {
-        $player = Player::findOrFail($id);
-
-            if($player instanceof Player){
-                $player->delete();
-                return $this->sendResponse(new PlayerResource($player), "Player deleted successfully");
-            }else{
-                return $this->sendError($player, "Player does not exist", Response::HTTP_NOT_FOUND);
+        if ($player->delete()) {
+            return $this->sendResponse([], "Player deleted successfully", Response::HTTP_NO_CONTENT);
+        } else {
+            return $this->sendError($player->id, "Something went wrong");
         }
     }
 }
