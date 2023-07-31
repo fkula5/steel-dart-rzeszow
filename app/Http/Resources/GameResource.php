@@ -3,9 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Game;
-use App\Models\HighOut;
 use App\Models\League;
-use App\Models\Player;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -20,8 +18,8 @@ class GameResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'player_one' => new PlayerResource(Player::findOrFail($this->player_one)),
-            'player_two' => new PlayerResource(Player::findOrFail($this->player_two)),
+            'player_one' => new PlayerResource($this->whenLoaded('player_one')),
+            'player_two' => new PlayerResource($this->whenLoaded('player_two')),
             'player_one_score' => $this->player_one_score,
             'player_two_score' => $this->player_two_score,
             'player_one_avg' => $this->player_one_avg,

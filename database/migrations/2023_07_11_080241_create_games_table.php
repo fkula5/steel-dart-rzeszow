@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -24,6 +23,11 @@ return new class extends Migration
             $table->unsignedBigInteger('league_id');
             $table->unsignedBigInteger('winner');
             $table->timestamps();
+
+            $table->foreign('player_one')->references('id')->on('players')->onDelete('cascade');
+            $table->foreign('player_two')->references('id')->on('players')->onDelete('cascade');
+            $table->foreign('winner')->references('id')->on('players')->onDelete('cascade');
+            $table->foreign('league_id')->references('id')->on('leagues')->onDelete('cascade');
         });
     }
 

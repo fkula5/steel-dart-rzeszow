@@ -12,13 +12,16 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GameController extends BaseController
 {
-    public function __construct(private GameService $gameService){}
+    public function __construct(private GameService $gameService)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return $this->sendResponse(new GameCollection(Game::all()), "Games retrieved successfully");
+        return $this->sendResponse(new GameCollection(Game::with(['playerOne', 'playerTwo', 'league'])->get()), "Games retrieved successfully");
     }
 
     /**
@@ -26,53 +29,38 @@ class GameController extends BaseController
      */
     public function store(GameStoreRequest $request)
     {
-        $validatedData = $request->validated();
+        $game = $this->gameService->store($request->validated());
 
-        $game = $this->gameService->store($validatedData);
-
-        return $this->sendResponse(new GameResource($game), "Game successfully created", Response::HTTP_CREATED);
+        return $this->sendResponse(new GameResource($game->loadMissing(['playerOne', 'playerTwo', 'league'])), "Game successfully created", Response::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Game $game)
     {
-        $game = Game::findOrFail($id);
-
-        if($game instanceof Game){
-            return $this->sendResponse(new GameResource($game), "Game retrieved successfully");
-        }else{
-            return $this->sendError($game, "Game does not exist", Response::HTTP_NOT_FOUND);
-        }
+        return $this->sendResponse(new GameResource($game->loadMissing(['playerOne', 'playerTwo', 'league'])), "Game retrieved successfully");
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(GameUpdateRequest $request, string $id)
+    public function update(GameUpdateRequest $request, Game $game)
     {
-        $game = Game::findOrFail($id);
+        $game = $this->gameService->update($game, $request->validated());
 
-        $validatedData = $request->validated();
-
-        $game = $this->gameService->update($game, $validatedData);
-
-        return $this->sendResponse(new GameResource($game), "Game updated successfully");
+        return $this->sendResponse(new GameResource($game->loadMissing(['playerOne', 'playerTwo', 'league'])), "Game updated successfully");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Game $game)
     {
-        $game = Game::findOrFail($id);
-
-        if($game instanceof Game){
-            $game->delete();
-            return $this->sendResponse(new GameResource($game), "Game deleted successfully");
-        }else{
-            return $this->sendError($game, "Game does not exist", Response::HTTP_NOT_FOUND);
+        if ($game->delete()) {
+            return $this->sendResponse([], "Game deleted successfully", Response::HTTP_NO_CONTENT);
+        } else {
+            return $this->sendError($game->id, "Something went wrong");
         }
     }
 }
