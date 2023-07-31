@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class GameStoreRequest extends FormRequest
 {
@@ -32,7 +31,7 @@ class GameStoreRequest extends FormRequest
             'player_two_avg' => ['required', 'decimal:2', 'between:0,167'],
             'player_one_max_amount' => ['required', 'integer'],
             'player_two_max_amount' => ['required', 'integer'],
-            'league_id' => ['required', 'integer', 'exists:leagues,id', 'between:1,3'],
+            'league_id' => ['required', 'integer', 'exists:leagues,id'],
             'winner' => ['required', 'integer'],
             'highouts' => ['array'],
             'fastouts' => ['array']

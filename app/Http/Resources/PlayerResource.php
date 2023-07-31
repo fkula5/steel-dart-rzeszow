@@ -17,13 +17,14 @@ class PlayerResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'league' => new LeagueResource($this->whenLoaded('league')),
             'secondName' => $this->second_name,
             'points' => $this->points,
             'balance' => $this->balance,
             'legsWon' => $this->legs_won,
             'legsLost' => $this->legs_lost,
             'average3Darts' => $this->avg ? (int)$this->avg : 0,
-            'maxAmount' => $this->max_amount ? (int)$this->max_amount : 0
+            'maxAmount' => $this->max_amount,
         ];
     }
 }

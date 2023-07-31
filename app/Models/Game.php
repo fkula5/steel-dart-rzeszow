@@ -11,7 +11,7 @@ class Game extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['player_one','player_two','player_one_score', 'player_two_score', 'player_one_avg', 'player_two_avg', 'player_one_max_amount', 'player_two_max_amount', 'league_id', 'winner'];
+    protected $fillable = ['player_one', 'player_two', 'player_one_score', 'player_two_score', 'player_one_avg', 'player_two_avg', 'player_one_max_amount', 'player_two_max_amount', 'league_id', 'winner'];
 
     public function highOuts(): HasMany
     {
@@ -31,5 +31,10 @@ class Game extends Model
     public function playerTwo(): BelongsTo
     {
         return $this->belongsTo(Player::class, 'player_two');
+    }
+
+    public function league(): BelongsTo
+    {
+        return $this->belongsTo(League::class, 'league_id');
     }
 }
