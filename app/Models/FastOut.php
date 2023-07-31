@@ -10,8 +10,20 @@ class FastOut extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['fast_out_type_id', 'player_id', 'game_id'];
+
     public function game(): BelongsTo
     {
         return $this->belongsTo(Game::class);
+    }
+
+    public function fastOutType(): BelongsTo
+    {
+        return $this->belongsTo(FastOutType::class);
+    }
+
+    public function player(): BelongsTo
+    {
+        return $this->belongsTo(Player::class);
     }
 }

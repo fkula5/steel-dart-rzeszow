@@ -13,12 +13,12 @@ class Game extends Model
 
     protected $fillable = ['player_one','player_two','player_one_score', 'player_two_score', 'player_one_avg', 'player_two_avg', 'player_one_max_amount', 'player_two_max_amount', 'league_id', 'winner'];
 
-    public function high_outs(): HasMany
+    public function highOuts(): HasMany
     {
         return $this->hasMany(HighOut::class);
     }
 
-    public function fast_outs(): HasMany
+    public function fastOuts(): HasMany
     {
         return $this->hasMany(FastOut::class);
     }
