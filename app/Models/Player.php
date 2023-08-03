@@ -18,7 +18,7 @@ class Player extends Model
         return $this->hasMany(FastOut::class);
     }
 
-    public function hightOuts(): HasMany
+    public function highOuts(): HasMany
     {
         return $this->hasMany(HighOut::class);
     }

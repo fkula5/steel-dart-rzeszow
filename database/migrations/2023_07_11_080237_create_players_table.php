@@ -15,12 +15,12 @@ return new class extends Migration {
             $table->string('name', 64);
             $table->string('second_name', 64);
             $table->unsignedInteger('league_id');
-            $table->integer('points');
-            $table->integer('balance');
-            $table->integer('legs_won');
-            $table->integer('legs_lost');
-            $table->double('average_3_dart', 3, 2);
-            $table->integer('max_amount');
+            $table->integer('points')->default(0);
+            $table->integer('balance')->default(0);
+            $table->integer('legs_won')->default(0);
+            $table->integer('legs_lost')->default(0);
+            $table->double('average_3_dart', 3, 2)->default(0);
+            $table->integer('max_amount')->default(0);
             $table->timestamps();
 
             $table->foreign('league_id')->references('id')->on('leagues')->onDelete('cascade');

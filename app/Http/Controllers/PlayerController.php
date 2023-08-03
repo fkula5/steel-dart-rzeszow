@@ -21,7 +21,7 @@ class PlayerController extends BaseController
      */
     public function index()
     {
-        return $this->sendResponse(new PlayerCollection(Player::with('league')->get()), "Players retrieved successfully");
+        return $this->sendResponse(new PlayerCollection(Player::with(['league', 'highOuts', 'fastOuts'])->get()), "Players retrieved successfully");
     }
 
     /**
@@ -39,7 +39,7 @@ class PlayerController extends BaseController
      */
     public function show(Player $player)
     {
-        return $this->sendResponse(new PlayerResource($player->loadMissing(['league'])), "Player retrieved successfully");
+        return $this->sendResponse(new PlayerResource($player->loadMissing(['league', 'highOuts', 'fastOuts'])), "Player retrieved successfully");
     }
 
     /**
