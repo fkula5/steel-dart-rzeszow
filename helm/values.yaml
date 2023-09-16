@@ -40,7 +40,7 @@ service:
   type: ClusterIP
   port: 80
 
-secretRef: steel-dart-backend
+secretRef: steel-dart-env
 
 ingress:
   enabled: true
