@@ -22,7 +22,7 @@ spec:
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-      - name: {{- .Values.imagePullSecrets }}
+      - name: {{ . }}
       {{- end }}
       serviceAccountName: {{ include "steel-dart.serviceAccountName" . }}
       securityContext:
