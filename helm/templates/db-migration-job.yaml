@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ .Values.name }}-migration
+  name: {{ include "steel-dart.fullname" . }}-migration
   namespace: {{ .Release.Namespace }}
   annotations:
     "helm.sh/hook": post-install,post-upgrade
@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: migration
-        image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         envFrom:
         - secretRef:
             name: {{ .Values.secretRef }}
