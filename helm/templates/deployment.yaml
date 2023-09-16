@@ -22,7 +22,7 @@ spec:
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
+      - name: {{-}}
       {{- end }}
       serviceAccountName: {{ include "steel-dart.serviceAccountName" . }}
       securityContext:
@@ -32,6 +32,9 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          envFrom:
+          - secretRef:
+              name: {{ .Values.secretRef }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
