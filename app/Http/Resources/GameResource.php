@@ -18,8 +18,8 @@ class GameResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'player_one' => new PlayerResource($this->whenLoaded('player_one')),
-            'player_two' => new PlayerResource($this->whenLoaded('player_two')),
+            'player_one' => new PlayerResource($this->whenLoaded('playerOne')),
+            'player_two' => new PlayerResource($this->whenLoaded('playerTwo')),
             'player_one_score' => $this->player_one_score,
             'player_two_score' => $this->player_two_score,
             'player_one_avg' => $this->player_one_avg,
@@ -31,7 +31,9 @@ class GameResource extends JsonResource
             'player_one_fast_outs' => new FastOutCollection(Game::find($this->id)->fastOuts()->where('player_id', $this->player_one)->get()),
             'player_two_fast_outs' => new FastOutCollection(Game::find($this->id)->fastOuts()->where('player_id', $this->player_two)->get()),
             'league' => League::findOrFail($this->league_id),
-            'winner' => $this->winner
+            'winner' => $this->winner,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
         ];
     }
 }
