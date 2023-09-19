@@ -3,8 +3,10 @@
 namespace App\Services;
 
 use App\Models\FastOut;
+use App\Models\FastOutType;
 use App\Models\Game;
 use App\Models\HighOut;
+use App\Models\HighOutType;
 use App\Models\Player;
 
 class GameService
@@ -38,24 +40,24 @@ class GameService
         $playerTwo->save();
     }
 
-    private function createHighOuts(array $highOuts, Game $game): void
+    private function createHighOuts(array $highOuts, int $gameId, int $playerId): void
     {
         foreach ($highOuts as $highOut) {
             HighOut::create([
-                'player_id' => $highOut['player_id'],
-                'game_id' => $game->id,
-                'high_out_type_id' => $highOut['high_out_type']
+                'player_id' => $playerId,
+                'game_id' => $gameId,
+                'high_out_type_id' => HighOutType::where('value', $highOut)->value('id')
             ]);
         }
     }
 
-    private function createFastOuts(array $fastOuts, Game $game): void
+    private function createFastOuts(array $fastOuts, int $gameId, int $playerId): void
     {
         foreach ($fastOuts as $fastOut) {
             FastOut::create([
-                'player_id' => $fastOut['player_id'],
-                'game_id' => $game->id,
-                'fast_out_type_id' => $fastOut['fast_out_type']
+                'player_id' => $playerId,
+                'game_id' => $gameId,
+                'fast_out_type_id' => FastOutType::where('value', $fastOut)->value('id')
             ]);
         }
     }
@@ -64,9 +66,11 @@ class GameService
     {
         $game = Game::create($gameData);
 
-        $this->createHighOuts($gameData['high_outs'], $game);
+        $this->createHighOuts($gameData['player_one_high_outs'], $game->id, $game->player_one);
+        $this->createFastOuts($gameData['player_one_fast_outs'], $game->id, $game->player_one);
 
-        $this->createFastOuts($gameData['fast_outs'], $game);
+        $this->createHighOuts($gameData['player_two_high_outs'], $game->id, $game->player_two);
+        $this->createFastOuts($gameData['player_two_fast_outs'], $game->id, $game->player_two);
 
         $this->updatePlayerStats($game);
 

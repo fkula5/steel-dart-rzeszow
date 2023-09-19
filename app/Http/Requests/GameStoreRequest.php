@@ -33,7 +33,10 @@ class GameStoreRequest extends FormRequest
             'player_two_max_amount' => ['required', 'integer'],
             'league_id' => ['required', 'integer', 'exists:leagues,id'],
             'winner' => ['required', 'integer'],
-            'high_outs' => ['array'],
+            'player_one_high_outs' => ['array'],
+            'player_one_fast_outs' => ['array'],
+            'player_two_high_outs' => ['array'],
+            'player_two_fast_outs' => ['array'],
             'fast_outs' => ['array']
         ];
     }
