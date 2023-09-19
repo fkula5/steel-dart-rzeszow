@@ -64,9 +64,9 @@ class GameService
     {
         $game = Game::create($gameData);
 
-        $this->createHighOuts($gameData['highouts'], $game);
+        $this->createHighOuts($gameData['high_outs'], $game);
 
-        $this->createFastOuts($gameData['fastouts'], $game);
+        $this->createFastOuts($gameData['fast_outs'], $game);
 
         $this->updatePlayerStats($game);
 
@@ -83,9 +83,9 @@ class GameService
 
         $game->fastOuts()->delete();
 
-        $this->createHighOuts($gameData['highouts'], $game);
+        $this->createHighOuts($gameData['high_outs'], $game);
 
-        $this->createFastOuts($gameData['fastouts'], $game);
+        $this->createFastOuts($gameData['fast_outs'], $game);
 
         return $game;
     }
