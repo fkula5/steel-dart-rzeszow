@@ -16,7 +16,7 @@ class HighOutResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'high_out' => HighOutType::findOrFail($this->high_out_type_id)
+            'highOut' => HighOutType::findOrFail($this->high_out_type_id)
         ];
     }
 }
