@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GameController extends BaseController
 {
+    #specjalnie dla Szymona
     public function __construct(private GameService $gameService)
     {
     }
