@@ -11,7 +11,7 @@ use App\Models\Player;
 
 class GameService
 {
-    private function updatePlayerStats(Player $player, $score, $opponentScore, $avg, $max): void
+    private function updatePlayerStats(Player $player, int $score, int $opponentScore, float $avg, int $max): void
     {
         $player->legs_won += $score;
         $player->legs_lost += $opponentScore;
