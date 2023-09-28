@@ -3,59 +3,60 @@
 namespace App\Services;
 
 use App\Models\FastOut;
+use App\Models\FastOutType;
 use App\Models\Game;
 use App\Models\HighOut;
+use App\Models\HighOutType;
 use App\Models\Player;
 
 class GameService
 {
-    private function updatePlayerStats(Game $game): void
+    private function updatePlayerStats(Player $player, int $score, int $opponentScore, float $avg, int $max): void
+    {
+        $player->legs_won += $score;
+        $player->legs_lost += $opponentScore;
+        $player->balance = $player->balance + $score - $opponentScore;
+        $player->average_3_dart = (($player->avg + $avg) / 2);
+        $player->max_amount += $max;
+        $player->save();
+    }
+    private function updatePlayersStats(Game $game): void
     {
         $playerOne = Player::find($game->player_one);
-        $playerOne->legs_won += $game->player_one_score;
-        $playerOne->legs_lost += $game->player_two_score;
-        $playerOne->balance = $playerOne->balance + $game->player_one_score - $game->player_two_score;
-        $playerOne->average_3_dart = (($playerOne->avg + $game->player_one_avg) / 2);
-        $playerOne->max_amount += $game->player_one_max_amount;
-
         $playerTwo = Player::find($game->player_two);
-        $playerTwo->legs_won += $game->player_two_score;
-        $playerTwo->legs_lost += $game->player_one_score;
-        $playerTwo->balance = $playerTwo->balance + $game->player_two_score - $game->player_one_score;
-        $playerTwo->average_3_dart = (($playerTwo->avg + $game->player_two_avg) / 2);
-        $playerTwo->max_amount += $game->player_two_max_amount;
 
         if ($game->winner == $game->player_one) {
             $playerOne->points += 3;
         } elseif ($game->winner == $game->player_two) {
-            $playerOne->points += 3;
+            $playerTwo->points += 3;
         } else {
             $playerOne->points += 1;
             $playerOne->points += 1;
         }
 
-        $playerOne->save();
-        $playerTwo->save();
+        $this->updatePlayerStats($playerOne, $game->player_one_score, $game->player_two_score, $game->player_one_avg, $game->player_one_max);
+
+        $this->updatePlayerStats($playerTwo, $game->player_two_score, $game->player_one_score, $game->player_two_avg, $game->player_two_max);
     }
 
-    private function createHighOuts(array $highOuts, Game $game): void
+    private function createHighOuts(array $highOuts, Game $game, int $playerId): void
     {
         foreach ($highOuts as $highOut) {
             HighOut::create([
-                'player_id' => $highOut['player_id'],
+                'player_id' => $playerId,
                 'game_id' => $game->id,
-                'high_out_type_id' => $highOut['high_out_type']
+                'high_out_type_id' => HighOutType::where('value', $highOut)->value('id')
             ]);
         }
     }
 
-    private function createFastOuts(array $fastOuts, Game $game): void
+    private function createFastOuts(array $fastOuts, Game $game, int $playerId): void
     {
         foreach ($fastOuts as $fastOut) {
             FastOut::create([
-                'player_id' => $fastOut['player_id'],
+                'player_id' => $playerId,
                 'game_id' => $game->id,
-                'fast_out_type_id' => $fastOut['fast_out_type']
+                'fast_out_type_id' => FastOutType::where('value', $fastOut)->value('id')
             ]);
         }
     }
@@ -64,11 +65,13 @@ class GameService
     {
         $game = Game::create($gameData);
 
-        $this->createHighOuts($gameData['high_outs'], $game);
+        $this->createHighOuts($gameData['player_one_high_outs'], $game, $game->player_one);
+        $this->createFastOuts($gameData['player_one_fast_outs'], $game, $game->player_one);
 
-        $this->createFastOuts($gameData['fast_outs'], $game);
+        $this->createHighOuts($gameData['player_two_high_outs'], $game, $game->player_two);
+        $this->createFastOuts($gameData['player_two_fast_outs'], $game, $game->player_two);
 
-        $this->updatePlayerStats($game);
+        $this->updatePlayersStats($game);
 
         return $game;
     }
@@ -77,15 +80,17 @@ class GameService
     {
         $game->update($gameData);
 
-        $this->updatePlayerStats($game);
+        $this->updatePlayersStats($game);
 
         $game->highOuts()->delete();
 
         $game->fastOuts()->delete();
 
-        $this->createHighOuts($gameData['high_outs'], $game);
+        $this->createHighOuts($gameData['player_one_high_outs'], $game, $game->player_one);
+        $this->createFastOuts($gameData['player_one_fast_outs'], $game, $game->player_one);
 
-        $this->createFastOuts($gameData['fast_outs'], $game);
+        $this->createHighOuts($gameData['player_two_high_outs'], $game, $game->player_two);
+        $this->createFastOuts($gameData['player_two_fast_outs'], $game, $game->player_two);
 
         return $game;
     }

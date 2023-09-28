@@ -1,39 +1,387 @@
 {
     "games": [
         {
-            "player_one": 1,
-            "player_two": 2,
-            "player_one_score": 4,
-            "player_two_score": 6,
-            "player_one_avg": 78.5,
-            "player_two_avg": 83.2,
-            "player_one_max_amount": 140,
-            "player_two_max_amount": 180,
-            "league_id": 1,
-            "winner": 2
-        },
-        {
             "player_one": 3,
             "player_two": 4,
-            "player_one_score": 3,
-            "player_two_score": 2,
-            "player_one_avg": 72.8,
-            "player_two_avg": 67.2,
-            "player_one_max_amount": 120,
-            "player_two_max_amount": 140,
+            "player_one_score": 4,
+            "player_two_score": 6,
+            "player_one_avg": 78.54,
+            "player_two_avg": 83.24,
+            "player_one_max_amount": 140,
+            "player_two_max_amount": 180,
+            "player_one_high_outs": [
+                121,
+                123,
+                170
+            ],
+            "player_two_high_outs": [
+                111,
+                123,
+                160
+            ],
+            "player_one_fast_outs": [
+                12,
+                16,
+                18
+            ],
+            "player_two_fast_outs": [
+                11,
+                12,
+                13
+            ],
+            "league_id": 1,
+            "winner": 4
+        },
+        {
+            "player_one": 7,
+            "player_two": 10,
+            "player_one_score": 6,
+            "player_two_score": 4,
+            "player_one_avg": 82.13,
+            "player_two_avg": 76.89,
+            "player_one_max_amount": 155,
+            "player_two_max_amount": 162,
+            "player_one_high_outs": [
+                105,
+                110,
+                130
+            ],
+            "player_two_high_outs": [
+                121,
+                140,
+                150
+            ],
+            "player_one_fast_outs": [
+                9,
+                14,
+                17
+            ],
+            "player_two_fast_outs": [
+                10,
+                12,
+                15
+            ],
             "league_id": 2,
+            "winner": 7
+        },
+        {
+            "player_one": 8,
+            "player_two": 2,
+            "player_one_score": 6,
+            "player_two_score": 0,
+            "player_one_avg": 85.12,
+            "player_two_avg": 77.88,
+            "player_one_max_amount": 160,
+            "player_two_max_amount": 170,
+            "player_one_high_outs": [
+                110,
+                121,
+                130
+            ],
+            "player_two_high_outs": [
+                100,
+                140,
+                150
+            ],
+            "player_one_fast_outs": [
+                10,
+                15,
+                18
+            ],
+            "player_two_fast_outs": [
+                9,
+                12,
+                17
+            ],
+            "league_id": 2,
+            "winner": 8
+        },
+        {
+            "player_one": 5,
+            "player_two": 3,
+            "player_one_score": 4,
+            "player_two_score": 6,
+            "player_one_avg": 80.45,
+            "player_two_avg": 81.22,
+            "player_one_max_amount": 150,
+            "player_two_max_amount": 160,
+            "player_one_high_outs": [
+                105,
+                121,
+                140
+            ],
+            "player_two_high_outs": [
+                111,
+                130,
+                150
+            ],
+            "player_one_fast_outs": [
+                11,
+                16,
+                17
+            ],
+            "player_two_fast_outs": [
+                10,
+                13,
+                18
+            ],
+            "league_id": 3,
             "winner": 3
         },
         {
-            "player_one": 2,
-            "player_two": 3,
-            "player_one_score": 5,
-            "player_two_score": 5,
-            "player_one_avg": 81.4,
-            "player_two_avg": 78.9,
-            "player_one_max_amount": 160,
-            "player_two_max_amount": 150,
+            "player_one": 10,
+            "player_two": 7,
+            "player_one_score": 6,
+            "player_two_score": 0,
+            "player_one_avg": 84.78,
+            "player_two_avg": 76.45,
+            "player_one_max_amount": 155,
+            "player_two_max_amount": 165,
+            "player_one_high_outs": [
+                110,
+                121,
+                130
+            ],
+            "player_two_high_outs": [
+                100,
+                140,
+                150
+            ],
+            "player_one_fast_outs": [
+                10,
+                15,
+                18
+            ],
+            "player_two_fast_outs": [
+                9,
+                12,
+                17
+            ],
+            "league_id": 2,
+            "winner": 10
+        },
+        {
+            "player_one": 1,
+            "player_two": 4,
+            "player_one_score": 4,
+            "player_two_score": 6,
+            "player_one_avg": 81.23,
+            "player_two_avg": 82.77,
+            "player_one_max_amount": 149,
+            "player_two_max_amount": 160,
+            "player_one_high_outs": [
+                105,
+                121,
+                140
+            ],
+            "player_two_high_outs": [
+                111,
+                130,
+                150
+            ],
+            "player_one_fast_outs": [
+                11,
+                16,
+                17
+            ],
+            "player_two_fast_outs": [
+                10,
+                13,
+                18
+            ],
+            "league_id": 1,
+            "winner": 4
+        },
+        {
+            "player_one": 12,
+            "player_two": 15,
+            "player_one_score": 6,
+            "player_two_score": 2,
+            "player_one_avg": 87.34,
+            "player_two_avg": 75.92,
+            "player_one_max_amount": 162,
+            "player_two_max_amount": 168,
+            "player_one_high_outs": [
+                110,
+                121,
+                130
+            ],
+            "player_two_high_outs": [
+                100,
+                140,
+                150
+            ],
+            "player_one_fast_outs": [
+                10,
+                15,
+                18
+            ],
+            "player_two_fast_outs": [
+                9,
+                12,
+                17
+            ],
             "league_id": 3,
+            "winner": 12
+        },
+        {
+            "player_one": 8,
+            "player_two": 14,
+            "player_one_score": 4,
+            "player_two_score": 6,
+            "player_one_avg": 82.65,
+            "player_two_avg": 81.12,
+            "player_one_max_amount": 158,
+            "player_two_max_amount": 163,
+            "player_one_high_outs": [
+                105,
+                121,
+                140
+            ],
+            "player_two_high_outs": [
+                111,
+                130,
+                150
+            ],
+            "player_one_fast_outs": [
+                11,
+                16,
+                17
+            ],
+            "player_two_fast_outs": [
+                10,
+                13,
+                18
+            ],
+            "league_id": 2,
+            "winner": 14
+        },
+        {
+            "player_one": 3,
+            "player_two": 6,
+            "player_one_score": 6,
+            "player_two_score": 0,
+            "player_one_avg": 86.21,
+            "player_two_avg": 75.33,
+            "player_one_max_amount": 157,
+            "player_two_max_amount": 170,
+            "player_one_high_outs": [
+                110,
+                121,
+                130
+            ],
+            "player_two_high_outs": [
+                100,
+                140,
+                150
+            ],
+            "player_one_fast_outs": [
+                10,
+                15,
+                18
+            ],
+            "player_two_fast_outs": [
+                9,
+                12,
+                17
+            ],
+            "league_id": 1,
+            "winner": 3
+        },
+        {
+            "player_one": 5,
+            "player_two": 11,
+            "player_one_score": 3,
+            "player_two_score": 6,
+            "player_one_avg": 80.98,
+            "player_two_avg": 83.44,
+            "player_one_max_amount": 153,
+            "player_two_max_amount": 159,
+            "player_one_high_outs": [
+                105,
+                121,
+                140
+            ],
+            "player_two_high_outs": [
+                111,
+                130,
+                150
+            ],
+            "player_one_fast_outs": [
+                11,
+                16,
+                17
+            ],
+            "player_two_fast_outs": [
+                10,
+                13,
+                18
+            ],
+            "league_id": 2,
+            "winner": 11
+        },
+        {
+            "player_one": 13,
+            "player_two": 9,
+            "player_one_score": 4,
+            "player_two_score": 6,
+            "player_one_avg": 83.77,
+            "player_two_avg": 80.76,
+            "player_one_max_amount": 160,
+            "player_two_max_amount": 165,
+            "player_one_high_outs": [
+                110,
+                121,
+                130
+            ],
+            "player_two_high_outs": [
+                100,
+                140,
+                150
+            ],
+            "player_one_fast_outs": [
+                10,
+                15,
+                18
+            ],
+            "player_two_fast_outs": [
+                9,
+                12,
+                17
+            ],
+            "league_id": 3,
+            "winner": 9
+        },
+        {
+            "player_one": 2,
+            "player_two": 16,
+            "player_one_score": 6,
+            "player_two_score": 4,
+            "player_one_avg": 82.34,
+            "player_two_avg": 83.12,
+            "player_one_max_amount": 156,
+            "player_two_max_amount": 170,
+            "player_one_high_outs": [
+                105,
+                121,
+                140
+            ],
+            "player_two_high_outs": [
+                111,
+                130,
+                150
+            ],
+            "player_one_fast_outs": [
+                11,
+                16,
+                17
+            ],
+            "player_two_fast_outs": [
+                10,
+                13,
+                18
+            ],
+            "league_id": 1,
             "winner": 2
         }
     ]

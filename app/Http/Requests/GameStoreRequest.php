@@ -33,8 +33,14 @@ class GameStoreRequest extends FormRequest
             'player_two_max_amount' => ['required', 'integer'],
             'league_id' => ['required', 'integer', 'exists:leagues,id'],
             'winner' => ['required', 'integer'],
-            'high_outs' => ['array'],
-            'fast_outs' => ['array']
+            'player_one_high_outs' => ['sometimes','array'],
+            'player_one_high_outs.*' => ['numeric'],
+            'player_one_fast_outs' => ['sometimes','array'],
+            'player_one_fast_outs.*' => ['numeric'],
+            'player_two_high_outs' => ['sometimes','array'],
+            'player_two_high_outs.*' => ['numeric'],
+            'player_two_fast_outs' => ['sometimes','array'],
+            'player_two_fast_outs.*' => ['numeric'],
         ];
     }
 
@@ -53,7 +59,11 @@ class GameStoreRequest extends FormRequest
             'player_two_max_amount' => 'Player two max amount i required',
             'league_id' => 'Select league',
             'winner.required' => 'Select winner of the game',
-            'league_id.exists' => 'Passed league is invalid'
+            'league_id.exists' => 'Passed league is invalid',
+            'player_one_high_outs.*.numeric' => 'High outs should contain only numeric values',
+            'player_one_fast_outs.*.numeric' => 'Fast outs should contain only numeric values',
+            'player_two_high_outs.*.numeric' => 'High outs should contain only numeric values',
+            'player_two_fast_outs.*.numeric' => 'Fast outs should contain only numeric values',
         ];
     }
 }

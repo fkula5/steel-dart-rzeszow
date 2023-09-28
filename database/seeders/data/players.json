@@ -1,9 +1,84 @@
 {
-    "players":
-        [
-            {"name": "Filip", "second_name": "Kula", "points": 0, "balance": 0, "legs_won":  0, "legs_lost":  0, "avg": 0, "max_amount":  0, "league_name": "Pierwsza Liga"},
-            {"name": "Dariusz", "second_name": "Furman", "points": 0, "balance": 0, "legs_won":  0, "legs_lost":  0, "avg": 0, "max_amount":  0, "league_name": "Pierwsza Liga"},
-            {"name": "Krzysztof", "second_name": "Furman", "points": 0, "balance": 0, "legs_won":  0, "legs_lost":  0, "avg": 0, "max_amount":  0, "league_name": "Pierwsza Liga"},
-            {"name": "Hieronim", "second_name": "Furgał", "points": 0, "balance": 0, "legs_won":  0, "legs_lost":  0, "avg": 0, "max_amount":  0, "league_name": "Pierwsza Liga"}
-        ]
+    "players": [
+        {
+            "name": "Filip",
+            "second_name": "Kula",
+            "league_id": 1
+        },
+        {
+            "name": "Dariusz",
+            "second_name": "Furman",
+            "league_id": 1
+        },
+        {
+            "name": "Krzysztof",
+            "second_name": "Furman",
+            "league_id": 1
+        },
+        {
+            "name": "Hieronim",
+            "second_name": "Furgał",
+            "league_id": 1
+        },
+        {
+            "name": "Marek",
+            "second_name": "Lenart",
+            "league_id": 1
+        },
+        {
+            "name": "Mateusz",
+            "second_name": "Argasiński",
+            "league_id": 1
+        },
+        {
+            "name": "Adrian",
+            "second_name": "Wróbel",
+            "league_id": 1
+        },
+        {
+            "name": "Marek",
+            "second_name": "Hawrot",
+            "league_id": 1
+        },
+        {
+            "name": "Marcin",
+            "second_name": "Ćwiok",
+            "league_id": 1
+        },
+        {
+            "name": "Michał",
+            "second_name": "Grębosz",
+            "league_id": 1
+        },
+        {
+            "name": "Rafał",
+            "second_name": "Sędlak",
+            "league_id": 2
+        },
+        {
+            "name": "Łukasz",
+            "second_name": "Łuczyk",
+            "league_id": 2
+        },
+        {
+            "name": "Miłosz",
+            "second_name": "Patronik",
+            "league_id": 2
+        },
+        {
+            "name": "Michał",
+            "second_name": "Bereś",
+            "league_id": 3
+        },
+        {
+            "name": "Hubert",
+            "second_name": "Sokół",
+            "league_id": 3
+        },
+        {
+            "name": "Kamil",
+            "second_name": "Zachacz",
+            "league_id": 1
+        }
+    ]
 }
