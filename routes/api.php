@@ -23,4 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('players', PlayerController::class);
 
+Route::get('leagues/{league}/players', [PlayerController::class, 'playersLeague']);
+
 Route::apiResource('games', GameController::class);
