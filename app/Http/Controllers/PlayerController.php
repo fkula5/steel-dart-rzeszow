@@ -6,6 +6,7 @@ use App\Http\Requests\PlayerStoreRequest;
 use App\Http\Requests\PlayerUpdateRequest;
 use App\Http\Resources\PlayerCollection;
 use App\Http\Resources\PlayerResource;
+use App\Models\League;
 use App\Models\Player;
 use App\Services\PlayerService;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,5 +63,13 @@ class PlayerController extends BaseController
         } else {
             return $this->sendError($player->id, "Something went wrong");
         }
+    }
+
+    /**
+     * Display list of specified resource in storage
+     */
+    public function playersLeague(League $league)
+    {
+        return $this->sendResponse(new PlayerCollection($league->players()->with('highOuts', 'fastOuts')->get()), "Players retrieved successfully");
     }
 }
