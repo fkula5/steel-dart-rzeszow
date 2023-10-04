@@ -15,8 +15,11 @@ class HighOutResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $highOut = HighOutType::findOrFail($this->high_out_type_id);
         return [
-            'highOut' => HighOutType::findOrFail($this->high_out_type_id)
+            'id' => $this->id,
+            'value' => $highOut->value,
+            'gameId' => $this->game_id
         ];
     }
 }

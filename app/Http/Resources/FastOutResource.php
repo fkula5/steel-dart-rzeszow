@@ -15,8 +15,11 @@ class FastOutResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $fastOut = FastOutType::findOrFail($this->fast_out_type_id);
         return [
-            'fastOut' => FastOutType::findOrFail($this->fast_out_type_id)
+            'id' => $this->id,
+            'value' => $fastOut->value,
+            'gameId' => $this->game_id
         ];
     }
 }
