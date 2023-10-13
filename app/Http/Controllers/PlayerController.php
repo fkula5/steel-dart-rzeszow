@@ -70,6 +70,6 @@ class PlayerController extends BaseController
      */
     public function playersLeague(League $league)
     {
-        return $this->sendResponse(new PlayerCollection($league->players()->with('highOuts', 'fastOuts')->get()), "Players retrieved successfully");
+        return $this->sendResponse(new PlayerCollection($league->players()->with('highOuts', 'fastOuts')->orderByDesc('points')->get()), "Players retrieved successfully");
     }
 }
