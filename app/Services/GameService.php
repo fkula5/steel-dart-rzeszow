@@ -34,9 +34,9 @@ class GameService
             $playerOne->points += 1;
         }
 
-        $this->updatePlayerStats($playerOne, $game->player_one_score, $game->player_two_score, $game->player_one_avg, $game->player_one_max);
+        $this->updatePlayerStats($playerOne, $game->player_one_score, $game->player_two_score, $game->player_one_avg, $game->player_one_max_amount);
 
-        $this->updatePlayerStats($playerTwo, $game->player_two_score, $game->player_one_score, $game->player_two_avg, $game->player_two_max);
+        $this->updatePlayerStats($playerTwo, $game->player_two_score, $game->player_one_score, $game->player_two_avg, $game->player_two_max_amount);
     }
 
     private function createHighOuts(array $highOuts, Game $game, int $playerId): void

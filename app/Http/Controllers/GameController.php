@@ -64,4 +64,8 @@ class GameController extends BaseController
             return $this->sendError($game->id, "Something went wrong");
         }
     }
+
+    public function recentGames(){
+        return $this->sendResponse(new GameCollection(Game::with(['playerOne', 'playerTwo', 'league'])->orderBy('created_at', 'desc')->take(5)->get()), "Games retrieved successfully");
+    }
 }
