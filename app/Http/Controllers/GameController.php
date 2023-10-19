@@ -8,6 +8,7 @@ use App\Http\Resources\GameCollection;
 use App\Http\Resources\GameResource;
 use App\Models\Game;
 use App\Models\League;
+use App\Models\Player;
 use App\Services\GameService;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -64,6 +65,10 @@ class GameController extends BaseController
         } else {
             return $this->sendError($game->id, "Something went wrong");
         }
+    }
+
+    public function playerGames(Player $player){
+        return $this->sendResponse(new GameCollection($player->allGames()->with(['playerOne', 'playerTwo'])->get()), "Games retrieved successfully");
     }
 
     public function recentLeagueGames(League $league){
