@@ -7,6 +7,7 @@ use App\Http\Requests\GameUpdateRequest;
 use App\Http\Resources\GameCollection;
 use App\Http\Resources\GameResource;
 use App\Models\Game;
+use App\Models\League;
 use App\Services\GameService;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -65,7 +66,11 @@ class GameController extends BaseController
         }
     }
 
-    public function recentGames(){
-        return $this->sendResponse(new GameCollection(Game::with(['playerOne', 'playerTwo', 'league'])->orderBy('created_at', 'desc')->take(5)->get()), "Games retrieved successfully");
+    public function recentLeagueGames(League $league){
+        return $this->sendResponse(new GameCollection($league->games()->with(['playerOne', 'playerTwo'])->orderBy('created_at', 'desc')->take(5)->get()), "Games retrieved successfully");
+    }
+
+    public function leagueGames(League $league){
+        return $this->sendResponse(new GameCollection($league->games()->with(['playerOne', 'playerTwo'])->orderBy('created_at', 'desc')->get()), "Games retrieved successfully");
     }
 }
