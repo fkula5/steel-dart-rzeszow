@@ -28,3 +28,4 @@ Route::get('leagues/{league}/players', [PlayerController::class, 'playersLeague'
 Route::apiResource('games', GameController::class);
 
 Route::get('recentLeagueGames/{league}', [GameController::class, 'recentLeagueGames']);
+Route::get('leagueGames/{league}', [GameController::class, 'leagueGames']);

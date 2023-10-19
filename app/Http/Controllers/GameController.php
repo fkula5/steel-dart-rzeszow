@@ -69,4 +69,8 @@ class GameController extends BaseController
     public function recentLeagueGames(League $league){
         return $this->sendResponse(new GameCollection($league->games()->with(['playerOne', 'playerTwo'])->orderBy('created_at', 'desc')->take(5)->get()), "Games retrieved successfully");
     }
+
+    public function leagueGames(League $league){
+        return $this->sendResponse(new GameCollection($league->games()->with(['playerOne', 'playerTwo'])->orderBy('created_at', 'desc')->get()), "Games retrieved successfully");
+    }
 }
