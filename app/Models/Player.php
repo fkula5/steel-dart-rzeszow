@@ -37,4 +37,8 @@ class Player extends Model
     {
         return $this->hasMany(Game::class, 'player_two');
     }
+
+    public function allGames(){
+        return $this->playerOneGames()->union($this->playerTwoGames());
+    }
 }
