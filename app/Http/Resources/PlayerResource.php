@@ -23,7 +23,7 @@ class PlayerResource extends JsonResource
             'balance' => $this->balance,
             'legsWon' => $this->legs_won,
             'legsLost' => $this->legs_lost,
-            'average3Darts' => $this->average_3_dart ? (float) $this->average_3_dart : 0,
+            'average3Darts' => $this->average_3_dart ? round($this->average_3_dart, 2) : 0,
             'maxAmount' => $this->max_amount,
             'highOuts' => new HighOutCollection($this->whenLoaded('highOuts')),
             'fastOuts' => new FastOutCollection($this->whenLoaded('fastOuts'))
