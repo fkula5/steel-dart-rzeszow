@@ -12,15 +12,23 @@ use App\Models\Player;
 use App\Services\GameService;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @group Game Management
+ *
+ * APIs for managing games
+ */
 class GameController extends BaseController
 {
-    #specjalnie dla Szymona
     public function __construct(private GameService $gameService)
     {
     }
 
     /**
-     * Display a listing of the resource.
+     * GET Games
+     *
+     * Display a listing of the Game resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -28,7 +36,12 @@ class GameController extends BaseController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * POST Game
+     *
+     * Store a newly created Game resource in storage.
+     *
+     * @param GameStoreRequest $request
+     * @return \Illuminate\Http\Response
      */
     public function store(GameStoreRequest $request)
     {
@@ -38,7 +51,12 @@ class GameController extends BaseController
     }
 
     /**
-     * Display the specified resource.
+     * GET Game
+     *
+     * Display the specified Game resource.
+     *
+     * @param Game $game
+     * @return \Illuminate\Http\Response
      */
     public function show(Game $game)
     {
@@ -46,7 +64,13 @@ class GameController extends BaseController
     }
 
     /**
-     * Update the specified resource in storage.
+     * PUT/PATCH Game
+     *
+     * Update the specified Game resource in storage.
+     *
+     * @param GameUpdateRequest $request
+     * @param Game $game
+     * @return \Illuminate\Http\Response
      */
     public function update(GameUpdateRequest $request, Game $game)
     {
@@ -56,7 +80,12 @@ class GameController extends BaseController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * DELETE Game
+     *
+     * Remove the specified Game resource from storage.
+     *
+     * @param Game $game
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Game $game)
     {
@@ -67,15 +96,39 @@ class GameController extends BaseController
         }
     }
 
-    public function playerGames(Player $player){
+    /**
+     * GET player Games
+     *
+     * Display the listing of a Game resource for specified Player.
+     *
+     * @param Player $player
+     * @return \Illuminate\Http\Response
+     */
+    public function playerGames(Player $player)
+    {
         return $this->sendResponse(new GameCollection($player->allGames()->with(['playerOne', 'playerTwo'])->get()), "Games retrieved successfully");
     }
 
-    public function recentLeagueGames(League $league){
+    /**
+     * GET recent league Games
+     *
+     * Display the listing of a Game resource for specified League in descending order.
+     *
+     * @param League $league
+     * @return \Illuminate\Http\Response
+     */
+    public function recentLeagueGames(League $league)
+    {
         return $this->sendResponse(new GameCollection($league->games()->with(['playerOne', 'playerTwo'])->orderBy('created_at', 'desc')->take(5)->get()), "Games retrieved successfully");
     }
 
-    public function leagueGames(League $league){
+    /**
+     * GET league
+     * @param League $league
+     * @return \Illuminate\Http\Response
+     */
+    public function leagueGames(League $league)
+    {
         return $this->sendResponse(new GameCollection($league->games()->with(['playerOne', 'playerTwo'])->orderBy('created_at', 'desc')->get()), "Games retrieved successfully");
     }
 }

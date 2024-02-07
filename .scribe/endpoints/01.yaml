@@ -1,0 +1,331 @@
+name: 'Player Management'
+description: |-
+
+  APIs for managing players
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/players
+    metadata:
+      groupName: 'Player Management'
+      groupDescription: |-
+
+        APIs for managing players
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"data":[{"id":1,"name":"Filip","secondName":"Kula","league":{"id":1,"league_name":"Pierwsza Liga","created_at":"2023-09-19T14:55:02.000000Z","updated_at":"2023-09-19T14:55:02.000000Z"},"points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0,"highOuts":[],"fastOuts":[]},{"id":2,"name":"Dariusz","secondName":"Furman","league":{"id":1,"league_name":"Pierwsza Liga","created_at":"2023-09-19T14:55:02.000000Z","updated_at":"2023-09-19T14:55:02.000000Z"},"points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0,"highOuts":[],"fastOuts":[]},{"id":3,"name":"Krzysztof","secondName":"Furman","league":{"id":1,"league_name":"Pierwsza Liga","created_at":"2023-09-19T14:55:02.000000Z","updated_at":"2023-09-19T14:55:02.000000Z"},"points":3,"balance":-2,"legsWon":4,"legsLost":6,"average3Darts":39.27,"maxAmount":140,"highOuts":[{"id":1,"value":121,"gameId":4},{"id":2,"value":123,"gameId":4},{"id":3,"value":170,"gameId":4}],"fastOuts":[{"id":1,"value":12,"gameId":4},{"id":2,"value":16,"gameId":4},{"id":3,"value":18,"gameId":4}]},{"id":4,"name":"Hieronim","secondName":"Furga\u0142","league":{"id":1,"league_name":"Pierwsza Liga","created_at":"2023-09-19T14:55:02.000000Z","updated_at":"2023-09-19T14:55:02.000000Z"},"points":0,"balance":2,"legsWon":6,"legsLost":4,"average3Darts":41.62,"maxAmount":180,"highOuts":[{"id":4,"value":111,"gameId":4},{"id":5,"value":123,"gameId":4},{"id":6,"value":160,"gameId":4}],"fastOuts":[{"id":4,"value":11,"gameId":4},{"id":5,"value":12,"gameId":4},{"id":6,"value":13,"gameId":4}]}],"message":"Players retrieved successfully"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '59'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/players
+    metadata:
+      groupName: 'Player Management'
+      groupDescription: |-
+
+        APIs for managing players
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must not be greater than 64 characters.'
+        required: true
+        example: exotyxmgkzryspchppjkgszb
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      second_name:
+        name: second_name
+        description: 'Must not be greater than 64 characters.'
+        required: true
+        example: rfhre
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      league_id:
+        name: league_id
+        description: ''
+        required: true
+        example: 10
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      name: exotyxmgkzryspchppjkgszb
+      second_name: rfhre
+      league_id: 10
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/players/{id}'
+    metadata:
+      groupName: 'Player Management'
+      groupDescription: |-
+
+        APIs for managing players
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the player.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"data":{"id":1,"name":"Filip","secondName":"Kula","league":{"id":1,"league_name":"Pierwsza Liga","created_at":"2023-09-19T14:55:02.000000Z","updated_at":"2023-09-19T14:55:02.000000Z"},"points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0,"highOuts":[],"fastOuts":[]},"message":"Player retrieved successfully"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '58'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/players/{id}'
+    metadata:
+      groupName: 'Player Management'
+      groupDescription: |-
+
+        APIs for managing players
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the player.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must not be greater than 64 characters.'
+        required: true
+        example: ekxsxxvlvrnrrzhjxbe
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      second_name:
+        name: second_name
+        description: 'Must not be greater than 64 characters.'
+        required: true
+        example: alocuertuxxzxi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      league_id:
+        name: league_id
+        description: ''
+        required: true
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      name: ekxsxxvlvrnrrzhjxbe
+      second_name: alocuertuxxzxi
+      league_id: 17
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/players/{id}'
+    metadata:
+      groupName: 'Player Management'
+      groupDescription: |-
+
+        APIs for managing players
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the player.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/leagues/{league_id}/players'
+    metadata:
+      groupName: 'Player Management'
+      groupDescription: |-
+
+        APIs for managing players
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display list of specified resource in storage'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      league_id:
+        name: league_id
+        description: 'The ID of the league.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      league_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"data":[{"id":3,"name":"Krzysztof","secondName":"Furman","points":3,"balance":-2,"legsWon":4,"legsLost":6,"average3Darts":39.27,"maxAmount":140,"highOuts":[{"id":1,"value":121,"gameId":4},{"id":2,"value":123,"gameId":4},{"id":3,"value":170,"gameId":4}],"fastOuts":[{"id":1,"value":12,"gameId":4},{"id":2,"value":16,"gameId":4},{"id":3,"value":18,"gameId":4}]},{"id":1,"name":"Filip","secondName":"Kula","points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0,"highOuts":[],"fastOuts":[]},{"id":2,"name":"Dariusz","secondName":"Furman","points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0,"highOuts":[],"fastOuts":[]},{"id":4,"name":"Hieronim","secondName":"Furga\u0142","points":0,"balance":2,"legsWon":6,"legsLost":4,"average3Darts":41.62,"maxAmount":180,"highOuts":[{"id":4,"value":111,"gameId":4},{"id":5,"value":123,"gameId":4},{"id":6,"value":160,"gameId":4}],"fastOuts":[{"id":4,"value":11,"gameId":4},{"id":5,"value":12,"gameId":4},{"id":6,"value":13,"gameId":4}]}],"message":"Players retrieved successfully"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '57'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

@@ -1,0 +1,796 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost:80"
+        }
+    ],
+    "info": {
+        "name": "Steel Dart Rzesz\u00f3w API",
+        "_postman_id": "fae707f2-c608-4120-8f03-1bbaa34b850d",
+        "description": "API for Steel Dart Rzesz\u00f3w app made to manage league of dart",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "GET api\/user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Game Management",
+            "description": "\nAPIs for managing games",
+            "item": [
+                {
+                    "name": "GET Games",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/games",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/games"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Display a listing of the resource.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "56"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"success\":true,\"data\":[{\"id\":1,\"playerOne\":{\"id\":1,\"name\":\"Filip\",\"secondName\":\"Kula\",\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0},\"playerTwo\":{\"id\":2,\"name\":\"Dariusz\",\"secondName\":\"Furman\",\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0},\"playerOneScore\":4,\"playerTwoScore\":6,\"playerOneAvg\":78.5,\"playerTwoAvg\":83.2,\"playerOneMaxAmount\":140,\"playerTwoMaxAmount\":180,\"playerOneHighOuts\":[],\"playerTwoHighOuts\":[],\"playerOneFastOuts\":[],\"playerTwoFastOuts\":[],\"league\":{\"id\":1,\"league_name\":\"Pierwsza Liga\",\"created_at\":\"2023-09-19T14:55:02.000000Z\",\"updated_at\":\"2023-09-19T14:55:02.000000Z\"},\"winner\":2,\"created_at\":\"19.09.2023\",\"updated_at\":\"19.09.2023\"},{\"id\":2,\"playerOne\":{\"id\":3,\"name\":\"Krzysztof\",\"secondName\":\"Furman\",\"points\":3,\"balance\":-2,\"legsWon\":4,\"legsLost\":6,\"average3Darts\":39.27,\"maxAmount\":140},\"playerTwo\":{\"id\":4,\"name\":\"Hieronim\",\"secondName\":\"Furga\\u0142\",\"points\":0,\"balance\":2,\"legsWon\":6,\"legsLost\":4,\"average3Darts\":41.62,\"maxAmount\":180},\"playerOneScore\":3,\"playerTwoScore\":2,\"playerOneAvg\":72.8,\"playerTwoAvg\":67.2,\"playerOneMaxAmount\":120,\"playerTwoMaxAmount\":140,\"playerOneHighOuts\":[],\"playerTwoHighOuts\":[],\"playerOneFastOuts\":[],\"playerTwoFastOuts\":[],\"league\":{\"id\":2,\"league_name\":\"Druga Liga\",\"created_at\":\"2023-09-19T14:55:02.000000Z\",\"updated_at\":\"2023-09-19T14:55:02.000000Z\"},\"winner\":3,\"created_at\":\"19.09.2023\",\"updated_at\":\"19.09.2023\"},{\"id\":3,\"playerOne\":{\"id\":2,\"name\":\"Dariusz\",\"secondName\":\"Furman\",\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0},\"playerTwo\":{\"id\":3,\"name\":\"Krzysztof\",\"secondName\":\"Furman\",\"points\":3,\"balance\":-2,\"legsWon\":4,\"legsLost\":6,\"average3Darts\":39.27,\"maxAmount\":140},\"playerOneScore\":5,\"playerTwoScore\":5,\"playerOneAvg\":81.4,\"playerTwoAvg\":78.9,\"playerOneMaxAmount\":160,\"playerTwoMaxAmount\":150,\"playerOneHighOuts\":[],\"playerTwoHighOuts\":[],\"playerOneFastOuts\":[],\"playerTwoFastOuts\":[],\"league\":{\"id\":3,\"league_name\":\"Trzecia Liga\",\"created_at\":\"2023-09-19T14:55:02.000000Z\",\"updated_at\":\"2023-09-19T14:55:02.000000Z\"},\"winner\":2,\"created_at\":\"19.09.2023\",\"updated_at\":\"19.09.2023\"},{\"id\":4,\"playerOne\":{\"id\":3,\"name\":\"Krzysztof\",\"secondName\":\"Furman\",\"points\":3,\"balance\":-2,\"legsWon\":4,\"legsLost\":6,\"average3Darts\":39.27,\"maxAmount\":140},\"playerTwo\":{\"id\":4,\"name\":\"Hieronim\",\"secondName\":\"Furga\\u0142\",\"points\":0,\"balance\":2,\"legsWon\":6,\"legsLost\":4,\"average3Darts\":41.62,\"maxAmount\":180},\"playerOneScore\":4,\"playerTwoScore\":6,\"playerOneAvg\":78.54,\"playerTwoAvg\":83.24,\"playerOneMaxAmount\":140,\"playerTwoMaxAmount\":180,\"playerOneHighOuts\":[{\"id\":1,\"value\":121,\"gameId\":4},{\"id\":2,\"value\":123,\"gameId\":4},{\"id\":3,\"value\":170,\"gameId\":4}],\"playerTwoHighOuts\":[{\"id\":4,\"value\":111,\"gameId\":4},{\"id\":5,\"value\":123,\"gameId\":4},{\"id\":6,\"value\":160,\"gameId\":4}],\"playerOneFastOuts\":[{\"id\":1,\"value\":12,\"gameId\":4},{\"id\":2,\"value\":16,\"gameId\":4},{\"id\":3,\"value\":18,\"gameId\":4}],\"playerTwoFastOuts\":[{\"id\":4,\"value\":11,\"gameId\":4},{\"id\":5,\"value\":12,\"gameId\":4},{\"id\":6,\"value\":13,\"gameId\":4}],\"league\":{\"id\":1,\"league_name\":\"Pierwsza Liga\",\"created_at\":\"2023-09-19T14:55:02.000000Z\",\"updated_at\":\"2023-09-19T14:55:02.000000Z\"},\"winner\":4,\"created_at\":\"19.09.2023\",\"updated_at\":\"19.09.2023\"}],\"message\":\"Games retrieved successfully\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST Game",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/games",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/games"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"player_one\":3,\"player_two\":15,\"player_one_score\":1,\"player_two_score\":1,\"player_one_avg\":\"voluptatibus\",\"player_two_avg\":\"quaerat\",\"player_one_max_amount\":16,\"player_two_max_amount\":7,\"league_id\":11,\"winner\":12,\"player_one_high_outs\":[10545392.1],\"player_one_fast_outs\":[343285.5466872],\"player_two_high_outs\":[1],\"player_two_fast_outs\":[554]}"
+                        },
+                        "description": "Store a newly created resource in storage.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET Game",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/games\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/games\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the game."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Display the specified resource.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "55"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"success\":true,\"data\":{\"id\":1,\"playerOne\":{\"id\":1,\"name\":\"Filip\",\"secondName\":\"Kula\",\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0},\"playerTwo\":{\"id\":2,\"name\":\"Dariusz\",\"secondName\":\"Furman\",\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0},\"playerOneScore\":4,\"playerTwoScore\":6,\"playerOneAvg\":78.5,\"playerTwoAvg\":83.2,\"playerOneMaxAmount\":140,\"playerTwoMaxAmount\":180,\"playerOneHighOuts\":[],\"playerTwoHighOuts\":[],\"playerOneFastOuts\":[],\"playerTwoFastOuts\":[],\"league\":{\"id\":1,\"league_name\":\"Pierwsza Liga\",\"created_at\":\"2023-09-19T14:55:02.000000Z\",\"updated_at\":\"2023-09-19T14:55:02.000000Z\"},\"winner\":2,\"created_at\":\"19.09.2023\",\"updated_at\":\"19.09.2023\"},\"message\":\"Game retrieved successfully\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT\/PATCH Game",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/games\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/games\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the game."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"player_one\":15,\"player_two\":19,\"player_one_score\":0,\"player_two_score\":1,\"player_one_avg\":\"temporibus\",\"player_two_avg\":\"a\",\"player_one_max_amount\":1,\"player_two_max_amount\":12,\"league_id\":1,\"winner\":18,\"player_one_high_outs\":[26922042.75447],\"player_one_fast_outs\":[196955.69553],\"player_two_high_outs\":[147885581.3],\"player_two_fast_outs\":[73254.2]}"
+                        },
+                        "description": "Update the specified resource in storage.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE Game",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/games\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/games\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the game."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Remove the specified resource from storage.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET recent league Games",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/recentLeagueGames\/:league_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/recentLeagueGames\/:league_id",
+                            "variable": [
+                                {
+                                    "id": "league_id",
+                                    "key": "league_id",
+                                    "value": "1",
+                                    "description": "The ID of the league."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "54"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"success\":true,\"data\":[{\"id\":4,\"playerOne\":{\"id\":3,\"name\":\"Krzysztof\",\"secondName\":\"Furman\",\"points\":3,\"balance\":-2,\"legsWon\":4,\"legsLost\":6,\"average3Darts\":39.27,\"maxAmount\":140},\"playerTwo\":{\"id\":4,\"name\":\"Hieronim\",\"secondName\":\"Furga\\u0142\",\"points\":0,\"balance\":2,\"legsWon\":6,\"legsLost\":4,\"average3Darts\":41.62,\"maxAmount\":180},\"playerOneScore\":4,\"playerTwoScore\":6,\"playerOneAvg\":78.54,\"playerTwoAvg\":83.24,\"playerOneMaxAmount\":140,\"playerTwoMaxAmount\":180,\"playerOneHighOuts\":[{\"id\":1,\"value\":121,\"gameId\":4},{\"id\":2,\"value\":123,\"gameId\":4},{\"id\":3,\"value\":170,\"gameId\":4}],\"playerTwoHighOuts\":[{\"id\":4,\"value\":111,\"gameId\":4},{\"id\":5,\"value\":123,\"gameId\":4},{\"id\":6,\"value\":160,\"gameId\":4}],\"playerOneFastOuts\":[{\"id\":1,\"value\":12,\"gameId\":4},{\"id\":2,\"value\":16,\"gameId\":4},{\"id\":3,\"value\":18,\"gameId\":4}],\"playerTwoFastOuts\":[{\"id\":4,\"value\":11,\"gameId\":4},{\"id\":5,\"value\":12,\"gameId\":4},{\"id\":6,\"value\":13,\"gameId\":4}],\"winner\":4,\"created_at\":\"19.09.2023\",\"updated_at\":\"19.09.2023\"},{\"id\":1,\"playerOne\":{\"id\":1,\"name\":\"Filip\",\"secondName\":\"Kula\",\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0},\"playerTwo\":{\"id\":2,\"name\":\"Dariusz\",\"secondName\":\"Furman\",\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0},\"playerOneScore\":4,\"playerTwoScore\":6,\"playerOneAvg\":78.5,\"playerTwoAvg\":83.2,\"playerOneMaxAmount\":140,\"playerTwoMaxAmount\":180,\"playerOneHighOuts\":[],\"playerTwoHighOuts\":[],\"playerOneFastOuts\":[],\"playerTwoFastOuts\":[],\"winner\":2,\"created_at\":\"19.09.2023\",\"updated_at\":\"19.09.2023\"}],\"message\":\"Games retrieved successfully\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/leagueGames\/{league_id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/leagueGames\/:league_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/leagueGames\/:league_id",
+                            "variable": [
+                                {
+                                    "id": "league_id",
+                                    "key": "league_id",
+                                    "value": "1",
+                                    "description": "The ID of the league."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "53"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"success\":true,\"data\":[{\"id\":4,\"playerOne\":{\"id\":3,\"name\":\"Krzysztof\",\"secondName\":\"Furman\",\"points\":3,\"balance\":-2,\"legsWon\":4,\"legsLost\":6,\"average3Darts\":39.27,\"maxAmount\":140},\"playerTwo\":{\"id\":4,\"name\":\"Hieronim\",\"secondName\":\"Furga\\u0142\",\"points\":0,\"balance\":2,\"legsWon\":6,\"legsLost\":4,\"average3Darts\":41.62,\"maxAmount\":180},\"playerOneScore\":4,\"playerTwoScore\":6,\"playerOneAvg\":78.54,\"playerTwoAvg\":83.24,\"playerOneMaxAmount\":140,\"playerTwoMaxAmount\":180,\"playerOneHighOuts\":[{\"id\":1,\"value\":121,\"gameId\":4},{\"id\":2,\"value\":123,\"gameId\":4},{\"id\":3,\"value\":170,\"gameId\":4}],\"playerTwoHighOuts\":[{\"id\":4,\"value\":111,\"gameId\":4},{\"id\":5,\"value\":123,\"gameId\":4},{\"id\":6,\"value\":160,\"gameId\":4}],\"playerOneFastOuts\":[{\"id\":1,\"value\":12,\"gameId\":4},{\"id\":2,\"value\":16,\"gameId\":4},{\"id\":3,\"value\":18,\"gameId\":4}],\"playerTwoFastOuts\":[{\"id\":4,\"value\":11,\"gameId\":4},{\"id\":5,\"value\":12,\"gameId\":4},{\"id\":6,\"value\":13,\"gameId\":4}],\"winner\":4,\"created_at\":\"19.09.2023\",\"updated_at\":\"19.09.2023\"},{\"id\":1,\"playerOne\":{\"id\":1,\"name\":\"Filip\",\"secondName\":\"Kula\",\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0},\"playerTwo\":{\"id\":2,\"name\":\"Dariusz\",\"secondName\":\"Furman\",\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0},\"playerOneScore\":4,\"playerTwoScore\":6,\"playerOneAvg\":78.5,\"playerTwoAvg\":83.2,\"playerOneMaxAmount\":140,\"playerTwoMaxAmount\":180,\"playerOneHighOuts\":[],\"playerTwoHighOuts\":[],\"playerOneFastOuts\":[],\"playerTwoFastOuts\":[],\"winner\":2,\"created_at\":\"19.09.2023\",\"updated_at\":\"19.09.2023\"}],\"message\":\"Games retrieved successfully\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET player Games",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/playerGames\/:player_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/playerGames\/:player_id",
+                            "variable": [
+                                {
+                                    "id": "player_id",
+                                    "key": "player_id",
+                                    "value": "1",
+                                    "description": "The ID of the player."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "52"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"success\":true,\"data\":[{\"id\":1,\"playerOne\":{\"id\":1,\"name\":\"Filip\",\"secondName\":\"Kula\",\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0},\"playerTwo\":{\"id\":2,\"name\":\"Dariusz\",\"secondName\":\"Furman\",\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0},\"playerOneScore\":4,\"playerTwoScore\":6,\"playerOneAvg\":78.5,\"playerTwoAvg\":83.2,\"playerOneMaxAmount\":140,\"playerTwoMaxAmount\":180,\"playerOneHighOuts\":[],\"playerTwoHighOuts\":[],\"playerOneFastOuts\":[],\"playerTwoFastOuts\":[],\"winner\":2,\"created_at\":\"19.09.2023\",\"updated_at\":\"19.09.2023\"}],\"message\":\"Games retrieved successfully\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Player Management",
+            "description": "\nAPIs for managing players",
+            "item": [
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/players",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/players"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"success\":true,\"data\":[{\"id\":1,\"name\":\"Filip\",\"secondName\":\"Kula\",\"league\":{\"id\":1,\"league_name\":\"Pierwsza Liga\",\"created_at\":\"2023-09-19T14:55:02.000000Z\",\"updated_at\":\"2023-09-19T14:55:02.000000Z\"},\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0,\"highOuts\":[],\"fastOuts\":[]},{\"id\":2,\"name\":\"Dariusz\",\"secondName\":\"Furman\",\"league\":{\"id\":1,\"league_name\":\"Pierwsza Liga\",\"created_at\":\"2023-09-19T14:55:02.000000Z\",\"updated_at\":\"2023-09-19T14:55:02.000000Z\"},\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0,\"highOuts\":[],\"fastOuts\":[]},{\"id\":3,\"name\":\"Krzysztof\",\"secondName\":\"Furman\",\"league\":{\"id\":1,\"league_name\":\"Pierwsza Liga\",\"created_at\":\"2023-09-19T14:55:02.000000Z\",\"updated_at\":\"2023-09-19T14:55:02.000000Z\"},\"points\":3,\"balance\":-2,\"legsWon\":4,\"legsLost\":6,\"average3Darts\":39.27,\"maxAmount\":140,\"highOuts\":[{\"id\":1,\"value\":121,\"gameId\":4},{\"id\":2,\"value\":123,\"gameId\":4},{\"id\":3,\"value\":170,\"gameId\":4}],\"fastOuts\":[{\"id\":1,\"value\":12,\"gameId\":4},{\"id\":2,\"value\":16,\"gameId\":4},{\"id\":3,\"value\":18,\"gameId\":4}]},{\"id\":4,\"name\":\"Hieronim\",\"secondName\":\"Furga\\u0142\",\"league\":{\"id\":1,\"league_name\":\"Pierwsza Liga\",\"created_at\":\"2023-09-19T14:55:02.000000Z\",\"updated_at\":\"2023-09-19T14:55:02.000000Z\"},\"points\":0,\"balance\":2,\"legsWon\":6,\"legsLost\":4,\"average3Darts\":41.62,\"maxAmount\":180,\"highOuts\":[{\"id\":4,\"value\":111,\"gameId\":4},{\"id\":5,\"value\":123,\"gameId\":4},{\"id\":6,\"value\":160,\"gameId\":4}],\"fastOuts\":[{\"id\":4,\"value\":11,\"gameId\":4},{\"id\":5,\"value\":12,\"gameId\":4},{\"id\":6,\"value\":13,\"gameId\":4}]}],\"message\":\"Players retrieved successfully\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/players",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/players"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"exotyxmgkzryspchppjkgszb\",\"second_name\":\"rfhre\",\"league_id\":10}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/players\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/players\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the player."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "58"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"success\":true,\"data\":{\"id\":1,\"name\":\"Filip\",\"secondName\":\"Kula\",\"league\":{\"id\":1,\"league_name\":\"Pierwsza Liga\",\"created_at\":\"2023-09-19T14:55:02.000000Z\",\"updated_at\":\"2023-09-19T14:55:02.000000Z\"},\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0,\"highOuts\":[],\"fastOuts\":[]},\"message\":\"Player retrieved successfully\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/players\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/players\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the player."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"ekxsxxvlvrnrrzhjxbe\",\"second_name\":\"alocuertuxxzxi\",\"league_id\":17}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/players\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/players\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the player."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display list of specified resource in storage",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/leagues\/:league_id\/players",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/leagues\/:league_id\/players",
+                            "variable": [
+                                {
+                                    "id": "league_id",
+                                    "key": "league_id",
+                                    "value": "1",
+                                    "description": "The ID of the league."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "57"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"success\":true,\"data\":[{\"id\":3,\"name\":\"Krzysztof\",\"secondName\":\"Furman\",\"points\":3,\"balance\":-2,\"legsWon\":4,\"legsLost\":6,\"average3Darts\":39.27,\"maxAmount\":140,\"highOuts\":[{\"id\":1,\"value\":121,\"gameId\":4},{\"id\":2,\"value\":123,\"gameId\":4},{\"id\":3,\"value\":170,\"gameId\":4}],\"fastOuts\":[{\"id\":1,\"value\":12,\"gameId\":4},{\"id\":2,\"value\":16,\"gameId\":4},{\"id\":3,\"value\":18,\"gameId\":4}]},{\"id\":1,\"name\":\"Filip\",\"secondName\":\"Kula\",\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0,\"highOuts\":[],\"fastOuts\":[]},{\"id\":2,\"name\":\"Dariusz\",\"secondName\":\"Furman\",\"points\":0,\"balance\":0,\"legsWon\":0,\"legsLost\":0,\"average3Darts\":0,\"maxAmount\":0,\"highOuts\":[],\"fastOuts\":[]},{\"id\":4,\"name\":\"Hieronim\",\"secondName\":\"Furga\\u0142\",\"points\":0,\"balance\":2,\"legsWon\":6,\"legsLost\":4,\"average3Darts\":41.62,\"maxAmount\":180,\"highOuts\":[{\"id\":4,\"value\":111,\"gameId\":4},{\"id\":5,\"value\":123,\"gameId\":4},{\"id\":6,\"value\":160,\"gameId\":4}],\"fastOuts\":[{\"id\":4,\"value\":11,\"gameId\":4},{\"id\":5,\"value\":12,\"gameId\":4},{\"id\":6,\"value\":13,\"gameId\":4}]}],\"message\":\"Players retrieved successfully\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

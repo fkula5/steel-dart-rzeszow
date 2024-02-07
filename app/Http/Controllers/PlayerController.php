@@ -11,6 +11,11 @@ use App\Models\Player;
 use App\Services\PlayerService;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @group Player Management
+ *
+ * APIs for managing players
+ */
 class PlayerController extends BaseController
 {
     public function __construct(private PlayerService $playerService)

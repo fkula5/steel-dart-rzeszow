@@ -1,0 +1,3514 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Steel Dart Rzeszów API</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+            </style>
+
+    <script>
+        var tryItOutBaseUrl = "http://localhost:80";
+        var useCsrf = Boolean();
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-4.29.0.js"></script>
+
+    <script src="../docs/js/theme-default-4.29.0.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image"/>
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                    <ul id="tocify-header-introduction" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="introduction">
+                    <a href="#introduction">Introduction</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-authenticating-requests" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="authenticating-requests">
+                    <a href="#authenticating-requests">Authenticating requests</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-endpoints" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="endpoints">
+                    <a href="#endpoints">Endpoints</a>
+                </li>
+                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-user">
+                                <a href="#endpoints-GETapi-user">GET api/user</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-game-management" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="game-management">
+                    <a href="#game-management">Game Management</a>
+                </li>
+                                    <ul id="tocify-subheader-game-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="game-management-GETapi-games">
+                                <a href="#game-management-GETapi-games">GET Games</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="game-management-POSTapi-games">
+                                <a href="#game-management-POSTapi-games">POST Game</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="game-management-GETapi-games--id-">
+                                <a href="#game-management-GETapi-games--id-">GET Game</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="game-management-PUTapi-games--id-">
+                                <a href="#game-management-PUTapi-games--id-">PUT/PATCH Game</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="game-management-DELETEapi-games--id-">
+                                <a href="#game-management-DELETEapi-games--id-">DELETE Game</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="game-management-GETapi-recentLeagueGames--league_id-">
+                                <a href="#game-management-GETapi-recentLeagueGames--league_id-">GET recent league Games</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="game-management-GETapi-leagueGames--league_id-">
+                                <a href="#game-management-GETapi-leagueGames--league_id-">GET api/leagueGames/{league_id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="game-management-GETapi-playerGames--player_id-">
+                                <a href="#game-management-GETapi-playerGames--player_id-">GET player Games</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-player-management" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="player-management">
+                    <a href="#player-management">Player Management</a>
+                </li>
+                                    <ul id="tocify-subheader-player-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="player-management-GETapi-players">
+                                <a href="#player-management-GETapi-players">Display a listing of the resource.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="player-management-POSTapi-players">
+                                <a href="#player-management-POSTapi-players">Store a newly created resource in storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="player-management-GETapi-players--id-">
+                                <a href="#player-management-GETapi-players--id-">Display the specified resource.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="player-management-PUTapi-players--id-">
+                                <a href="#player-management-PUTapi-players--id-">Update the specified resource in storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="player-management-DELETEapi-players--id-">
+                                <a href="#player-management-DELETEapi-players--id-">Remove the specified resource from storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="player-management-GETapi-leagues--league_id--players">
+                                <a href="#player-management-GETapi-leagues--league_id--players">Display list of specified resource in storage</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+            </div>
+
+    <ul class="toc-footer" id="toc-footer">
+                    <li style="padding-bottom: 5px;"><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li style="padding-bottom: 5px;"><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+    </ul>
+
+    <ul class="toc-footer" id="last-updated">
+        <li>Last updated: February 7, 2024</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<p>API for Steel Dart Rzeszów app made to manage league of dart</p>
+<aside>
+    <strong>Base URL</strong>: <code>http://localhost:80</code>
+</aside>
+<p>This documentation aims to provide all the information you need to work with our API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>This API is not authenticated.</p>
+
+        <h1 id="endpoints">Endpoints</h1>
+
+    
+
+                                <h2 id="endpoints-GETapi-user">GET api/user</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-user">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:80/api/user" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:80/api/user"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-user">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-user" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-user"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-user"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-user" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-user">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-user" data-method="GET"
+      data-path="api/user"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-user', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-user"
+                    onclick="tryItOut('GETapi-user');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-user"
+                    onclick="cancelTryOut('GETapi-user');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-user"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/user</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-user"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-user"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                <h1 id="game-management">Game Management</h1>
+
+    <p>APIs for managing games</p>
+
+                                <h2 id="game-management-GETapi-games">GET Games</h2>
+
+<p>
+</p>
+
+<p>Display a listing of the resource.</p>
+
+<span id="example-requests-GETapi-games">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:80/api/games" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:80/api/games"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-games">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 56
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;playerOne&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Filip&quot;,
+                &quot;secondName&quot;: &quot;Kula&quot;,
+                &quot;points&quot;: 0,
+                &quot;balance&quot;: 0,
+                &quot;legsWon&quot;: 0,
+                &quot;legsLost&quot;: 0,
+                &quot;average3Darts&quot;: 0,
+                &quot;maxAmount&quot;: 0
+            },
+            &quot;playerTwo&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Dariusz&quot;,
+                &quot;secondName&quot;: &quot;Furman&quot;,
+                &quot;points&quot;: 0,
+                &quot;balance&quot;: 0,
+                &quot;legsWon&quot;: 0,
+                &quot;legsLost&quot;: 0,
+                &quot;average3Darts&quot;: 0,
+                &quot;maxAmount&quot;: 0
+            },
+            &quot;playerOneScore&quot;: 4,
+            &quot;playerTwoScore&quot;: 6,
+            &quot;playerOneAvg&quot;: 78.5,
+            &quot;playerTwoAvg&quot;: 83.2,
+            &quot;playerOneMaxAmount&quot;: 140,
+            &quot;playerTwoMaxAmount&quot;: 180,
+            &quot;playerOneHighOuts&quot;: [],
+            &quot;playerTwoHighOuts&quot;: [],
+            &quot;playerOneFastOuts&quot;: [],
+            &quot;playerTwoFastOuts&quot;: [],
+            &quot;league&quot;: {
+                &quot;id&quot;: 1,
+                &quot;league_name&quot;: &quot;Pierwsza Liga&quot;,
+                &quot;created_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;
+            },
+            &quot;winner&quot;: 2,
+            &quot;created_at&quot;: &quot;19.09.2023&quot;,
+            &quot;updated_at&quot;: &quot;19.09.2023&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;playerOne&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Krzysztof&quot;,
+                &quot;secondName&quot;: &quot;Furman&quot;,
+                &quot;points&quot;: 3,
+                &quot;balance&quot;: -2,
+                &quot;legsWon&quot;: 4,
+                &quot;legsLost&quot;: 6,
+                &quot;average3Darts&quot;: 39.27,
+                &quot;maxAmount&quot;: 140
+            },
+            &quot;playerTwo&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Hieronim&quot;,
+                &quot;secondName&quot;: &quot;Furgał&quot;,
+                &quot;points&quot;: 0,
+                &quot;balance&quot;: 2,
+                &quot;legsWon&quot;: 6,
+                &quot;legsLost&quot;: 4,
+                &quot;average3Darts&quot;: 41.62,
+                &quot;maxAmount&quot;: 180
+            },
+            &quot;playerOneScore&quot;: 3,
+            &quot;playerTwoScore&quot;: 2,
+            &quot;playerOneAvg&quot;: 72.8,
+            &quot;playerTwoAvg&quot;: 67.2,
+            &quot;playerOneMaxAmount&quot;: 120,
+            &quot;playerTwoMaxAmount&quot;: 140,
+            &quot;playerOneHighOuts&quot;: [],
+            &quot;playerTwoHighOuts&quot;: [],
+            &quot;playerOneFastOuts&quot;: [],
+            &quot;playerTwoFastOuts&quot;: [],
+            &quot;league&quot;: {
+                &quot;id&quot;: 2,
+                &quot;league_name&quot;: &quot;Druga Liga&quot;,
+                &quot;created_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;
+            },
+            &quot;winner&quot;: 3,
+            &quot;created_at&quot;: &quot;19.09.2023&quot;,
+            &quot;updated_at&quot;: &quot;19.09.2023&quot;
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;playerOne&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Dariusz&quot;,
+                &quot;secondName&quot;: &quot;Furman&quot;,
+                &quot;points&quot;: 0,
+                &quot;balance&quot;: 0,
+                &quot;legsWon&quot;: 0,
+                &quot;legsLost&quot;: 0,
+                &quot;average3Darts&quot;: 0,
+                &quot;maxAmount&quot;: 0
+            },
+            &quot;playerTwo&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Krzysztof&quot;,
+                &quot;secondName&quot;: &quot;Furman&quot;,
+                &quot;points&quot;: 3,
+                &quot;balance&quot;: -2,
+                &quot;legsWon&quot;: 4,
+                &quot;legsLost&quot;: 6,
+                &quot;average3Darts&quot;: 39.27,
+                &quot;maxAmount&quot;: 140
+            },
+            &quot;playerOneScore&quot;: 5,
+            &quot;playerTwoScore&quot;: 5,
+            &quot;playerOneAvg&quot;: 81.4,
+            &quot;playerTwoAvg&quot;: 78.9,
+            &quot;playerOneMaxAmount&quot;: 160,
+            &quot;playerTwoMaxAmount&quot;: 150,
+            &quot;playerOneHighOuts&quot;: [],
+            &quot;playerTwoHighOuts&quot;: [],
+            &quot;playerOneFastOuts&quot;: [],
+            &quot;playerTwoFastOuts&quot;: [],
+            &quot;league&quot;: {
+                &quot;id&quot;: 3,
+                &quot;league_name&quot;: &quot;Trzecia Liga&quot;,
+                &quot;created_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;
+            },
+            &quot;winner&quot;: 2,
+            &quot;created_at&quot;: &quot;19.09.2023&quot;,
+            &quot;updated_at&quot;: &quot;19.09.2023&quot;
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;playerOne&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Krzysztof&quot;,
+                &quot;secondName&quot;: &quot;Furman&quot;,
+                &quot;points&quot;: 3,
+                &quot;balance&quot;: -2,
+                &quot;legsWon&quot;: 4,
+                &quot;legsLost&quot;: 6,
+                &quot;average3Darts&quot;: 39.27,
+                &quot;maxAmount&quot;: 140
+            },
+            &quot;playerTwo&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Hieronim&quot;,
+                &quot;secondName&quot;: &quot;Furgał&quot;,
+                &quot;points&quot;: 0,
+                &quot;balance&quot;: 2,
+                &quot;legsWon&quot;: 6,
+                &quot;legsLost&quot;: 4,
+                &quot;average3Darts&quot;: 41.62,
+                &quot;maxAmount&quot;: 180
+            },
+            &quot;playerOneScore&quot;: 4,
+            &quot;playerTwoScore&quot;: 6,
+            &quot;playerOneAvg&quot;: 78.54,
+            &quot;playerTwoAvg&quot;: 83.24,
+            &quot;playerOneMaxAmount&quot;: 140,
+            &quot;playerTwoMaxAmount&quot;: 180,
+            &quot;playerOneHighOuts&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;value&quot;: 121,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;value&quot;: 123,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;value&quot;: 170,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;playerTwoHighOuts&quot;: [
+                {
+                    &quot;id&quot;: 4,
+                    &quot;value&quot;: 111,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 5,
+                    &quot;value&quot;: 123,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 6,
+                    &quot;value&quot;: 160,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;playerOneFastOuts&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;value&quot;: 12,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;value&quot;: 16,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;value&quot;: 18,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;playerTwoFastOuts&quot;: [
+                {
+                    &quot;id&quot;: 4,
+                    &quot;value&quot;: 11,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 5,
+                    &quot;value&quot;: 12,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 6,
+                    &quot;value&quot;: 13,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;league&quot;: {
+                &quot;id&quot;: 1,
+                &quot;league_name&quot;: &quot;Pierwsza Liga&quot;,
+                &quot;created_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;
+            },
+            &quot;winner&quot;: 4,
+            &quot;created_at&quot;: &quot;19.09.2023&quot;,
+            &quot;updated_at&quot;: &quot;19.09.2023&quot;
+        }
+    ],
+    &quot;message&quot;: &quot;Games retrieved successfully&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-games" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-games"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-games"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-games" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-games">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-games" data-method="GET"
+      data-path="api/games"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-games', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-games"
+                    onclick="tryItOut('GETapi-games');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-games"
+                    onclick="cancelTryOut('GETapi-games');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-games"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/games</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-games"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-games"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="game-management-POSTapi-games">POST Game</h2>
+
+<p>
+</p>
+
+<p>Store a newly created resource in storage.</p>
+
+<span id="example-requests-POSTapi-games">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:80/api/games" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"player_one\": 3,
+    \"player_two\": 15,
+    \"player_one_score\": 1,
+    \"player_two_score\": 1,
+    \"player_one_avg\": \"voluptatibus\",
+    \"player_two_avg\": \"quaerat\",
+    \"player_one_max_amount\": 16,
+    \"player_two_max_amount\": 7,
+    \"league_id\": 11,
+    \"winner\": 12,
+    \"player_one_high_outs\": [
+        10545392.1
+    ],
+    \"player_one_fast_outs\": [
+        343285.5466872
+    ],
+    \"player_two_high_outs\": [
+        1
+    ],
+    \"player_two_fast_outs\": [
+        554
+    ]
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:80/api/games"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "player_one": 3,
+    "player_two": 15,
+    "player_one_score": 1,
+    "player_two_score": 1,
+    "player_one_avg": "voluptatibus",
+    "player_two_avg": "quaerat",
+    "player_one_max_amount": 16,
+    "player_two_max_amount": 7,
+    "league_id": 11,
+    "winner": 12,
+    "player_one_high_outs": [
+        10545392.1
+    ],
+    "player_one_fast_outs": [
+        343285.5466872
+    ],
+    "player_two_high_outs": [
+        1
+    ],
+    "player_two_fast_outs": [
+        554
+    ]
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-games">
+</span>
+<span id="execution-results-POSTapi-games" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-games"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-games"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-games" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-games">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-games" data-method="POST"
+      data-path="api/games"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-games', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-games"
+                    onclick="tryItOut('POSTapi-games');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-games"
+                    onclick="cancelTryOut('POSTapi-games');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-games"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/games</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-games"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-games"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_one</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_one"                data-endpoint="POSTapi-games"
+               value="3"
+               data-component="body">
+    <br>
+<p>The value and <code>player_two</code> must be different. Example: <code>3</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_two</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_two"                data-endpoint="POSTapi-games"
+               value="15"
+               data-component="body">
+    <br>
+<p>The value and <code>player_one</code> must be different. Example: <code>15</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_one_score</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_one_score"                data-endpoint="POSTapi-games"
+               value="1"
+               data-component="body">
+    <br>
+<p>Must be between 0 and 6. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_two_score</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_two_score"                data-endpoint="POSTapi-games"
+               value="1"
+               data-component="body">
+    <br>
+<p>Must be between 0 and 6. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_one_avg</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="player_one_avg"                data-endpoint="POSTapi-games"
+               value="voluptatibus"
+               data-component="body">
+    <br>
+<p>Must be between 0 and 167 characters. Example: <code>voluptatibus</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_two_avg</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="player_two_avg"                data-endpoint="POSTapi-games"
+               value="quaerat"
+               data-component="body">
+    <br>
+<p>Must be between 0 and 167 characters. Example: <code>quaerat</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_one_max_amount</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_one_max_amount"                data-endpoint="POSTapi-games"
+               value="16"
+               data-component="body">
+    <br>
+<p>Example: <code>16</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_two_max_amount</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_two_max_amount"                data-endpoint="POSTapi-games"
+               value="7"
+               data-component="body">
+    <br>
+<p>Example: <code>7</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>league_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="league_id"                data-endpoint="POSTapi-games"
+               value="11"
+               data-component="body">
+    <br>
+<p>Example: <code>11</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>winner</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="winner"                data-endpoint="POSTapi-games"
+               value="12"
+               data-component="body">
+    <br>
+<p>Example: <code>12</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_one_high_outs</code></b>&nbsp;&nbsp;
+<small>number[]</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_one_high_outs[0]"                data-endpoint="POSTapi-games"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="player_one_high_outs[1]"                data-endpoint="POSTapi-games"
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_one_fast_outs</code></b>&nbsp;&nbsp;
+<small>number[]</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_one_fast_outs[0]"                data-endpoint="POSTapi-games"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="player_one_fast_outs[1]"                data-endpoint="POSTapi-games"
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_two_high_outs</code></b>&nbsp;&nbsp;
+<small>number[]</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_two_high_outs[0]"                data-endpoint="POSTapi-games"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="player_two_high_outs[1]"                data-endpoint="POSTapi-games"
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_two_fast_outs</code></b>&nbsp;&nbsp;
+<small>number[]</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_two_fast_outs[0]"                data-endpoint="POSTapi-games"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="player_two_fast_outs[1]"                data-endpoint="POSTapi-games"
+               data-component="body">
+    <br>
+
+        </div>
+        </form>
+
+                    <h2 id="game-management-GETapi-games--id-">GET Game</h2>
+
+<p>
+</p>
+
+<p>Display the specified resource.</p>
+
+<span id="example-requests-GETapi-games--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:80/api/games/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:80/api/games/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-games--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 55
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;playerOne&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Filip&quot;,
+            &quot;secondName&quot;: &quot;Kula&quot;,
+            &quot;points&quot;: 0,
+            &quot;balance&quot;: 0,
+            &quot;legsWon&quot;: 0,
+            &quot;legsLost&quot;: 0,
+            &quot;average3Darts&quot;: 0,
+            &quot;maxAmount&quot;: 0
+        },
+        &quot;playerTwo&quot;: {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;Dariusz&quot;,
+            &quot;secondName&quot;: &quot;Furman&quot;,
+            &quot;points&quot;: 0,
+            &quot;balance&quot;: 0,
+            &quot;legsWon&quot;: 0,
+            &quot;legsLost&quot;: 0,
+            &quot;average3Darts&quot;: 0,
+            &quot;maxAmount&quot;: 0
+        },
+        &quot;playerOneScore&quot;: 4,
+        &quot;playerTwoScore&quot;: 6,
+        &quot;playerOneAvg&quot;: 78.5,
+        &quot;playerTwoAvg&quot;: 83.2,
+        &quot;playerOneMaxAmount&quot;: 140,
+        &quot;playerTwoMaxAmount&quot;: 180,
+        &quot;playerOneHighOuts&quot;: [],
+        &quot;playerTwoHighOuts&quot;: [],
+        &quot;playerOneFastOuts&quot;: [],
+        &quot;playerTwoFastOuts&quot;: [],
+        &quot;league&quot;: {
+            &quot;id&quot;: 1,
+            &quot;league_name&quot;: &quot;Pierwsza Liga&quot;,
+            &quot;created_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;
+        },
+        &quot;winner&quot;: 2,
+        &quot;created_at&quot;: &quot;19.09.2023&quot;,
+        &quot;updated_at&quot;: &quot;19.09.2023&quot;
+    },
+    &quot;message&quot;: &quot;Game retrieved successfully&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-games--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-games--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-games--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-games--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-games--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-games--id-" data-method="GET"
+      data-path="api/games/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-games--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-games--id-"
+                    onclick="tryItOut('GETapi-games--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-games--id-"
+                    onclick="cancelTryOut('GETapi-games--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-games--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/games/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-games--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-games--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-games--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the game. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="game-management-PUTapi-games--id-">PUT/PATCH Game</h2>
+
+<p>
+</p>
+
+<p>Update the specified resource in storage.</p>
+
+<span id="example-requests-PUTapi-games--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:80/api/games/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"player_one\": 15,
+    \"player_two\": 19,
+    \"player_one_score\": 0,
+    \"player_two_score\": 1,
+    \"player_one_avg\": \"temporibus\",
+    \"player_two_avg\": \"a\",
+    \"player_one_max_amount\": 1,
+    \"player_two_max_amount\": 12,
+    \"league_id\": 1,
+    \"winner\": 18,
+    \"player_one_high_outs\": [
+        26922042.75447
+    ],
+    \"player_one_fast_outs\": [
+        196955.69553
+    ],
+    \"player_two_high_outs\": [
+        147885581.3
+    ],
+    \"player_two_fast_outs\": [
+        73254.2
+    ]
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:80/api/games/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "player_one": 15,
+    "player_two": 19,
+    "player_one_score": 0,
+    "player_two_score": 1,
+    "player_one_avg": "temporibus",
+    "player_two_avg": "a",
+    "player_one_max_amount": 1,
+    "player_two_max_amount": 12,
+    "league_id": 1,
+    "winner": 18,
+    "player_one_high_outs": [
+        26922042.75447
+    ],
+    "player_one_fast_outs": [
+        196955.69553
+    ],
+    "player_two_high_outs": [
+        147885581.3
+    ],
+    "player_two_fast_outs": [
+        73254.2
+    ]
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-games--id-">
+</span>
+<span id="execution-results-PUTapi-games--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-games--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-games--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-games--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-games--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-games--id-" data-method="PUT"
+      data-path="api/games/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-games--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-games--id-"
+                    onclick="tryItOut('PUTapi-games--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-games--id-"
+                    onclick="cancelTryOut('PUTapi-games--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-games--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/games/{id}</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/games/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-games--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-games--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="PUTapi-games--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the game. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_one</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_one"                data-endpoint="PUTapi-games--id-"
+               value="15"
+               data-component="body">
+    <br>
+<p>The value and <code>player_two</code> must be different. Example: <code>15</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_two</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_two"                data-endpoint="PUTapi-games--id-"
+               value="19"
+               data-component="body">
+    <br>
+<p>The value and <code>player_one</code> must be different. Example: <code>19</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_one_score</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_one_score"                data-endpoint="PUTapi-games--id-"
+               value="0"
+               data-component="body">
+    <br>
+<p>Must be between 0 and 6. Example: <code>0</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_two_score</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_two_score"                data-endpoint="PUTapi-games--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>Must be between 0 and 6. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_one_avg</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="player_one_avg"                data-endpoint="PUTapi-games--id-"
+               value="temporibus"
+               data-component="body">
+    <br>
+<p>Must be between 0 and 167 characters. Example: <code>temporibus</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_two_avg</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="player_two_avg"                data-endpoint="PUTapi-games--id-"
+               value="a"
+               data-component="body">
+    <br>
+<p>Must be between 0 and 167 characters. Example: <code>a</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_one_max_amount</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_one_max_amount"                data-endpoint="PUTapi-games--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_two_max_amount</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_two_max_amount"                data-endpoint="PUTapi-games--id-"
+               value="12"
+               data-component="body">
+    <br>
+<p>Example: <code>12</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>league_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="league_id"                data-endpoint="PUTapi-games--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>Must be between 1 and 3. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>winner</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="winner"                data-endpoint="PUTapi-games--id-"
+               value="18"
+               data-component="body">
+    <br>
+<p>Example: <code>18</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_one_high_outs</code></b>&nbsp;&nbsp;
+<small>number[]</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_one_high_outs[0]"                data-endpoint="PUTapi-games--id-"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="player_one_high_outs[1]"                data-endpoint="PUTapi-games--id-"
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_one_fast_outs</code></b>&nbsp;&nbsp;
+<small>number[]</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_one_fast_outs[0]"                data-endpoint="PUTapi-games--id-"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="player_one_fast_outs[1]"                data-endpoint="PUTapi-games--id-"
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_two_high_outs</code></b>&nbsp;&nbsp;
+<small>number[]</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_two_high_outs[0]"                data-endpoint="PUTapi-games--id-"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="player_two_high_outs[1]"                data-endpoint="PUTapi-games--id-"
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>player_two_fast_outs</code></b>&nbsp;&nbsp;
+<small>number[]</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_two_fast_outs[0]"                data-endpoint="PUTapi-games--id-"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="player_two_fast_outs[1]"                data-endpoint="PUTapi-games--id-"
+               data-component="body">
+    <br>
+
+        </div>
+        </form>
+
+                    <h2 id="game-management-DELETEapi-games--id-">DELETE Game</h2>
+
+<p>
+</p>
+
+<p>Remove the specified resource from storage.</p>
+
+<span id="example-requests-DELETEapi-games--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:80/api/games/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:80/api/games/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-games--id-">
+</span>
+<span id="execution-results-DELETEapi-games--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-games--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-games--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-games--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-games--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-games--id-" data-method="DELETE"
+      data-path="api/games/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-games--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-games--id-"
+                    onclick="tryItOut('DELETEapi-games--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-games--id-"
+                    onclick="cancelTryOut('DELETEapi-games--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-games--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/games/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-games--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-games--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="DELETEapi-games--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the game. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="game-management-GETapi-recentLeagueGames--league_id-">GET recent league Games</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-recentLeagueGames--league_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:80/api/recentLeagueGames/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:80/api/recentLeagueGames/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-recentLeagueGames--league_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 54
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 4,
+            &quot;playerOne&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Krzysztof&quot;,
+                &quot;secondName&quot;: &quot;Furman&quot;,
+                &quot;points&quot;: 3,
+                &quot;balance&quot;: -2,
+                &quot;legsWon&quot;: 4,
+                &quot;legsLost&quot;: 6,
+                &quot;average3Darts&quot;: 39.27,
+                &quot;maxAmount&quot;: 140
+            },
+            &quot;playerTwo&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Hieronim&quot;,
+                &quot;secondName&quot;: &quot;Furgał&quot;,
+                &quot;points&quot;: 0,
+                &quot;balance&quot;: 2,
+                &quot;legsWon&quot;: 6,
+                &quot;legsLost&quot;: 4,
+                &quot;average3Darts&quot;: 41.62,
+                &quot;maxAmount&quot;: 180
+            },
+            &quot;playerOneScore&quot;: 4,
+            &quot;playerTwoScore&quot;: 6,
+            &quot;playerOneAvg&quot;: 78.54,
+            &quot;playerTwoAvg&quot;: 83.24,
+            &quot;playerOneMaxAmount&quot;: 140,
+            &quot;playerTwoMaxAmount&quot;: 180,
+            &quot;playerOneHighOuts&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;value&quot;: 121,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;value&quot;: 123,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;value&quot;: 170,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;playerTwoHighOuts&quot;: [
+                {
+                    &quot;id&quot;: 4,
+                    &quot;value&quot;: 111,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 5,
+                    &quot;value&quot;: 123,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 6,
+                    &quot;value&quot;: 160,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;playerOneFastOuts&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;value&quot;: 12,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;value&quot;: 16,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;value&quot;: 18,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;playerTwoFastOuts&quot;: [
+                {
+                    &quot;id&quot;: 4,
+                    &quot;value&quot;: 11,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 5,
+                    &quot;value&quot;: 12,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 6,
+                    &quot;value&quot;: 13,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;winner&quot;: 4,
+            &quot;created_at&quot;: &quot;19.09.2023&quot;,
+            &quot;updated_at&quot;: &quot;19.09.2023&quot;
+        },
+        {
+            &quot;id&quot;: 1,
+            &quot;playerOne&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Filip&quot;,
+                &quot;secondName&quot;: &quot;Kula&quot;,
+                &quot;points&quot;: 0,
+                &quot;balance&quot;: 0,
+                &quot;legsWon&quot;: 0,
+                &quot;legsLost&quot;: 0,
+                &quot;average3Darts&quot;: 0,
+                &quot;maxAmount&quot;: 0
+            },
+            &quot;playerTwo&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Dariusz&quot;,
+                &quot;secondName&quot;: &quot;Furman&quot;,
+                &quot;points&quot;: 0,
+                &quot;balance&quot;: 0,
+                &quot;legsWon&quot;: 0,
+                &quot;legsLost&quot;: 0,
+                &quot;average3Darts&quot;: 0,
+                &quot;maxAmount&quot;: 0
+            },
+            &quot;playerOneScore&quot;: 4,
+            &quot;playerTwoScore&quot;: 6,
+            &quot;playerOneAvg&quot;: 78.5,
+            &quot;playerTwoAvg&quot;: 83.2,
+            &quot;playerOneMaxAmount&quot;: 140,
+            &quot;playerTwoMaxAmount&quot;: 180,
+            &quot;playerOneHighOuts&quot;: [],
+            &quot;playerTwoHighOuts&quot;: [],
+            &quot;playerOneFastOuts&quot;: [],
+            &quot;playerTwoFastOuts&quot;: [],
+            &quot;winner&quot;: 2,
+            &quot;created_at&quot;: &quot;19.09.2023&quot;,
+            &quot;updated_at&quot;: &quot;19.09.2023&quot;
+        }
+    ],
+    &quot;message&quot;: &quot;Games retrieved successfully&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-recentLeagueGames--league_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-recentLeagueGames--league_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-recentLeagueGames--league_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-recentLeagueGames--league_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-recentLeagueGames--league_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-recentLeagueGames--league_id-" data-method="GET"
+      data-path="api/recentLeagueGames/{league_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-recentLeagueGames--league_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-recentLeagueGames--league_id-"
+                    onclick="tryItOut('GETapi-recentLeagueGames--league_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-recentLeagueGames--league_id-"
+                    onclick="cancelTryOut('GETapi-recentLeagueGames--league_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-recentLeagueGames--league_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/recentLeagueGames/{league_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-recentLeagueGames--league_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-recentLeagueGames--league_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>league_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="league_id"                data-endpoint="GETapi-recentLeagueGames--league_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the league. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="game-management-GETapi-leagueGames--league_id-">GET api/leagueGames/{league_id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-leagueGames--league_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:80/api/leagueGames/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:80/api/leagueGames/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-leagueGames--league_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 53
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 4,
+            &quot;playerOne&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Krzysztof&quot;,
+                &quot;secondName&quot;: &quot;Furman&quot;,
+                &quot;points&quot;: 3,
+                &quot;balance&quot;: -2,
+                &quot;legsWon&quot;: 4,
+                &quot;legsLost&quot;: 6,
+                &quot;average3Darts&quot;: 39.27,
+                &quot;maxAmount&quot;: 140
+            },
+            &quot;playerTwo&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Hieronim&quot;,
+                &quot;secondName&quot;: &quot;Furgał&quot;,
+                &quot;points&quot;: 0,
+                &quot;balance&quot;: 2,
+                &quot;legsWon&quot;: 6,
+                &quot;legsLost&quot;: 4,
+                &quot;average3Darts&quot;: 41.62,
+                &quot;maxAmount&quot;: 180
+            },
+            &quot;playerOneScore&quot;: 4,
+            &quot;playerTwoScore&quot;: 6,
+            &quot;playerOneAvg&quot;: 78.54,
+            &quot;playerTwoAvg&quot;: 83.24,
+            &quot;playerOneMaxAmount&quot;: 140,
+            &quot;playerTwoMaxAmount&quot;: 180,
+            &quot;playerOneHighOuts&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;value&quot;: 121,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;value&quot;: 123,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;value&quot;: 170,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;playerTwoHighOuts&quot;: [
+                {
+                    &quot;id&quot;: 4,
+                    &quot;value&quot;: 111,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 5,
+                    &quot;value&quot;: 123,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 6,
+                    &quot;value&quot;: 160,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;playerOneFastOuts&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;value&quot;: 12,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;value&quot;: 16,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;value&quot;: 18,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;playerTwoFastOuts&quot;: [
+                {
+                    &quot;id&quot;: 4,
+                    &quot;value&quot;: 11,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 5,
+                    &quot;value&quot;: 12,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 6,
+                    &quot;value&quot;: 13,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;winner&quot;: 4,
+            &quot;created_at&quot;: &quot;19.09.2023&quot;,
+            &quot;updated_at&quot;: &quot;19.09.2023&quot;
+        },
+        {
+            &quot;id&quot;: 1,
+            &quot;playerOne&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Filip&quot;,
+                &quot;secondName&quot;: &quot;Kula&quot;,
+                &quot;points&quot;: 0,
+                &quot;balance&quot;: 0,
+                &quot;legsWon&quot;: 0,
+                &quot;legsLost&quot;: 0,
+                &quot;average3Darts&quot;: 0,
+                &quot;maxAmount&quot;: 0
+            },
+            &quot;playerTwo&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Dariusz&quot;,
+                &quot;secondName&quot;: &quot;Furman&quot;,
+                &quot;points&quot;: 0,
+                &quot;balance&quot;: 0,
+                &quot;legsWon&quot;: 0,
+                &quot;legsLost&quot;: 0,
+                &quot;average3Darts&quot;: 0,
+                &quot;maxAmount&quot;: 0
+            },
+            &quot;playerOneScore&quot;: 4,
+            &quot;playerTwoScore&quot;: 6,
+            &quot;playerOneAvg&quot;: 78.5,
+            &quot;playerTwoAvg&quot;: 83.2,
+            &quot;playerOneMaxAmount&quot;: 140,
+            &quot;playerTwoMaxAmount&quot;: 180,
+            &quot;playerOneHighOuts&quot;: [],
+            &quot;playerTwoHighOuts&quot;: [],
+            &quot;playerOneFastOuts&quot;: [],
+            &quot;playerTwoFastOuts&quot;: [],
+            &quot;winner&quot;: 2,
+            &quot;created_at&quot;: &quot;19.09.2023&quot;,
+            &quot;updated_at&quot;: &quot;19.09.2023&quot;
+        }
+    ],
+    &quot;message&quot;: &quot;Games retrieved successfully&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-leagueGames--league_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-leagueGames--league_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-leagueGames--league_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-leagueGames--league_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-leagueGames--league_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-leagueGames--league_id-" data-method="GET"
+      data-path="api/leagueGames/{league_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-leagueGames--league_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-leagueGames--league_id-"
+                    onclick="tryItOut('GETapi-leagueGames--league_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-leagueGames--league_id-"
+                    onclick="cancelTryOut('GETapi-leagueGames--league_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-leagueGames--league_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/leagueGames/{league_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-leagueGames--league_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-leagueGames--league_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>league_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="league_id"                data-endpoint="GETapi-leagueGames--league_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the league. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="game-management-GETapi-playerGames--player_id-">GET player Games</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-playerGames--player_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:80/api/playerGames/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:80/api/playerGames/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-playerGames--player_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 52
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;playerOne&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Filip&quot;,
+                &quot;secondName&quot;: &quot;Kula&quot;,
+                &quot;points&quot;: 0,
+                &quot;balance&quot;: 0,
+                &quot;legsWon&quot;: 0,
+                &quot;legsLost&quot;: 0,
+                &quot;average3Darts&quot;: 0,
+                &quot;maxAmount&quot;: 0
+            },
+            &quot;playerTwo&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Dariusz&quot;,
+                &quot;secondName&quot;: &quot;Furman&quot;,
+                &quot;points&quot;: 0,
+                &quot;balance&quot;: 0,
+                &quot;legsWon&quot;: 0,
+                &quot;legsLost&quot;: 0,
+                &quot;average3Darts&quot;: 0,
+                &quot;maxAmount&quot;: 0
+            },
+            &quot;playerOneScore&quot;: 4,
+            &quot;playerTwoScore&quot;: 6,
+            &quot;playerOneAvg&quot;: 78.5,
+            &quot;playerTwoAvg&quot;: 83.2,
+            &quot;playerOneMaxAmount&quot;: 140,
+            &quot;playerTwoMaxAmount&quot;: 180,
+            &quot;playerOneHighOuts&quot;: [],
+            &quot;playerTwoHighOuts&quot;: [],
+            &quot;playerOneFastOuts&quot;: [],
+            &quot;playerTwoFastOuts&quot;: [],
+            &quot;winner&quot;: 2,
+            &quot;created_at&quot;: &quot;19.09.2023&quot;,
+            &quot;updated_at&quot;: &quot;19.09.2023&quot;
+        }
+    ],
+    &quot;message&quot;: &quot;Games retrieved successfully&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-playerGames--player_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-playerGames--player_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-playerGames--player_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-playerGames--player_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-playerGames--player_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-playerGames--player_id-" data-method="GET"
+      data-path="api/playerGames/{player_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-playerGames--player_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-playerGames--player_id-"
+                    onclick="tryItOut('GETapi-playerGames--player_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-playerGames--player_id-"
+                    onclick="cancelTryOut('GETapi-playerGames--player_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-playerGames--player_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/playerGames/{player_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-playerGames--player_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-playerGames--player_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>player_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="player_id"                data-endpoint="GETapi-playerGames--player_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the player. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                <h1 id="player-management">Player Management</h1>
+
+    <p>APIs for managing players</p>
+
+                                <h2 id="player-management-GETapi-players">Display a listing of the resource.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-players">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:80/api/players" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:80/api/players"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-players">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Filip&quot;,
+            &quot;secondName&quot;: &quot;Kula&quot;,
+            &quot;league&quot;: {
+                &quot;id&quot;: 1,
+                &quot;league_name&quot;: &quot;Pierwsza Liga&quot;,
+                &quot;created_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;
+            },
+            &quot;points&quot;: 0,
+            &quot;balance&quot;: 0,
+            &quot;legsWon&quot;: 0,
+            &quot;legsLost&quot;: 0,
+            &quot;average3Darts&quot;: 0,
+            &quot;maxAmount&quot;: 0,
+            &quot;highOuts&quot;: [],
+            &quot;fastOuts&quot;: []
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;Dariusz&quot;,
+            &quot;secondName&quot;: &quot;Furman&quot;,
+            &quot;league&quot;: {
+                &quot;id&quot;: 1,
+                &quot;league_name&quot;: &quot;Pierwsza Liga&quot;,
+                &quot;created_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;
+            },
+            &quot;points&quot;: 0,
+            &quot;balance&quot;: 0,
+            &quot;legsWon&quot;: 0,
+            &quot;legsLost&quot;: 0,
+            &quot;average3Darts&quot;: 0,
+            &quot;maxAmount&quot;: 0,
+            &quot;highOuts&quot;: [],
+            &quot;fastOuts&quot;: []
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;name&quot;: &quot;Krzysztof&quot;,
+            &quot;secondName&quot;: &quot;Furman&quot;,
+            &quot;league&quot;: {
+                &quot;id&quot;: 1,
+                &quot;league_name&quot;: &quot;Pierwsza Liga&quot;,
+                &quot;created_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;
+            },
+            &quot;points&quot;: 3,
+            &quot;balance&quot;: -2,
+            &quot;legsWon&quot;: 4,
+            &quot;legsLost&quot;: 6,
+            &quot;average3Darts&quot;: 39.27,
+            &quot;maxAmount&quot;: 140,
+            &quot;highOuts&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;value&quot;: 121,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;value&quot;: 123,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;value&quot;: 170,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;fastOuts&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;value&quot;: 12,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;value&quot;: 16,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;value&quot;: 18,
+                    &quot;gameId&quot;: 4
+                }
+            ]
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;name&quot;: &quot;Hieronim&quot;,
+            &quot;secondName&quot;: &quot;Furgał&quot;,
+            &quot;league&quot;: {
+                &quot;id&quot;: 1,
+                &quot;league_name&quot;: &quot;Pierwsza Liga&quot;,
+                &quot;created_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;
+            },
+            &quot;points&quot;: 0,
+            &quot;balance&quot;: 2,
+            &quot;legsWon&quot;: 6,
+            &quot;legsLost&quot;: 4,
+            &quot;average3Darts&quot;: 41.62,
+            &quot;maxAmount&quot;: 180,
+            &quot;highOuts&quot;: [
+                {
+                    &quot;id&quot;: 4,
+                    &quot;value&quot;: 111,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 5,
+                    &quot;value&quot;: 123,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 6,
+                    &quot;value&quot;: 160,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;fastOuts&quot;: [
+                {
+                    &quot;id&quot;: 4,
+                    &quot;value&quot;: 11,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 5,
+                    &quot;value&quot;: 12,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 6,
+                    &quot;value&quot;: 13,
+                    &quot;gameId&quot;: 4
+                }
+            ]
+        }
+    ],
+    &quot;message&quot;: &quot;Players retrieved successfully&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-players" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-players"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-players"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-players" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-players">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-players" data-method="GET"
+      data-path="api/players"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-players', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-players"
+                    onclick="tryItOut('GETapi-players');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-players"
+                    onclick="cancelTryOut('GETapi-players');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-players"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/players</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-players"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-players"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="player-management-POSTapi-players">Store a newly created resource in storage.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-players">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:80/api/players" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"exotyxmgkzryspchppjkgszb\",
+    \"second_name\": \"rfhre\",
+    \"league_id\": 10
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:80/api/players"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "exotyxmgkzryspchppjkgszb",
+    "second_name": "rfhre",
+    "league_id": 10
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-players">
+</span>
+<span id="execution-results-POSTapi-players" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-players"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-players"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-players" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-players">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-players" data-method="POST"
+      data-path="api/players"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-players', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-players"
+                    onclick="tryItOut('POSTapi-players');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-players"
+                    onclick="cancelTryOut('POSTapi-players');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-players"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/players</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-players"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-players"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-players"
+               value="exotyxmgkzryspchppjkgszb"
+               data-component="body">
+    <br>
+<p>Must not be greater than 64 characters. Example: <code>exotyxmgkzryspchppjkgszb</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>second_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="second_name"                data-endpoint="POSTapi-players"
+               value="rfhre"
+               data-component="body">
+    <br>
+<p>Must not be greater than 64 characters. Example: <code>rfhre</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>league_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="league_id"                data-endpoint="POSTapi-players"
+               value="10"
+               data-component="body">
+    <br>
+<p>Example: <code>10</code></p>
+        </div>
+        </form>
+
+                    <h2 id="player-management-GETapi-players--id-">Display the specified resource.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-players--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:80/api/players/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:80/api/players/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-players--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 58
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Filip&quot;,
+        &quot;secondName&quot;: &quot;Kula&quot;,
+        &quot;league&quot;: {
+            &quot;id&quot;: 1,
+            &quot;league_name&quot;: &quot;Pierwsza Liga&quot;,
+            &quot;created_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2023-09-19T14:55:02.000000Z&quot;
+        },
+        &quot;points&quot;: 0,
+        &quot;balance&quot;: 0,
+        &quot;legsWon&quot;: 0,
+        &quot;legsLost&quot;: 0,
+        &quot;average3Darts&quot;: 0,
+        &quot;maxAmount&quot;: 0,
+        &quot;highOuts&quot;: [],
+        &quot;fastOuts&quot;: []
+    },
+    &quot;message&quot;: &quot;Player retrieved successfully&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-players--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-players--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-players--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-players--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-players--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-players--id-" data-method="GET"
+      data-path="api/players/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-players--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-players--id-"
+                    onclick="tryItOut('GETapi-players--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-players--id-"
+                    onclick="cancelTryOut('GETapi-players--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-players--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/players/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-players--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-players--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-players--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the player. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="player-management-PUTapi-players--id-">Update the specified resource in storage.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PUTapi-players--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:80/api/players/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"ekxsxxvlvrnrrzhjxbe\",
+    \"second_name\": \"alocuertuxxzxi\",
+    \"league_id\": 17
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:80/api/players/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "ekxsxxvlvrnrrzhjxbe",
+    "second_name": "alocuertuxxzxi",
+    "league_id": 17
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-players--id-">
+</span>
+<span id="execution-results-PUTapi-players--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-players--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-players--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-players--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-players--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-players--id-" data-method="PUT"
+      data-path="api/players/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-players--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-players--id-"
+                    onclick="tryItOut('PUTapi-players--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-players--id-"
+                    onclick="cancelTryOut('PUTapi-players--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-players--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/players/{id}</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/players/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-players--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-players--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="PUTapi-players--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the player. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="PUTapi-players--id-"
+               value="ekxsxxvlvrnrrzhjxbe"
+               data-component="body">
+    <br>
+<p>Must not be greater than 64 characters. Example: <code>ekxsxxvlvrnrrzhjxbe</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>second_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="second_name"                data-endpoint="PUTapi-players--id-"
+               value="alocuertuxxzxi"
+               data-component="body">
+    <br>
+<p>Must not be greater than 64 characters. Example: <code>alocuertuxxzxi</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>league_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="league_id"                data-endpoint="PUTapi-players--id-"
+               value="17"
+               data-component="body">
+    <br>
+<p>Example: <code>17</code></p>
+        </div>
+        </form>
+
+                    <h2 id="player-management-DELETEapi-players--id-">Remove the specified resource from storage.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-players--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:80/api/players/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:80/api/players/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-players--id-">
+</span>
+<span id="execution-results-DELETEapi-players--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-players--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-players--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-players--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-players--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-players--id-" data-method="DELETE"
+      data-path="api/players/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-players--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-players--id-"
+                    onclick="tryItOut('DELETEapi-players--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-players--id-"
+                    onclick="cancelTryOut('DELETEapi-players--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-players--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/players/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-players--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-players--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="DELETEapi-players--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the player. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="player-management-GETapi-leagues--league_id--players">Display list of specified resource in storage</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-leagues--league_id--players">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:80/api/leagues/1/players" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:80/api/leagues/1/players"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-leagues--league_id--players">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 57
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 3,
+            &quot;name&quot;: &quot;Krzysztof&quot;,
+            &quot;secondName&quot;: &quot;Furman&quot;,
+            &quot;points&quot;: 3,
+            &quot;balance&quot;: -2,
+            &quot;legsWon&quot;: 4,
+            &quot;legsLost&quot;: 6,
+            &quot;average3Darts&quot;: 39.27,
+            &quot;maxAmount&quot;: 140,
+            &quot;highOuts&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;value&quot;: 121,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;value&quot;: 123,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;value&quot;: 170,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;fastOuts&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;value&quot;: 12,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;value&quot;: 16,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;value&quot;: 18,
+                    &quot;gameId&quot;: 4
+                }
+            ]
+        },
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Filip&quot;,
+            &quot;secondName&quot;: &quot;Kula&quot;,
+            &quot;points&quot;: 0,
+            &quot;balance&quot;: 0,
+            &quot;legsWon&quot;: 0,
+            &quot;legsLost&quot;: 0,
+            &quot;average3Darts&quot;: 0,
+            &quot;maxAmount&quot;: 0,
+            &quot;highOuts&quot;: [],
+            &quot;fastOuts&quot;: []
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;Dariusz&quot;,
+            &quot;secondName&quot;: &quot;Furman&quot;,
+            &quot;points&quot;: 0,
+            &quot;balance&quot;: 0,
+            &quot;legsWon&quot;: 0,
+            &quot;legsLost&quot;: 0,
+            &quot;average3Darts&quot;: 0,
+            &quot;maxAmount&quot;: 0,
+            &quot;highOuts&quot;: [],
+            &quot;fastOuts&quot;: []
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;name&quot;: &quot;Hieronim&quot;,
+            &quot;secondName&quot;: &quot;Furgał&quot;,
+            &quot;points&quot;: 0,
+            &quot;balance&quot;: 2,
+            &quot;legsWon&quot;: 6,
+            &quot;legsLost&quot;: 4,
+            &quot;average3Darts&quot;: 41.62,
+            &quot;maxAmount&quot;: 180,
+            &quot;highOuts&quot;: [
+                {
+                    &quot;id&quot;: 4,
+                    &quot;value&quot;: 111,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 5,
+                    &quot;value&quot;: 123,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 6,
+                    &quot;value&quot;: 160,
+                    &quot;gameId&quot;: 4
+                }
+            ],
+            &quot;fastOuts&quot;: [
+                {
+                    &quot;id&quot;: 4,
+                    &quot;value&quot;: 11,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 5,
+                    &quot;value&quot;: 12,
+                    &quot;gameId&quot;: 4
+                },
+                {
+                    &quot;id&quot;: 6,
+                    &quot;value&quot;: 13,
+                    &quot;gameId&quot;: 4
+                }
+            ]
+        }
+    ],
+    &quot;message&quot;: &quot;Players retrieved successfully&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-leagues--league_id--players" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-leagues--league_id--players"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-leagues--league_id--players"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-leagues--league_id--players" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-leagues--league_id--players">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-leagues--league_id--players" data-method="GET"
+      data-path="api/leagues/{league_id}/players"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-leagues--league_id--players', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-leagues--league_id--players"
+                    onclick="tryItOut('GETapi-leagues--league_id--players');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-leagues--league_id--players"
+                    onclick="cancelTryOut('GETapi-leagues--league_id--players');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-leagues--league_id--players"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/leagues/{league_id}/players</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-leagues--league_id--players"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-leagues--league_id--players"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>league_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="league_id"                data-endpoint="GETapi-leagues--league_id--players"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the league. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+            
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>

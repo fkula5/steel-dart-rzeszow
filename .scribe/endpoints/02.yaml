@@ -1,0 +1,673 @@
+name: 'Game Management'
+description: |-
+
+  APIs for managing games
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/games
+    metadata:
+      groupName: 'Game Management'
+      groupDescription: |-
+
+        APIs for managing games
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'GET Games'
+      description: 'Display a listing of the resource.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"data":[{"id":1,"playerOne":{"id":1,"name":"Filip","secondName":"Kula","points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0},"playerTwo":{"id":2,"name":"Dariusz","secondName":"Furman","points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0},"playerOneScore":4,"playerTwoScore":6,"playerOneAvg":78.5,"playerTwoAvg":83.2,"playerOneMaxAmount":140,"playerTwoMaxAmount":180,"playerOneHighOuts":[],"playerTwoHighOuts":[],"playerOneFastOuts":[],"playerTwoFastOuts":[],"league":{"id":1,"league_name":"Pierwsza Liga","created_at":"2023-09-19T14:55:02.000000Z","updated_at":"2023-09-19T14:55:02.000000Z"},"winner":2,"created_at":"19.09.2023","updated_at":"19.09.2023"},{"id":2,"playerOne":{"id":3,"name":"Krzysztof","secondName":"Furman","points":3,"balance":-2,"legsWon":4,"legsLost":6,"average3Darts":39.27,"maxAmount":140},"playerTwo":{"id":4,"name":"Hieronim","secondName":"Furga\u0142","points":0,"balance":2,"legsWon":6,"legsLost":4,"average3Darts":41.62,"maxAmount":180},"playerOneScore":3,"playerTwoScore":2,"playerOneAvg":72.8,"playerTwoAvg":67.2,"playerOneMaxAmount":120,"playerTwoMaxAmount":140,"playerOneHighOuts":[],"playerTwoHighOuts":[],"playerOneFastOuts":[],"playerTwoFastOuts":[],"league":{"id":2,"league_name":"Druga Liga","created_at":"2023-09-19T14:55:02.000000Z","updated_at":"2023-09-19T14:55:02.000000Z"},"winner":3,"created_at":"19.09.2023","updated_at":"19.09.2023"},{"id":3,"playerOne":{"id":2,"name":"Dariusz","secondName":"Furman","points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0},"playerTwo":{"id":3,"name":"Krzysztof","secondName":"Furman","points":3,"balance":-2,"legsWon":4,"legsLost":6,"average3Darts":39.27,"maxAmount":140},"playerOneScore":5,"playerTwoScore":5,"playerOneAvg":81.4,"playerTwoAvg":78.9,"playerOneMaxAmount":160,"playerTwoMaxAmount":150,"playerOneHighOuts":[],"playerTwoHighOuts":[],"playerOneFastOuts":[],"playerTwoFastOuts":[],"league":{"id":3,"league_name":"Trzecia Liga","created_at":"2023-09-19T14:55:02.000000Z","updated_at":"2023-09-19T14:55:02.000000Z"},"winner":2,"created_at":"19.09.2023","updated_at":"19.09.2023"},{"id":4,"playerOne":{"id":3,"name":"Krzysztof","secondName":"Furman","points":3,"balance":-2,"legsWon":4,"legsLost":6,"average3Darts":39.27,"maxAmount":140},"playerTwo":{"id":4,"name":"Hieronim","secondName":"Furga\u0142","points":0,"balance":2,"legsWon":6,"legsLost":4,"average3Darts":41.62,"maxAmount":180},"playerOneScore":4,"playerTwoScore":6,"playerOneAvg":78.54,"playerTwoAvg":83.24,"playerOneMaxAmount":140,"playerTwoMaxAmount":180,"playerOneHighOuts":[{"id":1,"value":121,"gameId":4},{"id":2,"value":123,"gameId":4},{"id":3,"value":170,"gameId":4}],"playerTwoHighOuts":[{"id":4,"value":111,"gameId":4},{"id":5,"value":123,"gameId":4},{"id":6,"value":160,"gameId":4}],"playerOneFastOuts":[{"id":1,"value":12,"gameId":4},{"id":2,"value":16,"gameId":4},{"id":3,"value":18,"gameId":4}],"playerTwoFastOuts":[{"id":4,"value":11,"gameId":4},{"id":5,"value":12,"gameId":4},{"id":6,"value":13,"gameId":4}],"league":{"id":1,"league_name":"Pierwsza Liga","created_at":"2023-09-19T14:55:02.000000Z","updated_at":"2023-09-19T14:55:02.000000Z"},"winner":4,"created_at":"19.09.2023","updated_at":"19.09.2023"}],"message":"Games retrieved successfully"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '56'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/games
+    metadata:
+      groupName: 'Game Management'
+      groupDescription: |-
+
+        APIs for managing games
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'POST Game'
+      description: 'Store a newly created resource in storage.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      player_one:
+        name: player_one
+        description: 'The value and <code>player_two</code> must be different.'
+        required: true
+        example: 3
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_two:
+        name: player_two
+        description: 'The value and <code>player_one</code> must be different.'
+        required: true
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_one_score:
+        name: player_one_score
+        description: 'Must be between 0 and 6.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_two_score:
+        name: player_two_score
+        description: 'Must be between 0 and 6.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_one_avg:
+        name: player_one_avg
+        description: 'Must be between 0 and 167 characters.'
+        required: true
+        example: voluptatibus
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_two_avg:
+        name: player_two_avg
+        description: 'Must be between 0 and 167 characters.'
+        required: true
+        example: quaerat
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_one_max_amount:
+        name: player_one_max_amount
+        description: ''
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_two_max_amount:
+        name: player_two_max_amount
+        description: ''
+        required: true
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      league_id:
+        name: league_id
+        description: ''
+        required: true
+        example: 11
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      winner:
+        name: winner
+        description: ''
+        required: true
+        example: 12
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_one_high_outs:
+        name: player_one_high_outs
+        description: ''
+        required: false
+        example:
+          - 10545392.1
+        type: 'number[]'
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_one_fast_outs:
+        name: player_one_fast_outs
+        description: ''
+        required: false
+        example:
+          - 343285.5466872
+        type: 'number[]'
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_two_high_outs:
+        name: player_two_high_outs
+        description: ''
+        required: false
+        example:
+          - 1.0
+        type: 'number[]'
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_two_fast_outs:
+        name: player_two_fast_outs
+        description: ''
+        required: false
+        example:
+          - 554.0
+        type: 'number[]'
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      player_one: 3
+      player_two: 15
+      player_one_score: 1
+      player_two_score: 1
+      player_one_avg: voluptatibus
+      player_two_avg: quaerat
+      player_one_max_amount: 16
+      player_two_max_amount: 7
+      league_id: 11
+      winner: 12
+      player_one_high_outs:
+        - 10545392.1
+      player_one_fast_outs:
+        - 343285.5466872
+      player_two_high_outs:
+        - 1.0
+      player_two_fast_outs:
+        - 554.0
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/games/{id}'
+    metadata:
+      groupName: 'Game Management'
+      groupDescription: |-
+
+        APIs for managing games
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'GET Game'
+      description: 'Display the specified resource.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the game.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"data":{"id":1,"playerOne":{"id":1,"name":"Filip","secondName":"Kula","points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0},"playerTwo":{"id":2,"name":"Dariusz","secondName":"Furman","points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0},"playerOneScore":4,"playerTwoScore":6,"playerOneAvg":78.5,"playerTwoAvg":83.2,"playerOneMaxAmount":140,"playerTwoMaxAmount":180,"playerOneHighOuts":[],"playerTwoHighOuts":[],"playerOneFastOuts":[],"playerTwoFastOuts":[],"league":{"id":1,"league_name":"Pierwsza Liga","created_at":"2023-09-19T14:55:02.000000Z","updated_at":"2023-09-19T14:55:02.000000Z"},"winner":2,"created_at":"19.09.2023","updated_at":"19.09.2023"},"message":"Game retrieved successfully"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '55'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/games/{id}'
+    metadata:
+      groupName: 'Game Management'
+      groupDescription: |-
+
+        APIs for managing games
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'PUT/PATCH Game'
+      description: 'Update the specified resource in storage.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the game.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      player_one:
+        name: player_one
+        description: 'The value and <code>player_two</code> must be different.'
+        required: true
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_two:
+        name: player_two
+        description: 'The value and <code>player_one</code> must be different.'
+        required: true
+        example: 19
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_one_score:
+        name: player_one_score
+        description: 'Must be between 0 and 6.'
+        required: true
+        example: 0
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_two_score:
+        name: player_two_score
+        description: 'Must be between 0 and 6.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_one_avg:
+        name: player_one_avg
+        description: 'Must be between 0 and 167 characters.'
+        required: true
+        example: temporibus
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_two_avg:
+        name: player_two_avg
+        description: 'Must be between 0 and 167 characters.'
+        required: true
+        example: a
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_one_max_amount:
+        name: player_one_max_amount
+        description: ''
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_two_max_amount:
+        name: player_two_max_amount
+        description: ''
+        required: true
+        example: 12
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      league_id:
+        name: league_id
+        description: 'Must be between 1 and 3.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      winner:
+        name: winner
+        description: ''
+        required: true
+        example: 18
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_one_high_outs:
+        name: player_one_high_outs
+        description: ''
+        required: false
+        example:
+          - 26922042.75447
+        type: 'number[]'
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_one_fast_outs:
+        name: player_one_fast_outs
+        description: ''
+        required: false
+        example:
+          - 196955.69553
+        type: 'number[]'
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_two_high_outs:
+        name: player_two_high_outs
+        description: ''
+        required: false
+        example:
+          - 147885581.3
+        type: 'number[]'
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      player_two_fast_outs:
+        name: player_two_fast_outs
+        description: ''
+        required: false
+        example:
+          - 73254.2
+        type: 'number[]'
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      player_one: 15
+      player_two: 19
+      player_one_score: 0
+      player_two_score: 1
+      player_one_avg: temporibus
+      player_two_avg: a
+      player_one_max_amount: 1
+      player_two_max_amount: 12
+      league_id: 1
+      winner: 18
+      player_one_high_outs:
+        - 26922042.75447
+      player_one_fast_outs:
+        - 196955.69553
+      player_two_high_outs:
+        - 147885581.3
+      player_two_fast_outs:
+        - 73254.2
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/games/{id}'
+    metadata:
+      groupName: 'Game Management'
+      groupDescription: |-
+
+        APIs for managing games
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'DELETE Game'
+      description: 'Remove the specified resource from storage.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the game.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/recentLeagueGames/{league_id}'
+    metadata:
+      groupName: 'Game Management'
+      groupDescription: |-
+
+        APIs for managing games
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'GET recent league Games'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      league_id:
+        name: league_id
+        description: 'The ID of the league.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      league_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"data":[{"id":4,"playerOne":{"id":3,"name":"Krzysztof","secondName":"Furman","points":3,"balance":-2,"legsWon":4,"legsLost":6,"average3Darts":39.27,"maxAmount":140},"playerTwo":{"id":4,"name":"Hieronim","secondName":"Furga\u0142","points":0,"balance":2,"legsWon":6,"legsLost":4,"average3Darts":41.62,"maxAmount":180},"playerOneScore":4,"playerTwoScore":6,"playerOneAvg":78.54,"playerTwoAvg":83.24,"playerOneMaxAmount":140,"playerTwoMaxAmount":180,"playerOneHighOuts":[{"id":1,"value":121,"gameId":4},{"id":2,"value":123,"gameId":4},{"id":3,"value":170,"gameId":4}],"playerTwoHighOuts":[{"id":4,"value":111,"gameId":4},{"id":5,"value":123,"gameId":4},{"id":6,"value":160,"gameId":4}],"playerOneFastOuts":[{"id":1,"value":12,"gameId":4},{"id":2,"value":16,"gameId":4},{"id":3,"value":18,"gameId":4}],"playerTwoFastOuts":[{"id":4,"value":11,"gameId":4},{"id":5,"value":12,"gameId":4},{"id":6,"value":13,"gameId":4}],"winner":4,"created_at":"19.09.2023","updated_at":"19.09.2023"},{"id":1,"playerOne":{"id":1,"name":"Filip","secondName":"Kula","points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0},"playerTwo":{"id":2,"name":"Dariusz","secondName":"Furman","points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0},"playerOneScore":4,"playerTwoScore":6,"playerOneAvg":78.5,"playerTwoAvg":83.2,"playerOneMaxAmount":140,"playerTwoMaxAmount":180,"playerOneHighOuts":[],"playerTwoHighOuts":[],"playerOneFastOuts":[],"playerTwoFastOuts":[],"winner":2,"created_at":"19.09.2023","updated_at":"19.09.2023"}],"message":"Games retrieved successfully"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '54'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/leagueGames/{league_id}'
+    metadata:
+      groupName: 'Game Management'
+      groupDescription: |-
+
+        APIs for managing games
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      league_id:
+        name: league_id
+        description: 'The ID of the league.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      league_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"data":[{"id":4,"playerOne":{"id":3,"name":"Krzysztof","secondName":"Furman","points":3,"balance":-2,"legsWon":4,"legsLost":6,"average3Darts":39.27,"maxAmount":140},"playerTwo":{"id":4,"name":"Hieronim","secondName":"Furga\u0142","points":0,"balance":2,"legsWon":6,"legsLost":4,"average3Darts":41.62,"maxAmount":180},"playerOneScore":4,"playerTwoScore":6,"playerOneAvg":78.54,"playerTwoAvg":83.24,"playerOneMaxAmount":140,"playerTwoMaxAmount":180,"playerOneHighOuts":[{"id":1,"value":121,"gameId":4},{"id":2,"value":123,"gameId":4},{"id":3,"value":170,"gameId":4}],"playerTwoHighOuts":[{"id":4,"value":111,"gameId":4},{"id":5,"value":123,"gameId":4},{"id":6,"value":160,"gameId":4}],"playerOneFastOuts":[{"id":1,"value":12,"gameId":4},{"id":2,"value":16,"gameId":4},{"id":3,"value":18,"gameId":4}],"playerTwoFastOuts":[{"id":4,"value":11,"gameId":4},{"id":5,"value":12,"gameId":4},{"id":6,"value":13,"gameId":4}],"winner":4,"created_at":"19.09.2023","updated_at":"19.09.2023"},{"id":1,"playerOne":{"id":1,"name":"Filip","secondName":"Kula","points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0},"playerTwo":{"id":2,"name":"Dariusz","secondName":"Furman","points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0},"playerOneScore":4,"playerTwoScore":6,"playerOneAvg":78.5,"playerTwoAvg":83.2,"playerOneMaxAmount":140,"playerTwoMaxAmount":180,"playerOneHighOuts":[],"playerTwoHighOuts":[],"playerOneFastOuts":[],"playerTwoFastOuts":[],"winner":2,"created_at":"19.09.2023","updated_at":"19.09.2023"}],"message":"Games retrieved successfully"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '53'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/playerGames/{player_id}'
+    metadata:
+      groupName: 'Game Management'
+      groupDescription: |-
+
+        APIs for managing games
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'GET player Games'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      player_id:
+        name: player_id
+        description: 'The ID of the player.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      player_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"data":[{"id":1,"playerOne":{"id":1,"name":"Filip","secondName":"Kula","points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0},"playerTwo":{"id":2,"name":"Dariusz","secondName":"Furman","points":0,"balance":0,"legsWon":0,"legsLost":0,"average3Darts":0,"maxAmount":0},"playerOneScore":4,"playerTwoScore":6,"playerOneAvg":78.5,"playerTwoAvg":83.2,"playerOneMaxAmount":140,"playerTwoMaxAmount":180,"playerOneHighOuts":[],"playerTwoHighOuts":[],"playerOneFastOuts":[],"playerTwoFastOuts":[],"winner":2,"created_at":"19.09.2023","updated_at":"19.09.2023"}],"message":"Games retrieved successfully"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '52'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

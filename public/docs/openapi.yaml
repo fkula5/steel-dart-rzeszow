@@ -1,0 +1,2971 @@
+openapi: 3.0.3
+info:
+  title: 'Steel Dart Rzeszów API'
+  description: 'API for Steel Dart Rzeszów app made to manage league of dart'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:80'
+paths:
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/games:
+    get:
+      summary: 'GET Games'
+      operationId: gETGames
+      description: 'Display a listing of the resource.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  data:
+                    -
+                      id: 1
+                      playerOne:
+                        id: 1
+                        name: Filip
+                        secondName: Kula
+                        points: 0
+                        balance: 0
+                        legsWon: 0
+                        legsLost: 0
+                        average3Darts: 0
+                        maxAmount: 0
+                      playerTwo:
+                        id: 2
+                        name: Dariusz
+                        secondName: Furman
+                        points: 0
+                        balance: 0
+                        legsWon: 0
+                        legsLost: 0
+                        average3Darts: 0
+                        maxAmount: 0
+                      playerOneScore: 4
+                      playerTwoScore: 6
+                      playerOneAvg: 78.5
+                      playerTwoAvg: 83.2
+                      playerOneMaxAmount: 140
+                      playerTwoMaxAmount: 180
+                      playerOneHighOuts: []
+                      playerTwoHighOuts: []
+                      playerOneFastOuts: []
+                      playerTwoFastOuts: []
+                      league:
+                        id: 1
+                        league_name: 'Pierwsza Liga'
+                        created_at: '2023-09-19T14:55:02.000000Z'
+                        updated_at: '2023-09-19T14:55:02.000000Z'
+                      winner: 2
+                      created_at: 19.09.2023
+                      updated_at: 19.09.2023
+                    -
+                      id: 2
+                      playerOne:
+                        id: 3
+                        name: Krzysztof
+                        secondName: Furman
+                        points: 3
+                        balance: -2
+                        legsWon: 4
+                        legsLost: 6
+                        average3Darts: 39.27
+                        maxAmount: 140
+                      playerTwo:
+                        id: 4
+                        name: Hieronim
+                        secondName: Furgał
+                        points: 0
+                        balance: 2
+                        legsWon: 6
+                        legsLost: 4
+                        average3Darts: 41.62
+                        maxAmount: 180
+                      playerOneScore: 3
+                      playerTwoScore: 2
+                      playerOneAvg: 72.8
+                      playerTwoAvg: 67.2
+                      playerOneMaxAmount: 120
+                      playerTwoMaxAmount: 140
+                      playerOneHighOuts: []
+                      playerTwoHighOuts: []
+                      playerOneFastOuts: []
+                      playerTwoFastOuts: []
+                      league:
+                        id: 2
+                        league_name: 'Druga Liga'
+                        created_at: '2023-09-19T14:55:02.000000Z'
+                        updated_at: '2023-09-19T14:55:02.000000Z'
+                      winner: 3
+                      created_at: 19.09.2023
+                      updated_at: 19.09.2023
+                    -
+                      id: 3
+                      playerOne:
+                        id: 2
+                        name: Dariusz
+                        secondName: Furman
+                        points: 0
+                        balance: 0
+                        legsWon: 0
+                        legsLost: 0
+                        average3Darts: 0
+                        maxAmount: 0
+                      playerTwo:
+                        id: 3
+                        name: Krzysztof
+                        secondName: Furman
+                        points: 3
+                        balance: -2
+                        legsWon: 4
+                        legsLost: 6
+                        average3Darts: 39.27
+                        maxAmount: 140
+                      playerOneScore: 5
+                      playerTwoScore: 5
+                      playerOneAvg: 81.4
+                      playerTwoAvg: 78.9
+                      playerOneMaxAmount: 160
+                      playerTwoMaxAmount: 150
+                      playerOneHighOuts: []
+                      playerTwoHighOuts: []
+                      playerOneFastOuts: []
+                      playerTwoFastOuts: []
+                      league:
+                        id: 3
+                        league_name: 'Trzecia Liga'
+                        created_at: '2023-09-19T14:55:02.000000Z'
+                        updated_at: '2023-09-19T14:55:02.000000Z'
+                      winner: 2
+                      created_at: 19.09.2023
+                      updated_at: 19.09.2023
+                    -
+                      id: 4
+                      playerOne:
+                        id: 3
+                        name: Krzysztof
+                        secondName: Furman
+                        points: 3
+                        balance: -2
+                        legsWon: 4
+                        legsLost: 6
+                        average3Darts: 39.27
+                        maxAmount: 140
+                      playerTwo:
+                        id: 4
+                        name: Hieronim
+                        secondName: Furgał
+                        points: 0
+                        balance: 2
+                        legsWon: 6
+                        legsLost: 4
+                        average3Darts: 41.62
+                        maxAmount: 180
+                      playerOneScore: 4
+                      playerTwoScore: 6
+                      playerOneAvg: 78.54
+                      playerTwoAvg: 83.24
+                      playerOneMaxAmount: 140
+                      playerTwoMaxAmount: 180
+                      playerOneHighOuts:
+                        -
+                          id: 1
+                          value: 121
+                          gameId: 4
+                        -
+                          id: 2
+                          value: 123
+                          gameId: 4
+                        -
+                          id: 3
+                          value: 170
+                          gameId: 4
+                      playerTwoHighOuts:
+                        -
+                          id: 4
+                          value: 111
+                          gameId: 4
+                        -
+                          id: 5
+                          value: 123
+                          gameId: 4
+                        -
+                          id: 6
+                          value: 160
+                          gameId: 4
+                      playerOneFastOuts:
+                        -
+                          id: 1
+                          value: 12
+                          gameId: 4
+                        -
+                          id: 2
+                          value: 16
+                          gameId: 4
+                        -
+                          id: 3
+                          value: 18
+                          gameId: 4
+                      playerTwoFastOuts:
+                        -
+                          id: 4
+                          value: 11
+                          gameId: 4
+                        -
+                          id: 5
+                          value: 12
+                          gameId: 4
+                        -
+                          id: 6
+                          value: 13
+                          gameId: 4
+                      league:
+                        id: 1
+                        league_name: 'Pierwsza Liga'
+                        created_at: '2023-09-19T14:55:02.000000Z'
+                        updated_at: '2023-09-19T14:55:02.000000Z'
+                      winner: 4
+                      created_at: 19.09.2023
+                      updated_at: 19.09.2023
+                  message: 'Games retrieved successfully'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        playerOne:
+                          id: 1
+                          name: Filip
+                          secondName: Kula
+                          points: 0
+                          balance: 0
+                          legsWon: 0
+                          legsLost: 0
+                          average3Darts: 0
+                          maxAmount: 0
+                        playerTwo:
+                          id: 2
+                          name: Dariusz
+                          secondName: Furman
+                          points: 0
+                          balance: 0
+                          legsWon: 0
+                          legsLost: 0
+                          average3Darts: 0
+                          maxAmount: 0
+                        playerOneScore: 4
+                        playerTwoScore: 6
+                        playerOneAvg: 78.5
+                        playerTwoAvg: 83.2
+                        playerOneMaxAmount: 140
+                        playerTwoMaxAmount: 180
+                        playerOneHighOuts: []
+                        playerTwoHighOuts: []
+                        playerOneFastOuts: []
+                        playerTwoFastOuts: []
+                        league:
+                          id: 1
+                          league_name: 'Pierwsza Liga'
+                          created_at: '2023-09-19T14:55:02.000000Z'
+                          updated_at: '2023-09-19T14:55:02.000000Z'
+                        winner: 2
+                        created_at: 19.09.2023
+                        updated_at: 19.09.2023
+                      -
+                        id: 2
+                        playerOne:
+                          id: 3
+                          name: Krzysztof
+                          secondName: Furman
+                          points: 3
+                          balance: -2
+                          legsWon: 4
+                          legsLost: 6
+                          average3Darts: 39.27
+                          maxAmount: 140
+                        playerTwo:
+                          id: 4
+                          name: Hieronim
+                          secondName: Furgał
+                          points: 0
+                          balance: 2
+                          legsWon: 6
+                          legsLost: 4
+                          average3Darts: 41.62
+                          maxAmount: 180
+                        playerOneScore: 3
+                        playerTwoScore: 2
+                        playerOneAvg: 72.8
+                        playerTwoAvg: 67.2
+                        playerOneMaxAmount: 120
+                        playerTwoMaxAmount: 140
+                        playerOneHighOuts: []
+                        playerTwoHighOuts: []
+                        playerOneFastOuts: []
+                        playerTwoFastOuts: []
+                        league:
+                          id: 2
+                          league_name: 'Druga Liga'
+                          created_at: '2023-09-19T14:55:02.000000Z'
+                          updated_at: '2023-09-19T14:55:02.000000Z'
+                        winner: 3
+                        created_at: 19.09.2023
+                        updated_at: 19.09.2023
+                      -
+                        id: 3
+                        playerOne:
+                          id: 2
+                          name: Dariusz
+                          secondName: Furman
+                          points: 0
+                          balance: 0
+                          legsWon: 0
+                          legsLost: 0
+                          average3Darts: 0
+                          maxAmount: 0
+                        playerTwo:
+                          id: 3
+                          name: Krzysztof
+                          secondName: Furman
+                          points: 3
+                          balance: -2
+                          legsWon: 4
+                          legsLost: 6
+                          average3Darts: 39.27
+                          maxAmount: 140
+                        playerOneScore: 5
+                        playerTwoScore: 5
+                        playerOneAvg: 81.4
+                        playerTwoAvg: 78.9
+                        playerOneMaxAmount: 160
+                        playerTwoMaxAmount: 150
+                        playerOneHighOuts: []
+                        playerTwoHighOuts: []
+                        playerOneFastOuts: []
+                        playerTwoFastOuts: []
+                        league:
+                          id: 3
+                          league_name: 'Trzecia Liga'
+                          created_at: '2023-09-19T14:55:02.000000Z'
+                          updated_at: '2023-09-19T14:55:02.000000Z'
+                        winner: 2
+                        created_at: 19.09.2023
+                        updated_at: 19.09.2023
+                      -
+                        id: 4
+                        playerOne:
+                          id: 3
+                          name: Krzysztof
+                          secondName: Furman
+                          points: 3
+                          balance: -2
+                          legsWon: 4
+                          legsLost: 6
+                          average3Darts: 39.27
+                          maxAmount: 140
+                        playerTwo:
+                          id: 4
+                          name: Hieronim
+                          secondName: Furgał
+                          points: 0
+                          balance: 2
+                          legsWon: 6
+                          legsLost: 4
+                          average3Darts: 41.62
+                          maxAmount: 180
+                        playerOneScore: 4
+                        playerTwoScore: 6
+                        playerOneAvg: 78.54
+                        playerTwoAvg: 83.24
+                        playerOneMaxAmount: 140
+                        playerTwoMaxAmount: 180
+                        playerOneHighOuts:
+                          -
+                            id: 1
+                            value: 121
+                            gameId: 4
+                          -
+                            id: 2
+                            value: 123
+                            gameId: 4
+                          -
+                            id: 3
+                            value: 170
+                            gameId: 4
+                        playerTwoHighOuts:
+                          -
+                            id: 4
+                            value: 111
+                            gameId: 4
+                          -
+                            id: 5
+                            value: 123
+                            gameId: 4
+                          -
+                            id: 6
+                            value: 160
+                            gameId: 4
+                        playerOneFastOuts:
+                          -
+                            id: 1
+                            value: 12
+                            gameId: 4
+                          -
+                            id: 2
+                            value: 16
+                            gameId: 4
+                          -
+                            id: 3
+                            value: 18
+                            gameId: 4
+                        playerTwoFastOuts:
+                          -
+                            id: 4
+                            value: 11
+                            gameId: 4
+                          -
+                            id: 5
+                            value: 12
+                            gameId: 4
+                          -
+                            id: 6
+                            value: 13
+                            gameId: 4
+                        league:
+                          id: 1
+                          league_name: 'Pierwsza Liga'
+                          created_at: '2023-09-19T14:55:02.000000Z'
+                          updated_at: '2023-09-19T14:55:02.000000Z'
+                        winner: 4
+                        created_at: 19.09.2023
+                        updated_at: 19.09.2023
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        playerOne:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: Filip
+                            secondName:
+                              type: string
+                              example: Kula
+                            points:
+                              type: integer
+                              example: 0
+                            balance:
+                              type: integer
+                              example: 0
+                            legsWon:
+                              type: integer
+                              example: 0
+                            legsLost:
+                              type: integer
+                              example: 0
+                            average3Darts:
+                              type: integer
+                              example: 0
+                            maxAmount:
+                              type: integer
+                              example: 0
+                        playerTwo:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 2
+                            name:
+                              type: string
+                              example: Dariusz
+                            secondName:
+                              type: string
+                              example: Furman
+                            points:
+                              type: integer
+                              example: 0
+                            balance:
+                              type: integer
+                              example: 0
+                            legsWon:
+                              type: integer
+                              example: 0
+                            legsLost:
+                              type: integer
+                              example: 0
+                            average3Darts:
+                              type: integer
+                              example: 0
+                            maxAmount:
+                              type: integer
+                              example: 0
+                        playerOneScore:
+                          type: integer
+                          example: 4
+                        playerTwoScore:
+                          type: integer
+                          example: 6
+                        playerOneAvg:
+                          type: number
+                          example: 78.5
+                        playerTwoAvg:
+                          type: number
+                          example: 83.2
+                        playerOneMaxAmount:
+                          type: integer
+                          example: 140
+                        playerTwoMaxAmount:
+                          type: integer
+                          example: 180
+                        playerOneHighOuts:
+                          type: array
+                          example: []
+                        playerTwoHighOuts:
+                          type: array
+                          example: []
+                        playerOneFastOuts:
+                          type: array
+                          example: []
+                        playerTwoFastOuts:
+                          type: array
+                          example: []
+                        league:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            league_name:
+                              type: string
+                              example: 'Pierwsza Liga'
+                            created_at:
+                              type: string
+                              example: '2023-09-19T14:55:02.000000Z'
+                            updated_at:
+                              type: string
+                              example: '2023-09-19T14:55:02.000000Z'
+                        winner:
+                          type: integer
+                          example: 2
+                        created_at:
+                          type: string
+                          example: 19.09.2023
+                        updated_at:
+                          type: string
+                          example: 19.09.2023
+                  message:
+                    type: string
+                    example: 'Games retrieved successfully'
+      tags:
+        - 'Game Management'
+      security: []
+    post:
+      summary: 'POST Game'
+      operationId: pOSTGame
+      description: 'Store a newly created resource in storage.'
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Game Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                player_one:
+                  type: integer
+                  description: 'The value and <code>player_two</code> must be different.'
+                  example: 3
+                player_two:
+                  type: integer
+                  description: 'The value and <code>player_one</code> must be different.'
+                  example: 15
+                player_one_score:
+                  type: integer
+                  description: 'Must be between 0 and 6.'
+                  example: 1
+                player_two_score:
+                  type: integer
+                  description: 'Must be between 0 and 6.'
+                  example: 1
+                player_one_avg:
+                  type: string
+                  description: 'Must be between 0 and 167 characters.'
+                  example: voluptatibus
+                player_two_avg:
+                  type: string
+                  description: 'Must be between 0 and 167 characters.'
+                  example: quaerat
+                player_one_max_amount:
+                  type: integer
+                  description: ''
+                  example: 16
+                player_two_max_amount:
+                  type: integer
+                  description: ''
+                  example: 7
+                league_id:
+                  type: integer
+                  description: ''
+                  example: 11
+                winner:
+                  type: integer
+                  description: ''
+                  example: 12
+                player_one_high_outs:
+                  type: array
+                  description: ''
+                  example:
+                    - 10545392.1
+                  items:
+                    type: number
+                player_one_fast_outs:
+                  type: array
+                  description: ''
+                  example:
+                    - 343285.5466872
+                  items:
+                    type: number
+                player_two_high_outs:
+                  type: array
+                  description: ''
+                  example:
+                    - 1.0
+                  items:
+                    type: number
+                player_two_fast_outs:
+                  type: array
+                  description: ''
+                  example:
+                    - 554.0
+                  items:
+                    type: number
+              required:
+                - player_one
+                - player_two
+                - player_one_score
+                - player_two_score
+                - player_one_avg
+                - player_two_avg
+                - player_one_max_amount
+                - player_two_max_amount
+                - league_id
+                - winner
+      security: []
+  '/api/games/{id}':
+    get:
+      summary: 'GET Game'
+      operationId: gETGame
+      description: 'Display the specified resource.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  data:
+                    id: 1
+                    playerOne:
+                      id: 1
+                      name: Filip
+                      secondName: Kula
+                      points: 0
+                      balance: 0
+                      legsWon: 0
+                      legsLost: 0
+                      average3Darts: 0
+                      maxAmount: 0
+                    playerTwo:
+                      id: 2
+                      name: Dariusz
+                      secondName: Furman
+                      points: 0
+                      balance: 0
+                      legsWon: 0
+                      legsLost: 0
+                      average3Darts: 0
+                      maxAmount: 0
+                    playerOneScore: 4
+                    playerTwoScore: 6
+                    playerOneAvg: 78.5
+                    playerTwoAvg: 83.2
+                    playerOneMaxAmount: 140
+                    playerTwoMaxAmount: 180
+                    playerOneHighOuts: []
+                    playerTwoHighOuts: []
+                    playerOneFastOuts: []
+                    playerTwoFastOuts: []
+                    league:
+                      id: 1
+                      league_name: 'Pierwsza Liga'
+                      created_at: '2023-09-19T14:55:02.000000Z'
+                      updated_at: '2023-09-19T14:55:02.000000Z'
+                    winner: 2
+                    created_at: 19.09.2023
+                    updated_at: 19.09.2023
+                  message: 'Game retrieved successfully'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      playerOne:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Filip
+                          secondName:
+                            type: string
+                            example: Kula
+                          points:
+                            type: integer
+                            example: 0
+                          balance:
+                            type: integer
+                            example: 0
+                          legsWon:
+                            type: integer
+                            example: 0
+                          legsLost:
+                            type: integer
+                            example: 0
+                          average3Darts:
+                            type: integer
+                            example: 0
+                          maxAmount:
+                            type: integer
+                            example: 0
+                      playerTwo:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 2
+                          name:
+                            type: string
+                            example: Dariusz
+                          secondName:
+                            type: string
+                            example: Furman
+                          points:
+                            type: integer
+                            example: 0
+                          balance:
+                            type: integer
+                            example: 0
+                          legsWon:
+                            type: integer
+                            example: 0
+                          legsLost:
+                            type: integer
+                            example: 0
+                          average3Darts:
+                            type: integer
+                            example: 0
+                          maxAmount:
+                            type: integer
+                            example: 0
+                      playerOneScore:
+                        type: integer
+                        example: 4
+                      playerTwoScore:
+                        type: integer
+                        example: 6
+                      playerOneAvg:
+                        type: number
+                        example: 78.5
+                      playerTwoAvg:
+                        type: number
+                        example: 83.2
+                      playerOneMaxAmount:
+                        type: integer
+                        example: 140
+                      playerTwoMaxAmount:
+                        type: integer
+                        example: 180
+                      playerOneHighOuts:
+                        type: array
+                        example: []
+                      playerTwoHighOuts:
+                        type: array
+                        example: []
+                      playerOneFastOuts:
+                        type: array
+                        example: []
+                      playerTwoFastOuts:
+                        type: array
+                        example: []
+                      league:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          league_name:
+                            type: string
+                            example: 'Pierwsza Liga'
+                          created_at:
+                            type: string
+                            example: '2023-09-19T14:55:02.000000Z'
+                          updated_at:
+                            type: string
+                            example: '2023-09-19T14:55:02.000000Z'
+                      winner:
+                        type: integer
+                        example: 2
+                      created_at:
+                        type: string
+                        example: 19.09.2023
+                      updated_at:
+                        type: string
+                        example: 19.09.2023
+                  message:
+                    type: string
+                    example: 'Game retrieved successfully'
+      tags:
+        - 'Game Management'
+      security: []
+    put:
+      summary: 'PUT/PATCH Game'
+      operationId: pUTPATCHGame
+      description: 'Update the specified resource in storage.'
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Game Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                player_one:
+                  type: integer
+                  description: 'The value and <code>player_two</code> must be different.'
+                  example: 15
+                player_two:
+                  type: integer
+                  description: 'The value and <code>player_one</code> must be different.'
+                  example: 19
+                player_one_score:
+                  type: integer
+                  description: 'Must be between 0 and 6.'
+                  example: 0
+                player_two_score:
+                  type: integer
+                  description: 'Must be between 0 and 6.'
+                  example: 1
+                player_one_avg:
+                  type: string
+                  description: 'Must be between 0 and 167 characters.'
+                  example: temporibus
+                player_two_avg:
+                  type: string
+                  description: 'Must be between 0 and 167 characters.'
+                  example: a
+                player_one_max_amount:
+                  type: integer
+                  description: ''
+                  example: 1
+                player_two_max_amount:
+                  type: integer
+                  description: ''
+                  example: 12
+                league_id:
+                  type: integer
+                  description: 'Must be between 1 and 3.'
+                  example: 1
+                winner:
+                  type: integer
+                  description: ''
+                  example: 18
+                player_one_high_outs:
+                  type: array
+                  description: ''
+                  example:
+                    - 26922042.75447
+                  items:
+                    type: number
+                player_one_fast_outs:
+                  type: array
+                  description: ''
+                  example:
+                    - 196955.69553
+                  items:
+                    type: number
+                player_two_high_outs:
+                  type: array
+                  description: ''
+                  example:
+                    - 147885581.3
+                  items:
+                    type: number
+                player_two_fast_outs:
+                  type: array
+                  description: ''
+                  example:
+                    - 73254.2
+                  items:
+                    type: number
+              required:
+                - player_one
+                - player_two
+                - player_one_score
+                - player_two_score
+                - player_one_avg
+                - player_two_avg
+                - player_one_max_amount
+                - player_two_max_amount
+                - league_id
+                - winner
+      security: []
+    delete:
+      summary: 'DELETE Game'
+      operationId: dELETEGame
+      description: 'Remove the specified resource from storage.'
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Game Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the game.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/recentLeagueGames/{league_id}':
+    get:
+      summary: 'GET recent league Games'
+      operationId: gETRecentLeagueGames
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  data:
+                    -
+                      id: 4
+                      playerOne:
+                        id: 3
+                        name: Krzysztof
+                        secondName: Furman
+                        points: 3
+                        balance: -2
+                        legsWon: 4
+                        legsLost: 6
+                        average3Darts: 39.27
+                        maxAmount: 140
+                      playerTwo:
+                        id: 4
+                        name: Hieronim
+                        secondName: Furgał
+                        points: 0
+                        balance: 2
+                        legsWon: 6
+                        legsLost: 4
+                        average3Darts: 41.62
+                        maxAmount: 180
+                      playerOneScore: 4
+                      playerTwoScore: 6
+                      playerOneAvg: 78.54
+                      playerTwoAvg: 83.24
+                      playerOneMaxAmount: 140
+                      playerTwoMaxAmount: 180
+                      playerOneHighOuts:
+                        -
+                          id: 1
+                          value: 121
+                          gameId: 4
+                        -
+                          id: 2
+                          value: 123
+                          gameId: 4
+                        -
+                          id: 3
+                          value: 170
+                          gameId: 4
+                      playerTwoHighOuts:
+                        -
+                          id: 4
+                          value: 111
+                          gameId: 4
+                        -
+                          id: 5
+                          value: 123
+                          gameId: 4
+                        -
+                          id: 6
+                          value: 160
+                          gameId: 4
+                      playerOneFastOuts:
+                        -
+                          id: 1
+                          value: 12
+                          gameId: 4
+                        -
+                          id: 2
+                          value: 16
+                          gameId: 4
+                        -
+                          id: 3
+                          value: 18
+                          gameId: 4
+                      playerTwoFastOuts:
+                        -
+                          id: 4
+                          value: 11
+                          gameId: 4
+                        -
+                          id: 5
+                          value: 12
+                          gameId: 4
+                        -
+                          id: 6
+                          value: 13
+                          gameId: 4
+                      winner: 4
+                      created_at: 19.09.2023
+                      updated_at: 19.09.2023
+                    -
+                      id: 1
+                      playerOne:
+                        id: 1
+                        name: Filip
+                        secondName: Kula
+                        points: 0
+                        balance: 0
+                        legsWon: 0
+                        legsLost: 0
+                        average3Darts: 0
+                        maxAmount: 0
+                      playerTwo:
+                        id: 2
+                        name: Dariusz
+                        secondName: Furman
+                        points: 0
+                        balance: 0
+                        legsWon: 0
+                        legsLost: 0
+                        average3Darts: 0
+                        maxAmount: 0
+                      playerOneScore: 4
+                      playerTwoScore: 6
+                      playerOneAvg: 78.5
+                      playerTwoAvg: 83.2
+                      playerOneMaxAmount: 140
+                      playerTwoMaxAmount: 180
+                      playerOneHighOuts: []
+                      playerTwoHighOuts: []
+                      playerOneFastOuts: []
+                      playerTwoFastOuts: []
+                      winner: 2
+                      created_at: 19.09.2023
+                      updated_at: 19.09.2023
+                  message: 'Games retrieved successfully'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 4
+                        playerOne:
+                          id: 3
+                          name: Krzysztof
+                          secondName: Furman
+                          points: 3
+                          balance: -2
+                          legsWon: 4
+                          legsLost: 6
+                          average3Darts: 39.27
+                          maxAmount: 140
+                        playerTwo:
+                          id: 4
+                          name: Hieronim
+                          secondName: Furgał
+                          points: 0
+                          balance: 2
+                          legsWon: 6
+                          legsLost: 4
+                          average3Darts: 41.62
+                          maxAmount: 180
+                        playerOneScore: 4
+                        playerTwoScore: 6
+                        playerOneAvg: 78.54
+                        playerTwoAvg: 83.24
+                        playerOneMaxAmount: 140
+                        playerTwoMaxAmount: 180
+                        playerOneHighOuts:
+                          -
+                            id: 1
+                            value: 121
+                            gameId: 4
+                          -
+                            id: 2
+                            value: 123
+                            gameId: 4
+                          -
+                            id: 3
+                            value: 170
+                            gameId: 4
+                        playerTwoHighOuts:
+                          -
+                            id: 4
+                            value: 111
+                            gameId: 4
+                          -
+                            id: 5
+                            value: 123
+                            gameId: 4
+                          -
+                            id: 6
+                            value: 160
+                            gameId: 4
+                        playerOneFastOuts:
+                          -
+                            id: 1
+                            value: 12
+                            gameId: 4
+                          -
+                            id: 2
+                            value: 16
+                            gameId: 4
+                          -
+                            id: 3
+                            value: 18
+                            gameId: 4
+                        playerTwoFastOuts:
+                          -
+                            id: 4
+                            value: 11
+                            gameId: 4
+                          -
+                            id: 5
+                            value: 12
+                            gameId: 4
+                          -
+                            id: 6
+                            value: 13
+                            gameId: 4
+                        winner: 4
+                        created_at: 19.09.2023
+                        updated_at: 19.09.2023
+                      -
+                        id: 1
+                        playerOne:
+                          id: 1
+                          name: Filip
+                          secondName: Kula
+                          points: 0
+                          balance: 0
+                          legsWon: 0
+                          legsLost: 0
+                          average3Darts: 0
+                          maxAmount: 0
+                        playerTwo:
+                          id: 2
+                          name: Dariusz
+                          secondName: Furman
+                          points: 0
+                          balance: 0
+                          legsWon: 0
+                          legsLost: 0
+                          average3Darts: 0
+                          maxAmount: 0
+                        playerOneScore: 4
+                        playerTwoScore: 6
+                        playerOneAvg: 78.5
+                        playerTwoAvg: 83.2
+                        playerOneMaxAmount: 140
+                        playerTwoMaxAmount: 180
+                        playerOneHighOuts: []
+                        playerTwoHighOuts: []
+                        playerOneFastOuts: []
+                        playerTwoFastOuts: []
+                        winner: 2
+                        created_at: 19.09.2023
+                        updated_at: 19.09.2023
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 4
+                        playerOne:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 3
+                            name:
+                              type: string
+                              example: Krzysztof
+                            secondName:
+                              type: string
+                              example: Furman
+                            points:
+                              type: integer
+                              example: 3
+                            balance:
+                              type: integer
+                              example: -2
+                            legsWon:
+                              type: integer
+                              example: 4
+                            legsLost:
+                              type: integer
+                              example: 6
+                            average3Darts:
+                              type: number
+                              example: 39.27
+                            maxAmount:
+                              type: integer
+                              example: 140
+                        playerTwo:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 4
+                            name:
+                              type: string
+                              example: Hieronim
+                            secondName:
+                              type: string
+                              example: Furgał
+                            points:
+                              type: integer
+                              example: 0
+                            balance:
+                              type: integer
+                              example: 2
+                            legsWon:
+                              type: integer
+                              example: 6
+                            legsLost:
+                              type: integer
+                              example: 4
+                            average3Darts:
+                              type: number
+                              example: 41.62
+                            maxAmount:
+                              type: integer
+                              example: 180
+                        playerOneScore:
+                          type: integer
+                          example: 4
+                        playerTwoScore:
+                          type: integer
+                          example: 6
+                        playerOneAvg:
+                          type: number
+                          example: 78.54
+                        playerTwoAvg:
+                          type: number
+                          example: 83.24
+                        playerOneMaxAmount:
+                          type: integer
+                          example: 140
+                        playerTwoMaxAmount:
+                          type: integer
+                          example: 180
+                        playerOneHighOuts:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              value: 121
+                              gameId: 4
+                            -
+                              id: 2
+                              value: 123
+                              gameId: 4
+                            -
+                              id: 3
+                              value: 170
+                              gameId: 4
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              value:
+                                type: integer
+                                example: 121
+                              gameId:
+                                type: integer
+                                example: 4
+                        playerTwoHighOuts:
+                          type: array
+                          example:
+                            -
+                              id: 4
+                              value: 111
+                              gameId: 4
+                            -
+                              id: 5
+                              value: 123
+                              gameId: 4
+                            -
+                              id: 6
+                              value: 160
+                              gameId: 4
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 4
+                              value:
+                                type: integer
+                                example: 111
+                              gameId:
+                                type: integer
+                                example: 4
+                        playerOneFastOuts:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              value: 12
+                              gameId: 4
+                            -
+                              id: 2
+                              value: 16
+                              gameId: 4
+                            -
+                              id: 3
+                              value: 18
+                              gameId: 4
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              value:
+                                type: integer
+                                example: 12
+                              gameId:
+                                type: integer
+                                example: 4
+                        playerTwoFastOuts:
+                          type: array
+                          example:
+                            -
+                              id: 4
+                              value: 11
+                              gameId: 4
+                            -
+                              id: 5
+                              value: 12
+                              gameId: 4
+                            -
+                              id: 6
+                              value: 13
+                              gameId: 4
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 4
+                              value:
+                                type: integer
+                                example: 11
+                              gameId:
+                                type: integer
+                                example: 4
+                        winner:
+                          type: integer
+                          example: 4
+                        created_at:
+                          type: string
+                          example: 19.09.2023
+                        updated_at:
+                          type: string
+                          example: 19.09.2023
+                  message:
+                    type: string
+                    example: 'Games retrieved successfully'
+      tags:
+        - 'Game Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: league_id
+        description: 'The ID of the league.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/leagueGames/{league_id}':
+    get:
+      summary: ''
+      operationId: getApiLeagueGamesLeague_id
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  data:
+                    -
+                      id: 4
+                      playerOne:
+                        id: 3
+                        name: Krzysztof
+                        secondName: Furman
+                        points: 3
+                        balance: -2
+                        legsWon: 4
+                        legsLost: 6
+                        average3Darts: 39.27
+                        maxAmount: 140
+                      playerTwo:
+                        id: 4
+                        name: Hieronim
+                        secondName: Furgał
+                        points: 0
+                        balance: 2
+                        legsWon: 6
+                        legsLost: 4
+                        average3Darts: 41.62
+                        maxAmount: 180
+                      playerOneScore: 4
+                      playerTwoScore: 6
+                      playerOneAvg: 78.54
+                      playerTwoAvg: 83.24
+                      playerOneMaxAmount: 140
+                      playerTwoMaxAmount: 180
+                      playerOneHighOuts:
+                        -
+                          id: 1
+                          value: 121
+                          gameId: 4
+                        -
+                          id: 2
+                          value: 123
+                          gameId: 4
+                        -
+                          id: 3
+                          value: 170
+                          gameId: 4
+                      playerTwoHighOuts:
+                        -
+                          id: 4
+                          value: 111
+                          gameId: 4
+                        -
+                          id: 5
+                          value: 123
+                          gameId: 4
+                        -
+                          id: 6
+                          value: 160
+                          gameId: 4
+                      playerOneFastOuts:
+                        -
+                          id: 1
+                          value: 12
+                          gameId: 4
+                        -
+                          id: 2
+                          value: 16
+                          gameId: 4
+                        -
+                          id: 3
+                          value: 18
+                          gameId: 4
+                      playerTwoFastOuts:
+                        -
+                          id: 4
+                          value: 11
+                          gameId: 4
+                        -
+                          id: 5
+                          value: 12
+                          gameId: 4
+                        -
+                          id: 6
+                          value: 13
+                          gameId: 4
+                      winner: 4
+                      created_at: 19.09.2023
+                      updated_at: 19.09.2023
+                    -
+                      id: 1
+                      playerOne:
+                        id: 1
+                        name: Filip
+                        secondName: Kula
+                        points: 0
+                        balance: 0
+                        legsWon: 0
+                        legsLost: 0
+                        average3Darts: 0
+                        maxAmount: 0
+                      playerTwo:
+                        id: 2
+                        name: Dariusz
+                        secondName: Furman
+                        points: 0
+                        balance: 0
+                        legsWon: 0
+                        legsLost: 0
+                        average3Darts: 0
+                        maxAmount: 0
+                      playerOneScore: 4
+                      playerTwoScore: 6
+                      playerOneAvg: 78.5
+                      playerTwoAvg: 83.2
+                      playerOneMaxAmount: 140
+                      playerTwoMaxAmount: 180
+                      playerOneHighOuts: []
+                      playerTwoHighOuts: []
+                      playerOneFastOuts: []
+                      playerTwoFastOuts: []
+                      winner: 2
+                      created_at: 19.09.2023
+                      updated_at: 19.09.2023
+                  message: 'Games retrieved successfully'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 4
+                        playerOne:
+                          id: 3
+                          name: Krzysztof
+                          secondName: Furman
+                          points: 3
+                          balance: -2
+                          legsWon: 4
+                          legsLost: 6
+                          average3Darts: 39.27
+                          maxAmount: 140
+                        playerTwo:
+                          id: 4
+                          name: Hieronim
+                          secondName: Furgał
+                          points: 0
+                          balance: 2
+                          legsWon: 6
+                          legsLost: 4
+                          average3Darts: 41.62
+                          maxAmount: 180
+                        playerOneScore: 4
+                        playerTwoScore: 6
+                        playerOneAvg: 78.54
+                        playerTwoAvg: 83.24
+                        playerOneMaxAmount: 140
+                        playerTwoMaxAmount: 180
+                        playerOneHighOuts:
+                          -
+                            id: 1
+                            value: 121
+                            gameId: 4
+                          -
+                            id: 2
+                            value: 123
+                            gameId: 4
+                          -
+                            id: 3
+                            value: 170
+                            gameId: 4
+                        playerTwoHighOuts:
+                          -
+                            id: 4
+                            value: 111
+                            gameId: 4
+                          -
+                            id: 5
+                            value: 123
+                            gameId: 4
+                          -
+                            id: 6
+                            value: 160
+                            gameId: 4
+                        playerOneFastOuts:
+                          -
+                            id: 1
+                            value: 12
+                            gameId: 4
+                          -
+                            id: 2
+                            value: 16
+                            gameId: 4
+                          -
+                            id: 3
+                            value: 18
+                            gameId: 4
+                        playerTwoFastOuts:
+                          -
+                            id: 4
+                            value: 11
+                            gameId: 4
+                          -
+                            id: 5
+                            value: 12
+                            gameId: 4
+                          -
+                            id: 6
+                            value: 13
+                            gameId: 4
+                        winner: 4
+                        created_at: 19.09.2023
+                        updated_at: 19.09.2023
+                      -
+                        id: 1
+                        playerOne:
+                          id: 1
+                          name: Filip
+                          secondName: Kula
+                          points: 0
+                          balance: 0
+                          legsWon: 0
+                          legsLost: 0
+                          average3Darts: 0
+                          maxAmount: 0
+                        playerTwo:
+                          id: 2
+                          name: Dariusz
+                          secondName: Furman
+                          points: 0
+                          balance: 0
+                          legsWon: 0
+                          legsLost: 0
+                          average3Darts: 0
+                          maxAmount: 0
+                        playerOneScore: 4
+                        playerTwoScore: 6
+                        playerOneAvg: 78.5
+                        playerTwoAvg: 83.2
+                        playerOneMaxAmount: 140
+                        playerTwoMaxAmount: 180
+                        playerOneHighOuts: []
+                        playerTwoHighOuts: []
+                        playerOneFastOuts: []
+                        playerTwoFastOuts: []
+                        winner: 2
+                        created_at: 19.09.2023
+                        updated_at: 19.09.2023
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 4
+                        playerOne:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 3
+                            name:
+                              type: string
+                              example: Krzysztof
+                            secondName:
+                              type: string
+                              example: Furman
+                            points:
+                              type: integer
+                              example: 3
+                            balance:
+                              type: integer
+                              example: -2
+                            legsWon:
+                              type: integer
+                              example: 4
+                            legsLost:
+                              type: integer
+                              example: 6
+                            average3Darts:
+                              type: number
+                              example: 39.27
+                            maxAmount:
+                              type: integer
+                              example: 140
+                        playerTwo:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 4
+                            name:
+                              type: string
+                              example: Hieronim
+                            secondName:
+                              type: string
+                              example: Furgał
+                            points:
+                              type: integer
+                              example: 0
+                            balance:
+                              type: integer
+                              example: 2
+                            legsWon:
+                              type: integer
+                              example: 6
+                            legsLost:
+                              type: integer
+                              example: 4
+                            average3Darts:
+                              type: number
+                              example: 41.62
+                            maxAmount:
+                              type: integer
+                              example: 180
+                        playerOneScore:
+                          type: integer
+                          example: 4
+                        playerTwoScore:
+                          type: integer
+                          example: 6
+                        playerOneAvg:
+                          type: number
+                          example: 78.54
+                        playerTwoAvg:
+                          type: number
+                          example: 83.24
+                        playerOneMaxAmount:
+                          type: integer
+                          example: 140
+                        playerTwoMaxAmount:
+                          type: integer
+                          example: 180
+                        playerOneHighOuts:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              value: 121
+                              gameId: 4
+                            -
+                              id: 2
+                              value: 123
+                              gameId: 4
+                            -
+                              id: 3
+                              value: 170
+                              gameId: 4
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              value:
+                                type: integer
+                                example: 121
+                              gameId:
+                                type: integer
+                                example: 4
+                        playerTwoHighOuts:
+                          type: array
+                          example:
+                            -
+                              id: 4
+                              value: 111
+                              gameId: 4
+                            -
+                              id: 5
+                              value: 123
+                              gameId: 4
+                            -
+                              id: 6
+                              value: 160
+                              gameId: 4
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 4
+                              value:
+                                type: integer
+                                example: 111
+                              gameId:
+                                type: integer
+                                example: 4
+                        playerOneFastOuts:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              value: 12
+                              gameId: 4
+                            -
+                              id: 2
+                              value: 16
+                              gameId: 4
+                            -
+                              id: 3
+                              value: 18
+                              gameId: 4
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              value:
+                                type: integer
+                                example: 12
+                              gameId:
+                                type: integer
+                                example: 4
+                        playerTwoFastOuts:
+                          type: array
+                          example:
+                            -
+                              id: 4
+                              value: 11
+                              gameId: 4
+                            -
+                              id: 5
+                              value: 12
+                              gameId: 4
+                            -
+                              id: 6
+                              value: 13
+                              gameId: 4
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 4
+                              value:
+                                type: integer
+                                example: 11
+                              gameId:
+                                type: integer
+                                example: 4
+                        winner:
+                          type: integer
+                          example: 4
+                        created_at:
+                          type: string
+                          example: 19.09.2023
+                        updated_at:
+                          type: string
+                          example: 19.09.2023
+                  message:
+                    type: string
+                    example: 'Games retrieved successfully'
+      tags:
+        - 'Game Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: league_id
+        description: 'The ID of the league.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/playerGames/{player_id}':
+    get:
+      summary: 'GET player Games'
+      operationId: gETPlayerGames
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  data:
+                    -
+                      id: 1
+                      playerOne:
+                        id: 1
+                        name: Filip
+                        secondName: Kula
+                        points: 0
+                        balance: 0
+                        legsWon: 0
+                        legsLost: 0
+                        average3Darts: 0
+                        maxAmount: 0
+                      playerTwo:
+                        id: 2
+                        name: Dariusz
+                        secondName: Furman
+                        points: 0
+                        balance: 0
+                        legsWon: 0
+                        legsLost: 0
+                        average3Darts: 0
+                        maxAmount: 0
+                      playerOneScore: 4
+                      playerTwoScore: 6
+                      playerOneAvg: 78.5
+                      playerTwoAvg: 83.2
+                      playerOneMaxAmount: 140
+                      playerTwoMaxAmount: 180
+                      playerOneHighOuts: []
+                      playerTwoHighOuts: []
+                      playerOneFastOuts: []
+                      playerTwoFastOuts: []
+                      winner: 2
+                      created_at: 19.09.2023
+                      updated_at: 19.09.2023
+                  message: 'Games retrieved successfully'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        playerOne:
+                          id: 1
+                          name: Filip
+                          secondName: Kula
+                          points: 0
+                          balance: 0
+                          legsWon: 0
+                          legsLost: 0
+                          average3Darts: 0
+                          maxAmount: 0
+                        playerTwo:
+                          id: 2
+                          name: Dariusz
+                          secondName: Furman
+                          points: 0
+                          balance: 0
+                          legsWon: 0
+                          legsLost: 0
+                          average3Darts: 0
+                          maxAmount: 0
+                        playerOneScore: 4
+                        playerTwoScore: 6
+                        playerOneAvg: 78.5
+                        playerTwoAvg: 83.2
+                        playerOneMaxAmount: 140
+                        playerTwoMaxAmount: 180
+                        playerOneHighOuts: []
+                        playerTwoHighOuts: []
+                        playerOneFastOuts: []
+                        playerTwoFastOuts: []
+                        winner: 2
+                        created_at: 19.09.2023
+                        updated_at: 19.09.2023
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        playerOne:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: Filip
+                            secondName:
+                              type: string
+                              example: Kula
+                            points:
+                              type: integer
+                              example: 0
+                            balance:
+                              type: integer
+                              example: 0
+                            legsWon:
+                              type: integer
+                              example: 0
+                            legsLost:
+                              type: integer
+                              example: 0
+                            average3Darts:
+                              type: integer
+                              example: 0
+                            maxAmount:
+                              type: integer
+                              example: 0
+                        playerTwo:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 2
+                            name:
+                              type: string
+                              example: Dariusz
+                            secondName:
+                              type: string
+                              example: Furman
+                            points:
+                              type: integer
+                              example: 0
+                            balance:
+                              type: integer
+                              example: 0
+                            legsWon:
+                              type: integer
+                              example: 0
+                            legsLost:
+                              type: integer
+                              example: 0
+                            average3Darts:
+                              type: integer
+                              example: 0
+                            maxAmount:
+                              type: integer
+                              example: 0
+                        playerOneScore:
+                          type: integer
+                          example: 4
+                        playerTwoScore:
+                          type: integer
+                          example: 6
+                        playerOneAvg:
+                          type: number
+                          example: 78.5
+                        playerTwoAvg:
+                          type: number
+                          example: 83.2
+                        playerOneMaxAmount:
+                          type: integer
+                          example: 140
+                        playerTwoMaxAmount:
+                          type: integer
+                          example: 180
+                        playerOneHighOuts:
+                          type: array
+                          example: []
+                        playerTwoHighOuts:
+                          type: array
+                          example: []
+                        playerOneFastOuts:
+                          type: array
+                          example: []
+                        playerTwoFastOuts:
+                          type: array
+                          example: []
+                        winner:
+                          type: integer
+                          example: 2
+                        created_at:
+                          type: string
+                          example: 19.09.2023
+                        updated_at:
+                          type: string
+                          example: 19.09.2023
+                  message:
+                    type: string
+                    example: 'Games retrieved successfully'
+      tags:
+        - 'Game Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: player_id
+        description: 'The ID of the player.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/players:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  data:
+                    -
+                      id: 1
+                      name: Filip
+                      secondName: Kula
+                      league:
+                        id: 1
+                        league_name: 'Pierwsza Liga'
+                        created_at: '2023-09-19T14:55:02.000000Z'
+                        updated_at: '2023-09-19T14:55:02.000000Z'
+                      points: 0
+                      balance: 0
+                      legsWon: 0
+                      legsLost: 0
+                      average3Darts: 0
+                      maxAmount: 0
+                      highOuts: []
+                      fastOuts: []
+                    -
+                      id: 2
+                      name: Dariusz
+                      secondName: Furman
+                      league:
+                        id: 1
+                        league_name: 'Pierwsza Liga'
+                        created_at: '2023-09-19T14:55:02.000000Z'
+                        updated_at: '2023-09-19T14:55:02.000000Z'
+                      points: 0
+                      balance: 0
+                      legsWon: 0
+                      legsLost: 0
+                      average3Darts: 0
+                      maxAmount: 0
+                      highOuts: []
+                      fastOuts: []
+                    -
+                      id: 3
+                      name: Krzysztof
+                      secondName: Furman
+                      league:
+                        id: 1
+                        league_name: 'Pierwsza Liga'
+                        created_at: '2023-09-19T14:55:02.000000Z'
+                        updated_at: '2023-09-19T14:55:02.000000Z'
+                      points: 3
+                      balance: -2
+                      legsWon: 4
+                      legsLost: 6
+                      average3Darts: 39.27
+                      maxAmount: 140
+                      highOuts:
+                        -
+                          id: 1
+                          value: 121
+                          gameId: 4
+                        -
+                          id: 2
+                          value: 123
+                          gameId: 4
+                        -
+                          id: 3
+                          value: 170
+                          gameId: 4
+                      fastOuts:
+                        -
+                          id: 1
+                          value: 12
+                          gameId: 4
+                        -
+                          id: 2
+                          value: 16
+                          gameId: 4
+                        -
+                          id: 3
+                          value: 18
+                          gameId: 4
+                    -
+                      id: 4
+                      name: Hieronim
+                      secondName: Furgał
+                      league:
+                        id: 1
+                        league_name: 'Pierwsza Liga'
+                        created_at: '2023-09-19T14:55:02.000000Z'
+                        updated_at: '2023-09-19T14:55:02.000000Z'
+                      points: 0
+                      balance: 2
+                      legsWon: 6
+                      legsLost: 4
+                      average3Darts: 41.62
+                      maxAmount: 180
+                      highOuts:
+                        -
+                          id: 4
+                          value: 111
+                          gameId: 4
+                        -
+                          id: 5
+                          value: 123
+                          gameId: 4
+                        -
+                          id: 6
+                          value: 160
+                          gameId: 4
+                      fastOuts:
+                        -
+                          id: 4
+                          value: 11
+                          gameId: 4
+                        -
+                          id: 5
+                          value: 12
+                          gameId: 4
+                        -
+                          id: 6
+                          value: 13
+                          gameId: 4
+                  message: 'Players retrieved successfully'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: Filip
+                        secondName: Kula
+                        league:
+                          id: 1
+                          league_name: 'Pierwsza Liga'
+                          created_at: '2023-09-19T14:55:02.000000Z'
+                          updated_at: '2023-09-19T14:55:02.000000Z'
+                        points: 0
+                        balance: 0
+                        legsWon: 0
+                        legsLost: 0
+                        average3Darts: 0
+                        maxAmount: 0
+                        highOuts: []
+                        fastOuts: []
+                      -
+                        id: 2
+                        name: Dariusz
+                        secondName: Furman
+                        league:
+                          id: 1
+                          league_name: 'Pierwsza Liga'
+                          created_at: '2023-09-19T14:55:02.000000Z'
+                          updated_at: '2023-09-19T14:55:02.000000Z'
+                        points: 0
+                        balance: 0
+                        legsWon: 0
+                        legsLost: 0
+                        average3Darts: 0
+                        maxAmount: 0
+                        highOuts: []
+                        fastOuts: []
+                      -
+                        id: 3
+                        name: Krzysztof
+                        secondName: Furman
+                        league:
+                          id: 1
+                          league_name: 'Pierwsza Liga'
+                          created_at: '2023-09-19T14:55:02.000000Z'
+                          updated_at: '2023-09-19T14:55:02.000000Z'
+                        points: 3
+                        balance: -2
+                        legsWon: 4
+                        legsLost: 6
+                        average3Darts: 39.27
+                        maxAmount: 140
+                        highOuts:
+                          -
+                            id: 1
+                            value: 121
+                            gameId: 4
+                          -
+                            id: 2
+                            value: 123
+                            gameId: 4
+                          -
+                            id: 3
+                            value: 170
+                            gameId: 4
+                        fastOuts:
+                          -
+                            id: 1
+                            value: 12
+                            gameId: 4
+                          -
+                            id: 2
+                            value: 16
+                            gameId: 4
+                          -
+                            id: 3
+                            value: 18
+                            gameId: 4
+                      -
+                        id: 4
+                        name: Hieronim
+                        secondName: Furgał
+                        league:
+                          id: 1
+                          league_name: 'Pierwsza Liga'
+                          created_at: '2023-09-19T14:55:02.000000Z'
+                          updated_at: '2023-09-19T14:55:02.000000Z'
+                        points: 0
+                        balance: 2
+                        legsWon: 6
+                        legsLost: 4
+                        average3Darts: 41.62
+                        maxAmount: 180
+                        highOuts:
+                          -
+                            id: 4
+                            value: 111
+                            gameId: 4
+                          -
+                            id: 5
+                            value: 123
+                            gameId: 4
+                          -
+                            id: 6
+                            value: 160
+                            gameId: 4
+                        fastOuts:
+                          -
+                            id: 4
+                            value: 11
+                            gameId: 4
+                          -
+                            id: 5
+                            value: 12
+                            gameId: 4
+                          -
+                            id: 6
+                            value: 13
+                            gameId: 4
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Filip
+                        secondName:
+                          type: string
+                          example: Kula
+                        league:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            league_name:
+                              type: string
+                              example: 'Pierwsza Liga'
+                            created_at:
+                              type: string
+                              example: '2023-09-19T14:55:02.000000Z'
+                            updated_at:
+                              type: string
+                              example: '2023-09-19T14:55:02.000000Z'
+                        points:
+                          type: integer
+                          example: 0
+                        balance:
+                          type: integer
+                          example: 0
+                        legsWon:
+                          type: integer
+                          example: 0
+                        legsLost:
+                          type: integer
+                          example: 0
+                        average3Darts:
+                          type: integer
+                          example: 0
+                        maxAmount:
+                          type: integer
+                          example: 0
+                        highOuts:
+                          type: array
+                          example: []
+                        fastOuts:
+                          type: array
+                          example: []
+                  message:
+                    type: string
+                    example: 'Players retrieved successfully'
+      tags:
+        - 'Player Management'
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Player Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 64 characters.'
+                  example: exotyxmgkzryspchppjkgszb
+                second_name:
+                  type: string
+                  description: 'Must not be greater than 64 characters.'
+                  example: rfhre
+                league_id:
+                  type: integer
+                  description: ''
+                  example: 10
+              required:
+                - name
+                - second_name
+                - league_id
+      security: []
+  '/api/players/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  data:
+                    id: 1
+                    name: Filip
+                    secondName: Kula
+                    league:
+                      id: 1
+                      league_name: 'Pierwsza Liga'
+                      created_at: '2023-09-19T14:55:02.000000Z'
+                      updated_at: '2023-09-19T14:55:02.000000Z'
+                    points: 0
+                    balance: 0
+                    legsWon: 0
+                    legsLost: 0
+                    average3Darts: 0
+                    maxAmount: 0
+                    highOuts: []
+                    fastOuts: []
+                  message: 'Player retrieved successfully'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: Filip
+                      secondName:
+                        type: string
+                        example: Kula
+                      league:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          league_name:
+                            type: string
+                            example: 'Pierwsza Liga'
+                          created_at:
+                            type: string
+                            example: '2023-09-19T14:55:02.000000Z'
+                          updated_at:
+                            type: string
+                            example: '2023-09-19T14:55:02.000000Z'
+                      points:
+                        type: integer
+                        example: 0
+                      balance:
+                        type: integer
+                        example: 0
+                      legsWon:
+                        type: integer
+                        example: 0
+                      legsLost:
+                        type: integer
+                        example: 0
+                      average3Darts:
+                        type: integer
+                        example: 0
+                      maxAmount:
+                        type: integer
+                        example: 0
+                      highOuts:
+                        type: array
+                        example: []
+                      fastOuts:
+                        type: array
+                        example: []
+                  message:
+                    type: string
+                    example: 'Player retrieved successfully'
+      tags:
+        - 'Player Management'
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Player Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 64 characters.'
+                  example: ekxsxxvlvrnrrzhjxbe
+                second_name:
+                  type: string
+                  description: 'Must not be greater than 64 characters.'
+                  example: alocuertuxxzxi
+                league_id:
+                  type: integer
+                  description: ''
+                  example: 17
+              required:
+                - name
+                - second_name
+                - league_id
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Player Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the player.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/leagues/{league_id}/players':
+    get:
+      summary: 'Display list of specified resource in storage'
+      operationId: displayListOfSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  data:
+                    -
+                      id: 3
+                      name: Krzysztof
+                      secondName: Furman
+                      points: 3
+                      balance: -2
+                      legsWon: 4
+                      legsLost: 6
+                      average3Darts: 39.27
+                      maxAmount: 140
+                      highOuts:
+                        -
+                          id: 1
+                          value: 121
+                          gameId: 4
+                        -
+                          id: 2
+                          value: 123
+                          gameId: 4
+                        -
+                          id: 3
+                          value: 170
+                          gameId: 4
+                      fastOuts:
+                        -
+                          id: 1
+                          value: 12
+                          gameId: 4
+                        -
+                          id: 2
+                          value: 16
+                          gameId: 4
+                        -
+                          id: 3
+                          value: 18
+                          gameId: 4
+                    -
+                      id: 1
+                      name: Filip
+                      secondName: Kula
+                      points: 0
+                      balance: 0
+                      legsWon: 0
+                      legsLost: 0
+                      average3Darts: 0
+                      maxAmount: 0
+                      highOuts: []
+                      fastOuts: []
+                    -
+                      id: 2
+                      name: Dariusz
+                      secondName: Furman
+                      points: 0
+                      balance: 0
+                      legsWon: 0
+                      legsLost: 0
+                      average3Darts: 0
+                      maxAmount: 0
+                      highOuts: []
+                      fastOuts: []
+                    -
+                      id: 4
+                      name: Hieronim
+                      secondName: Furgał
+                      points: 0
+                      balance: 2
+                      legsWon: 6
+                      legsLost: 4
+                      average3Darts: 41.62
+                      maxAmount: 180
+                      highOuts:
+                        -
+                          id: 4
+                          value: 111
+                          gameId: 4
+                        -
+                          id: 5
+                          value: 123
+                          gameId: 4
+                        -
+                          id: 6
+                          value: 160
+                          gameId: 4
+                      fastOuts:
+                        -
+                          id: 4
+                          value: 11
+                          gameId: 4
+                        -
+                          id: 5
+                          value: 12
+                          gameId: 4
+                        -
+                          id: 6
+                          value: 13
+                          gameId: 4
+                  message: 'Players retrieved successfully'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 3
+                        name: Krzysztof
+                        secondName: Furman
+                        points: 3
+                        balance: -2
+                        legsWon: 4
+                        legsLost: 6
+                        average3Darts: 39.27
+                        maxAmount: 140
+                        highOuts:
+                          -
+                            id: 1
+                            value: 121
+                            gameId: 4
+                          -
+                            id: 2
+                            value: 123
+                            gameId: 4
+                          -
+                            id: 3
+                            value: 170
+                            gameId: 4
+                        fastOuts:
+                          -
+                            id: 1
+                            value: 12
+                            gameId: 4
+                          -
+                            id: 2
+                            value: 16
+                            gameId: 4
+                          -
+                            id: 3
+                            value: 18
+                            gameId: 4
+                      -
+                        id: 1
+                        name: Filip
+                        secondName: Kula
+                        points: 0
+                        balance: 0
+                        legsWon: 0
+                        legsLost: 0
+                        average3Darts: 0
+                        maxAmount: 0
+                        highOuts: []
+                        fastOuts: []
+                      -
+                        id: 2
+                        name: Dariusz
+                        secondName: Furman
+                        points: 0
+                        balance: 0
+                        legsWon: 0
+                        legsLost: 0
+                        average3Darts: 0
+                        maxAmount: 0
+                        highOuts: []
+                        fastOuts: []
+                      -
+                        id: 4
+                        name: Hieronim
+                        secondName: Furgał
+                        points: 0
+                        balance: 2
+                        legsWon: 6
+                        legsLost: 4
+                        average3Darts: 41.62
+                        maxAmount: 180
+                        highOuts:
+                          -
+                            id: 4
+                            value: 111
+                            gameId: 4
+                          -
+                            id: 5
+                            value: 123
+                            gameId: 4
+                          -
+                            id: 6
+                            value: 160
+                            gameId: 4
+                        fastOuts:
+                          -
+                            id: 4
+                            value: 11
+                            gameId: 4
+                          -
+                            id: 5
+                            value: 12
+                            gameId: 4
+                          -
+                            id: 6
+                            value: 13
+                            gameId: 4
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 3
+                        name:
+                          type: string
+                          example: Krzysztof
+                        secondName:
+                          type: string
+                          example: Furman
+                        points:
+                          type: integer
+                          example: 3
+                        balance:
+                          type: integer
+                          example: -2
+                        legsWon:
+                          type: integer
+                          example: 4
+                        legsLost:
+                          type: integer
+                          example: 6
+                        average3Darts:
+                          type: number
+                          example: 39.27
+                        maxAmount:
+                          type: integer
+                          example: 140
+                        highOuts:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              value: 121
+                              gameId: 4
+                            -
+                              id: 2
+                              value: 123
+                              gameId: 4
+                            -
+                              id: 3
+                              value: 170
+                              gameId: 4
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              value:
+                                type: integer
+                                example: 121
+                              gameId:
+                                type: integer
+                                example: 4
+                        fastOuts:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              value: 12
+                              gameId: 4
+                            -
+                              id: 2
+                              value: 16
+                              gameId: 4
+                            -
+                              id: 3
+                              value: 18
+                              gameId: 4
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              value:
+                                type: integer
+                                example: 12
+                              gameId:
+                                type: integer
+                                example: 4
+                  message:
+                    type: string
+                    example: 'Players retrieved successfully'
+      tags:
+        - 'Player Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: league_id
+        description: 'The ID of the league.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Endpoints
+    description: ''
+  -
+    name: 'Game Management'
+    description: "\nAPIs for managing games"
+  -
+    name: 'Player Management'
+    description: "\nAPIs for managing players"
