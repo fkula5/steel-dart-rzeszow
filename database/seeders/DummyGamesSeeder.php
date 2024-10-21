@@ -90,7 +90,7 @@ class DummyGamesSeeder extends Seeder
         $player->legs_won += $score;
         $player->legs_lost += $opponentScore;
         $player->balance = $player->balance + $score - $opponentScore;
-        $player->average_3_dart = (($player->average_3_dart + $avg) / 2);
+        $player->average_3_dart = $player->average_3_dart == 0 ? $avg : ($player->average_3_dart + $avg) /2;
         $player->max_amount += $max;
         $player->save();
     }
