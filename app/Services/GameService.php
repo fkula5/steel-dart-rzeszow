@@ -8,35 +8,28 @@ use App\Models\Game;
 use App\Models\HighOut;
 use App\Models\HighOutType;
 use App\Models\Player;
+use App\Repositories\GameRepository;
+use App\ValueObjects\CreateNewGame;
 
 class GameService
 {
-    private function updatePlayerStats(Player $player, int $score, int $opponentScore, float $avg, int $max): void
+    public function __construct(private GameRepository $gameRepository)
     {
-        $player->legs_won += $score;
-        $player->legs_lost += $opponentScore;
-        $player->balance = $player->balance + $score - $opponentScore;
-        $player->average_3_dart = (($player->avg + $avg) / 2);
-        $player->max_amount += $max;
-        $player->save();
     }
-    private function updatePlayersStats(Game $game): void
+
+    public function store(CreateNewGame $gameData): Game
     {
-        $playerOne = Player::find($game->player_one);
-        $playerTwo = Player::find($game->player_two);
+        $game = $this->gameRepository->create($gameData);
 
-        if ($game->winner == $game->player_one) {
-            $playerOne->points += 3;
-        } elseif ($game->winner == $game->player_two) {
-            $playerTwo->points += 3;
-        } else {
-            $playerOne->points += 1;
-            $playerOne->points += 1;
-        }
+        $this->createHighOuts($gameData['player_one_high_outs'], $game, $game->player_one);
+        $this->createFastOuts($gameData['player_one_fast_outs'], $game, $game->player_one);
 
-        $this->updatePlayerStats($playerOne, $game->player_one_score, $game->player_two_score, $game->player_one_avg, $game->player_one_max_amount);
+        $this->createHighOuts($gameData['player_two_high_outs'], $game, $game->player_two);
+        $this->createFastOuts($gameData['player_two_fast_outs'], $game, $game->player_two);
 
-        $this->updatePlayerStats($playerTwo, $game->player_two_score, $game->player_one_score, $game->player_two_avg, $game->player_two_max_amount);
+        $this->updatePlayersStats($game);
+
+        return $game;
     }
 
     private function createHighOuts(array $highOuts, Game $game, int $playerId): void
@@ -61,19 +54,33 @@ class GameService
         }
     }
 
-    public function store(array $gameData): Game
+    private function updatePlayersStats(Game $game): void
     {
-        $game = Game::create($gameData);
+        $playerOne = Player::find($game->player_one);
+        $playerTwo = Player::find($game->player_two);
 
-        $this->createHighOuts($gameData['player_one_high_outs'], $game, $game->player_one);
-        $this->createFastOuts($gameData['player_one_fast_outs'], $game, $game->player_one);
+        if ($game->winner == $game->player_one) {
+            $playerOne->points += 3;
+        } elseif ($game->winner == $game->player_two) {
+            $playerTwo->points += 3;
+        } else {
+            $playerOne->points += 1;
+            $playerOne->points += 1;
+        }
 
-        $this->createHighOuts($gameData['player_two_high_outs'], $game, $game->player_two);
-        $this->createFastOuts($gameData['player_two_fast_outs'], $game, $game->player_two);
+        $this->updatePlayerStats($playerOne, $game->player_one_score, $game->player_two_score, $game->player_one_avg, $game->player_one_max_amount);
 
-        $this->updatePlayersStats($game);
+        $this->updatePlayerStats($playerTwo, $game->player_two_score, $game->player_one_score, $game->player_two_avg, $game->player_two_max_amount);
+    }
 
-        return $game;
+    private function updatePlayerStats(Player $player, int $score, int $opponentScore, float $avg, int $max): void
+    {
+        $player->legs_won += $score;
+        $player->legs_lost += $opponentScore;
+        $player->balance = $player->balance + $score - $opponentScore;
+        $player->average_3_dart = (($player->avg + $avg) / 2);
+        $player->max_amount += $max;
+        $player->save();
     }
 
     public function update(Game $game, array $gameData): Game

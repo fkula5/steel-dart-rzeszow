@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\ValueObjects\CreateNewGame;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -33,13 +34,13 @@ class GameStoreRequest extends FormRequest
             'player_two_max_amount' => ['required', 'integer'],
             'league_id' => ['required', 'integer', 'exists:leagues,id'],
             'winner' => ['required', 'integer'],
-            'player_one_high_outs' => ['sometimes','array'],
+            'player_one_high_outs' => ['sometimes', 'array'],
             'player_one_high_outs.*' => ['numeric'],
-            'player_one_fast_outs' => ['sometimes','array'],
+            'player_one_fast_outs' => ['sometimes', 'array'],
             'player_one_fast_outs.*' => ['numeric'],
-            'player_two_high_outs' => ['sometimes','array'],
+            'player_two_high_outs' => ['sometimes', 'array'],
             'player_two_high_outs.*' => ['numeric'],
-            'player_two_fast_outs' => ['sometimes','array'],
+            'player_two_fast_outs' => ['sometimes', 'array'],
             'player_two_fast_outs.*' => ['numeric'],
         ];
     }
@@ -65,5 +66,21 @@ class GameStoreRequest extends FormRequest
             'player_two_high_outs.*.numeric' => 'High outs should contain only numeric values',
             'player_two_fast_outs.*.numeric' => 'Fast outs should contain only numeric values',
         ];
+    }
+
+    public function getGame(): CreateNewGame
+    {
+        return new CreateNewGame(
+            $this->get('player_one'),
+            $this->get('player_two'),
+            $this->get('player_one_score'),
+            $this->get('player_two_score'),
+            $this->get('player_one_avg'),
+            $this->get('player_two_avg'),
+            $this->get('player_one_max_amount'),
+            $this->get('player_two_max_amount'),
+            $this->get('league_id'),
+            $this->get('winner'),
+        );
     }
 }
