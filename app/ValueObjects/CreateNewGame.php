@@ -16,6 +16,11 @@ final class CreateNewGame implements Arrayable
     private float $playerTwoMaxAmount;
     private int $league;
     private int $winner;
+    private array $playerOneHighOuts;
+    private array $playerTwoHighOuts;
+    private array $playerOneFastOuts;
+    private array $playerTwoFastOuts;
+
 
     public function __construct(
         int   $playerOne,
@@ -27,7 +32,12 @@ final class CreateNewGame implements Arrayable
         int   $playerOneMaxAmount,
         int   $playerTwoMaxAmount,
         int   $league,
-        int   $winner
+        int   $winner,
+        array $playerOneHighOuts,
+        array $playerTwoHighOuts,
+        array $playerOneFastOuts,
+        array $playerTwoFastOuts
+
     )
     {
         $this->playerOne = $playerOne;
@@ -40,9 +50,13 @@ final class CreateNewGame implements Arrayable
         $this->playerTwoMaxAmount = $playerTwoMaxAmount;
         $this->league = $league;
         $this->winner = $winner;
+        $this->playerOneHighOuts = $playerOneHighOuts;
+        $this->playerTwoHighOuts = $playerTwoHighOuts;
+        $this->playerOneFastOuts = $playerOneFastOuts;
+        $this->playerTwoFastOuts = $playerTwoFastOuts;
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'player_one' => $this->playerOne,
@@ -53,8 +67,12 @@ final class CreateNewGame implements Arrayable
             'player_two_avg' => $this->playerTwoAvg,
             'player_one_max_amount' => $this->playerOneMaxAmount,
             'player_two_max_amount' => $this->playerTwoMaxAmount,
-            'league' => $this->league,
+            'league_id' => $this->league,
             'winner' => $this->winner,
+            'player_one_high_outs' => $this->playerOneHighOuts,
+            'player_two_high_outs' => $this->playerTwoHighOuts,
+            'player_one_fast_outs' => $this->playerOneFastOuts,
+            'player_two_fast_outs' => $this->playerTwoFastOuts,
         ];
     }
 
@@ -107,5 +125,25 @@ final class CreateNewGame implements Arrayable
     public function getWinner(): int
     {
         return $this->winner;
+    }
+
+    public function getPlayerOneHighOuts(): array
+    {
+        return $this->playerOneHighOuts;
+    }
+
+    public function getPlayerTwoHighOuts(): array
+    {
+        return $this->playerTwoHighOuts;
+    }
+
+    public function getPlayerOneFastOuts(): array
+    {
+        return $this->playerOneFastOuts;
+    }
+
+    public function getPlayerTwoFastOuts(): array
+    {
+        return $this->playerTwoFastOuts;
     }
 }

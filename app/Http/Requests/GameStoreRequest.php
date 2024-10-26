@@ -70,17 +70,23 @@ class GameStoreRequest extends FormRequest
 
     public function getGame(): CreateNewGame
     {
+        $validatedData = $this->validated();
+
         return new CreateNewGame(
-            $this->get('player_one'),
-            $this->get('player_two'),
-            $this->get('player_one_score'),
-            $this->get('player_two_score'),
-            $this->get('player_one_avg'),
-            $this->get('player_two_avg'),
-            $this->get('player_one_max_amount'),
-            $this->get('player_two_max_amount'),
-            $this->get('league_id'),
-            $this->get('winner'),
+            $validatedData['player_one'],
+            $validatedData['player_two'],
+            $validatedData['player_one_score'],
+            $validatedData['player_two_score'],
+            $validatedData['player_one_avg'],
+            $validatedData['player_two_avg'],
+            $validatedData['player_one_max_amount'],
+            $validatedData['player_two_max_amount'],
+            $validatedData['league_id'],
+            $validatedData['winner'],
+            $validatedData['player_one_high_outs'],
+            $validatedData['player_two_high_outs'],
+            $validatedData['player_one_fast_outs'],
+            $validatedData['player_two_fast_outs'],
         );
     }
 }
