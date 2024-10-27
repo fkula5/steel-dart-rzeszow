@@ -8,4 +8,6 @@ use App\ValueObjects\CreateNewGame;
 interface IGameService
 {
     public function store(CreateNewGame $gameData): Game;
+
+    public function update(Game $game, array $gameData);
 }
