@@ -98,7 +98,10 @@ class GameService implements IGameService
 
         $game->fastOuts()->delete();
 
-        $this->createOuts($gameData, $game);
+        $this->createHighOuts($gameData['player_one_high_outs'], $gameData['player_one'], $game->id);
+        $this->createHighOuts($gameData['player_two_high_outs'], $gameData['player_two'], $game->id);
+        $this->createFastOuts($gameData['player_one_fast_outs'], $gameData['player_one'], $game->id);
+        $this->createFastOuts($gameData['player_two_fast_outs'], $gameData['player_two'], $game->id);
 
         return $game;
     }
