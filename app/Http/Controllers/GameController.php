@@ -67,16 +67,25 @@ class GameController extends BaseController
         }
     }
 
+    /**
+     * Display a listing of specified player games.
+     */
     public function playerGames(Player $player)
     {
         return $this->sendResponse(new GameCollection($player->allGames()->with(['playerOne', 'playerTwo'])->get()), "Games retrieved successfully");
     }
 
+    /**
+     * Display a listing of specified league recent games.
+     */
     public function recentLeagueGames(League $league)
     {
         return $this->sendResponse(new GameCollection($league->games()->with(['playerOne', 'playerTwo'])->orderBy('created_at', 'desc')->take(5)->get()), "Games retrieved successfully");
     }
 
+    /**
+     * Display a listing of specified league games.
+     */
     public function leagueGames(League $league)
     {
         return $this->sendResponse(new GameCollection($league->games()->with(['playerOne', 'playerTwo'])->orderBy('created_at', 'desc')->get()), "Games retrieved successfully");
