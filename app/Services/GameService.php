@@ -11,6 +11,7 @@ use App\Models\Player;
 use App\Repositories\GameRepository;
 use App\Services\Interfaces\IGameService;
 use App\ValueObjects\CreateNewGame;
+use Illuminate\Database\Eloquent\Collection;
 
 class GameService implements IGameService
 {
@@ -83,7 +84,7 @@ class GameService implements IGameService
         $player->legs_won += $score;
         $player->legs_lost += $opponentScore;
         $player->balance = $player->balance + $score - $opponentScore;
-        $player->average_3_dart = (($player->avg + $avg) / 2);
+        $player->average_3_dart = $player->average_3_dart == 0 ? $avg : ($player->average_3_dart + $avg) / 2;
         $player->max_amount += $max;
         $player->save();
     }
@@ -104,6 +105,11 @@ class GameService implements IGameService
         $this->createFastOuts($gameData['player_two_fast_outs'], $gameData['player_two'], $game->id);
 
         return $game;
+    }
+
+    public function index(): Collection
+    {
+        return Game::with(['playerOne', 'playerTwo', 'league'])->get();
     }
 
 }

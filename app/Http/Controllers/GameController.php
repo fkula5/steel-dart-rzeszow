@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GameController extends BaseController
 {
-    #specjalnie dla Szymona
     public function __construct(private GameService $gameService)
     {
     }
@@ -24,7 +23,7 @@ class GameController extends BaseController
      */
     public function index()
     {
-        return $this->sendResponse(new GameCollection(Game::with(['playerOne', 'playerTwo', 'league'])->get()), "Games retrieved successfully");
+        return $this->sendResponse(new GameCollection($this->gameService->index()), "Games retrieved successfully");
     }
 
     /**
