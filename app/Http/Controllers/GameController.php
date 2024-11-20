@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GameController extends BaseController
 {
-    #specjalnie dla Szymona
     public function __construct(private GameService $gameService)
     {
     }
@@ -24,7 +23,7 @@ class GameController extends BaseController
      */
     public function index()
     {
-        return $this->sendResponse(new GameCollection(Game::with(['playerOne', 'playerTwo', 'league'])->get()), "Games retrieved successfully");
+        return $this->sendResponse(new GameCollection($this->gameService->index()), "Games retrieved successfully");
     }
 
     /**
@@ -32,7 +31,7 @@ class GameController extends BaseController
      */
     public function store(GameStoreRequest $request)
     {
-        $game = $this->gameService->store($request->validated());
+        $game = $this->gameService->store($request->getGame());
 
         return $this->sendResponse(new GameResource($game->loadMissing(['playerOne', 'playerTwo', 'league'])), "Game successfully created", Response::HTTP_CREATED);
     }
@@ -67,15 +66,27 @@ class GameController extends BaseController
         }
     }
 
-    public function playerGames(Player $player){
+    /**
+     * Display a listing of specified player games.
+     */
+    public function playerGames(Player $player)
+    {
         return $this->sendResponse(new GameCollection($player->allGames()->with(['playerOne', 'playerTwo'])->get()), "Games retrieved successfully");
     }
 
-    public function recentLeagueGames(League $league){
+    /**
+     * Display a listing of specified league recent games.
+     */
+    public function recentLeagueGames(League $league)
+    {
         return $this->sendResponse(new GameCollection($league->games()->with(['playerOne', 'playerTwo'])->orderBy('created_at', 'desc')->take(5)->get()), "Games retrieved successfully");
     }
 
-    public function leagueGames(League $league){
+    /**
+     * Display a listing of specified league games.
+     */
+    public function leagueGames(League $league)
+    {
         return $this->sendResponse(new GameCollection($league->games()->with(['playerOne', 'playerTwo'])->orderBy('created_at', 'desc')->get()), "Games retrieved successfully");
     }
 }
